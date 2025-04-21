@@ -1,0 +1,25 @@
+[
+    {
+      "id": "obsidian_sword",
+      "name": "Obsidian Sword",
+      "rarity": "Legendary",
+      "maxStackSize": 1,
+      "stats": {
+        "flatDamage": 12,
+        "damageMult": 1.15,
+        "goldGainIncrease": 0.1
+      },
+      "tags": ["weapon", "craftable"]
+    },
+    {
+      "id": "reinforced_helmet",
+      "name": "Reinforced Helmet",
+      "rarity": "Rare",
+      "maxStackSize": 1,
+      "stats": {
+        "flatDefense": 4,
+        "maxHealthMult": 0.1
+      },
+      "tags": ["helmet", "armor"]
+    }
+  ]
