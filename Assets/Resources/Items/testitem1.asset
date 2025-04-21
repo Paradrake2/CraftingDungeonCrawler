@@ -22,22 +22,22 @@ MonoBehaviour:
   flatDamage: 3
   damageMult: 1.5
   flatDefense: 0
-  defenseMult: 1
+  defenseMult: 0
   flatMaxHP: 0
-  HPMult: 1
+  HPMult: 0
   flatPureDamage: 0
-  pureDamageMult: 1
+  pureDamageMult: 0
   flatMaxMana: 0
-  maxManaMult: 1
+  maxManaMult: 0
   dropRateIncrease: 0
   xpGainIncrease: 0
   goldGainIncrease: 0
   flatKnockbackIncrease: 0
-  knockbackMult: 1
-  knockbackResistanceMult: 1
+  knockbackMult: 0
+  knockbackResistanceMult: 0
   flatKnockbackResistance: 0
   attackSpeedFlat: 0
-  attackSpeedMult: 1
+  attackSpeedMult: 0
   dropRate: 0
   tags: []
   ID: testitem1

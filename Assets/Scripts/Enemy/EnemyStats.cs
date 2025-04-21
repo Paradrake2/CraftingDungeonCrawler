@@ -8,6 +8,11 @@ public enum EnemyRarity {
     Legendary,
     Boss
 }
+[System.Serializable]
+public class DropPool {
+    public ItemRarity rarity;
+    public List<Items> items;
+}
 public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
@@ -26,8 +31,13 @@ public class EnemyStats : MonoBehaviour
     public float maxXP;
     public float minGold;
     public float maxGold;
-    public List<Items> possibleDrops = new List<Items>();
-    
+    public List<DropPool> dropPool = new();
+    public PlayerStats playerStats;
+
+    void Awake()
+    {
+        
+    }
     void Start()
     {
         
@@ -84,5 +94,44 @@ public class EnemyStats : MonoBehaviour
 
     public float getHealth() {
         return currentHealth;
+    }
+    public float getDamage() {
+        return damage;
+    }
+
+    public float getDefense() {
+        return defense;
+    }
+
+    public float getXP() {
+        return UnityEngine.Random.Range(minXP,maxXP);
+    }
+
+    public float getGold() {
+        return UnityEngine.Random.Range(minGold,maxGold);
+    }
+    public List<Items> getDrop() {
+        // float roll = UnityEngine.Random.value + PlayerStats.Instance.GetStat(StatType.DropRate);
+        List<Items> finalDrops = new();
+        float dropRate = Mathf.Clamp01(playerStats.CurrentDropRate);
+        Dictionary<ItemRarity, float> baseChances = new() {
+            {ItemRarity.Gauranteed,1f},
+            {ItemRarity.Uncommon,0.4f},
+            {ItemRarity.Rare, 0.2f},
+            {ItemRarity.Epic, 0.08f},
+            {ItemRarity.Legendary, 0.01f},
+            {ItemRarity.Mythical, 0.005f}
+        };
+        foreach(var rarity in baseChances.Keys) {
+            float effectiveChance = baseChances[rarity] + (dropRate * baseChances[rarity] * 2f);
+            effectiveChance = Mathf.Min(effectiveChance, baseChances[rarity] * 20f);
+            if (UnityEngine.Random.value <= effectiveChance) {
+                var pool = dropPool.Find(p => p.rarity == rarity);
+                if (pool != null && pool.items.Count > 0) {
+                    finalDrops.Add(pool.items[UnityEngine.Random.Range(0, pool.items.Count)]);
+                }
+            }
+        }
+        return finalDrops;
     }
 }

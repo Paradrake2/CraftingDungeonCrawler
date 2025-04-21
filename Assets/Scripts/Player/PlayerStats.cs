@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public Dictionary<EquipmentSlot, Equipment> equippedItems = new();
-
     // Base stats
     public int Level = 1;
     public float XP = 0;
@@ -87,5 +86,8 @@ public class PlayerStats : MonoBehaviour
         CurrentHealth = CurrentMaxHealth;
 
         Debug.Log("Leveled up to level " + Level);
+    }
+    public float GetStat(StatType statType) {
+        return CalculateStat(statType);
     }
 }

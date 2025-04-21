@@ -49,8 +49,9 @@ public class CraftingUIManager : MonoBehaviour
 
         foreach(Items item in allItems) {
             var button = Instantiate(inventoryButtonPrefab, inventoryParent);
-            button.GetComponentInChildren<Text>().text = item.itemName;
-
+            var iconImage = button.transform.Find("Image").GetComponent<Image>();
+            iconImage.sprite = item.icon;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
             button.GetComponent<Button>().onClick.AddListener(() => {TryAddIngredient(item);});
         }
     }

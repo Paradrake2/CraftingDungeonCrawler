@@ -1,6 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemRarity {
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary,
+    Mythical,
+    Gauranteed
+}
 public enum ItemType {
     Material,
     MonsterDrop,
@@ -24,37 +33,37 @@ public class Items : ScriptableObject
     public float value;
 
     [Header("Rarity")]
-    public string Rarity;
+    public ItemRarity Rarity;
 
     [Header("FlatDamage")]
     public float flatDamage;
 
     [Header("DamageMult")]
-    public float damageMult = 1;
+    public float damageMult;
 
     [Header("FlatDefense")]
     public float flatDefense;
 
     [Header("DefenseMult")]
-    public float defenseMult = 1;
+    public float defenseMult;
 
     [Header("FlatMaxHP")]
     public float flatMaxHP;
 
     [Header("MaxHPMult")]
-    public float HPMult = 1;
+    public float HPMult;
 
     [Header("FlatPureDamage")]
     public float flatPureDamage;
 
     [Header("PureDamageMult")]
-    public float pureDamageMult = 1;
+    public float pureDamageMult;
 
     [Header("FlatMaxMana")]
     public float flatMaxMana;
     
     [Header("MaxManaMult")]
-    public float maxManaMult = 1;
+    public float maxManaMult;
 
     [Header("DropRateIncrease")]
     public float dropRateIncrease;
@@ -68,10 +77,10 @@ public class Items : ScriptableObject
     public float flatKnockbackIncrease;
     
     [Header("KnockbackMult")]
-    public float knockbackMult = 1;
+    public float knockbackMult;
 
     [Header("KnockbackResistanceMult")]
-    public float knockbackResistanceMult = 1;
+    public float knockbackResistanceMult;
 
     [Header("KnockbackResistanceFlat")]
     public float flatKnockbackResistance;
@@ -79,7 +88,7 @@ public class Items : ScriptableObject
     [Header("AttackSpeedFlat")]
     public float attackSpeedFlat;
     [Header("AttackSpeedMult")]
-    public float attackSpeedMult = 1;
+    public float attackSpeedMult;
 
     [Header("Drop Rate")]
     public float dropRate;
