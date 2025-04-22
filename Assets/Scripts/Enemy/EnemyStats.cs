@@ -36,7 +36,12 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
-        
+#pragma warning disable CS0618 // Type or member is obsolete
+        playerStats = FindObjectOfType<PlayerStats>();
+#pragma warning restore CS0618 // Type or member is obsolete
+        if (playerStats == null) {
+            Debug.LogError("PlayerStats not found");
+        }
     }
     void Start()
     {
@@ -48,10 +53,7 @@ public class EnemyStats : MonoBehaviour
     {
         
     }
-    public void TakeDamage(float damage) {
-        currentHealth = currentHealth - (float)damage;
-        wasHitByPlayer = true;
-    }
+    
 
     public void ApplyKnockback(Vector2 direction, float force, float duration) {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -116,6 +118,7 @@ public class EnemyStats : MonoBehaviour
         float dropRate = Mathf.Clamp01(playerStats.CurrentDropRate);
         Dictionary<ItemRarity, float> baseChances = new() {
             {ItemRarity.Gauranteed,1f},
+            {ItemRarity.Common, 0.8f},
             {ItemRarity.Uncommon,0.4f},
             {ItemRarity.Rare, 0.2f},
             {ItemRarity.Epic, 0.08f},

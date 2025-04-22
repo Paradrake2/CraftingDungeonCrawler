@@ -6,7 +6,6 @@ public class InventorySystem : MonoBehaviour
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
     public List<Equipment> ownedGear = new List<Equipment>();
     public static InventorySystem Instance;
-    public void AddItem(string itemId, int amount){}
     public void RemoveItem(string itemId, int amount) {}
     void Awake()
     {
@@ -26,4 +25,15 @@ public class InventorySystem : MonoBehaviour
         ownedGear.Add(newEquip);
         Debug.Log($"Added new equipment: {newEquip.itemName}");
     }
+    public void AddItem(string itemId, int amount) {
+        InventoryItem existing = itemStacks.Find(i => i.itemId == itemId);
+
+        if (existing != null) {
+            existing.quantity += amount;
+        } else {
+            itemStacks.Add(new InventoryItem {itemId = itemId, quantity = amount});
+        }
+        Debug.Log($"Added{amount} of {itemId} to inventory.");
+    }
+
 }

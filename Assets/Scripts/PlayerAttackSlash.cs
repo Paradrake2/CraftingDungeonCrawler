@@ -17,15 +17,13 @@ public class PlayerAttackSlash : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Hit layer: " + LayerMask.LayerToName(other.gameObject.layer));
         
         EnemyStats enemy = other.GetComponent<EnemyStats>();
         if (hitEnemies.Contains(enemy)) return;
         hitEnemies.Add(enemy);
-        other.GetComponent<EnemyStats>()?.TakeDamage(playerStats.CurrentDamage);
+        other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
         Vector2 knockbackDirection = other.transform.position - playerTransform.position;
         float knockbackForce = playerStats.CurrentKnockback * other.GetComponent<EnemyStats>().getKnockbackResistance();
-        Debug.Log("hit enemy");
         other.GetComponent<EnemyStats>()?.ApplyKnockback(knockbackDirection, knockbackForce, knockbackTime);
             
         

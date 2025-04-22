@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 20
-  damage: 4
+  damage: 40
   defense: 4
   knockback: 1
   knockbackResistance: 1

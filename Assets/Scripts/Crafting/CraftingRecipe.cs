@@ -23,4 +23,7 @@ public class CraftingRecipe : ScriptableObject
     public int getRequiredSlots() {
         return requiredSlots;
     }
+    public Sprite getIcon() {
+        return icon;
+    }
 }

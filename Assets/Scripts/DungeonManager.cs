@@ -48,4 +48,8 @@ public class DungeonManager : MonoBehaviour
     public int getFloor() {
         return floor;
     }
+
+    public int getEnemiesKilled() {
+        return enemiesKilled;
+    }
 }

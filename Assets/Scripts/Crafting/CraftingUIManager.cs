@@ -19,12 +19,16 @@ public class CraftingUIManager : MonoBehaviour
 
     private List<Items> currentIngredients = new();
     private List<GameObject> recipeSlotUIs = new();
+    public List<CraftingRecipe> allRecipes;
+    public Transform recipeButtonParent;
+    public GameObject recipeButtonPrefab;
 
     private void Start()
     {
         craftButton.onClick.AddListener(CraftItem);
         PopulateInventory();
         SetupRecipeSlots();
+        GenerateRecipeButtons();
     }
     void CraftItem() {
         if (InventorySystem.Instance == null)
@@ -59,9 +63,28 @@ public class CraftingUIManager : MonoBehaviour
         recipeSlotUIs.Clear();
         for (int i = 0; i < selectedRecipe.requiredSlots; i++) {
             var slot = Instantiate(recipeSlotPrefab, recipeSlotsParent);
-            slot.GetComponentInChildren<Text>().text = $"Slot {i + 1}";
+//            slot.GetComponentInChildren<Text>().text = $"Slot {i + 1}";
             recipeSlotUIs.Add(slot);
         }
+    }
+    void GenerateRecipeButtons() {
+        foreach (var recipe in allRecipes) {
+            GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
+            buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
+            buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
+
+            var button = buttonObject.GetComponent<Button>();
+            if (button != null) {
+                button.onClick.AddListener(() => SelectRecipe(recipe));
+            }
+
+        }
+    }
+    public void SelectRecipe(CraftingRecipe recipe) {
+        selectedRecipe = recipe;
+        currentIngredients.Clear();
+        SetupRecipeSlots();
+        UpdatePreview();
     }
     void TryAddIngredient(Items item) {
         if (currentIngredients.Count >= selectedRecipe.requiredSlots) return;
@@ -69,8 +92,8 @@ public class CraftingUIManager : MonoBehaviour
         currentIngredients.Add(item);
         int slotIndex = currentIngredients.Count - 1;
         if (slotIndex < recipeSlotUIs.Count) {
-            var text = recipeSlotUIs[slotIndex].GetComponentInChildren<Text>();
-            text.text = item.itemName;
+            var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
+            //text.text = item.itemName;
         }
         UpdatePreview();
     }

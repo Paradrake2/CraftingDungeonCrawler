@@ -13,6 +13,11 @@ public enum EquipmentSlot {
     Accessory4,
     Accessory5
 }
+public enum SlotCategory {
+    Armor,
+    Weapon,
+    Accessory
+}
 public enum StatType {
     MaxHealth,
     Defense,
@@ -40,6 +45,7 @@ public class StatModifier {
 public class Equipment
 {
     public string itemName;
+    public SlotCategory category;
     public EquipmentSlot slot;
     public List<StatModifier> modifiers = new List<StatModifier>();
 }

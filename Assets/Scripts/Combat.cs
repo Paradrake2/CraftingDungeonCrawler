@@ -45,7 +45,7 @@ public class Combat : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            other.GetComponent<EnemyStats>()?.TakeDamage(playerStats.CurrentDamage);
+            other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
         }
     }
 }

@@ -36,7 +36,6 @@ public class EnemyAI_Melee : MonoBehaviour
         if (other.CompareTag("Player") && Time.time >= lastAttackTime + attackCooldown) {
             lastAttackTime = Time.time;
             if (stats != null) {
-                Debug.Log("Test");
                 other.GetComponent<Player>()?.TakeDamage(stats.damage);
             } else {
                 Debug.Log("No enemy stats attached to this enemy!");

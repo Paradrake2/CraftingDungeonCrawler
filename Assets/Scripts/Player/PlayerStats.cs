@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -90,4 +92,6 @@ public class PlayerStats : MonoBehaviour
     public float GetStat(StatType statType) {
         return CalculateStat(statType);
     }
+    
+
 }
