@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CraftingFactory : MonoBehaviour
@@ -22,7 +23,7 @@ public class CraftingFactory : MonoBehaviour
             TryAddModifier(equipment, StatType.Knockback, item.flatKnockbackIncrease, item.knockbackMult);
             TryAddModifier(equipment, StatType.AttackSpeed, item.attackSpeedFlat, item.attackSpeedMult);
         }
-        if (ingredients.Count != recipeId.requiredSlots) {
+        if (ingredients.Count != recipeId.requirements.Sum(r => r.quantityRequired)) {
             Debug.LogWarning("Invalid number of ingredients");
             return null;
         }
@@ -48,7 +49,9 @@ public class CraftingFactory : MonoBehaviour
     }
 
     private string GenerateName(List<Items> ingredients, CraftingRecipe recipe) {
+        
         var baseName = ingredients[0].itemName;
+        // if this is throwing an error it means there are no ingredients
         return $"{baseName} {recipe.getRecipeName()}";
     }
 }

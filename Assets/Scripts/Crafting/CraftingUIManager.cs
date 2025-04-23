@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using System.IO;
+using System.Linq;
 public class CraftingUIManager : MonoBehaviour
 {
     public Transform inventoryParent;
-    public Transform recipeSlotsParent;
+    public Transform recipeSlotsParent; //refining
     public TextMeshProUGUI previewText;
     public Button craftButton;
 
@@ -20,15 +21,19 @@ public class CraftingUIManager : MonoBehaviour
     private List<Items> currentIngredients = new();
     private List<GameObject> recipeSlotUIs = new();
     public List<CraftingRecipe> allRecipes;
-    public Transform recipeButtonParent;
+    public Transform recipeButtonParent; // for recipe prefabs
     public GameObject recipeButtonPrefab;
     public static CraftingUIManager Instance;
+    private Dictionary<string, int> assignedCounts = new(); // key = tag, value = assigned count
+
+    public TextMeshProUGUI recipeInfoText;
+
     private void Start()
     {
         craftButton.onClick.AddListener(CraftItem);
         PopulateInventory();
-        SetupRecipeSlots();
         GenerateRecipeButtons();
+        SetupRecipeSlots();
         Instance = this;
     }
     void CraftItem() {
@@ -37,8 +42,8 @@ public class CraftingUIManager : MonoBehaviour
     Debug.LogError("InventorySystem.Instance is null!");
     return;
 }
-        if (currentIngredients.Count != selectedRecipe.requiredSlots) return;
-        Debug.LogWarning(InventorySystem.Instance);
+        if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
+//        Debug.LogWarning(InventorySystem.Instance);
         Equipment result = craftingFactory.GenerateFromIngredients(currentIngredients, selectedRecipe);
         Debug.Log(result);
         try {
@@ -85,16 +90,31 @@ public class CraftingUIManager : MonoBehaviour
             });
         }
     }
+
     void SetupRecipeSlots() {
+
+        if (selectedRecipe == null) return;
+        foreach(Transform child in recipeSlotsParent) Destroy(child.gameObject);
         recipeSlotUIs.Clear();
-        for (int i = 0; i < selectedRecipe.requiredSlots; i++) {
+        /*
+        for (int i = 0; i < selectedRecipe.requirements.Sum(req => req.quantityRequired); i++) {
             var slot = Instantiate(recipeSlotPrefab, recipeSlotsParent);
 //            slot.GetComponentInChildren<Text>().text = $"Slot {i + 1}";
             recipeSlotUIs.Add(slot);
         }
+        */
+        foreach (var req in selectedRecipe.requirements) {
+            for (int i = 0; i < req.quantityRequired; i++) {
+                GameObject slot = Instantiate(recipeSlotPrefab, recipeSlotsParent);
+                var text = slot.GetComponentInChildren<TextMeshProUGUI>();
+                if (text != null) text.text = $"Needs: {req.requiredTag}";
+                recipeSlotUIs.Add(slot);
+            }
+        }
     }
     void GenerateRecipeButtons() {
-        foreach (var recipe in allRecipes) {
+        Debug.LogWarning("GENERATING RECIPE BUTTONS");
+        foreach (var recipe in PlayerRecipeBook.Instance.knownRecipes) {
             GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
             buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
             buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
@@ -109,12 +129,17 @@ public class CraftingUIManager : MonoBehaviour
     public void SelectRecipe(CraftingRecipe recipe) {
         selectedRecipe = recipe;
         currentIngredients.Clear();
+        assignedCounts.Clear();
         SetupRecipeSlots();
-        UpdatePreview();
+        //UpdatePreview();
+        recipeInfoText.text = $"<b>{recipe.getRecipeName()}</b>\n";
+        foreach (var req in recipe.requirements) {
+            recipeInfoText.text += $"- {req.requiredTag}: x {req.quantityRequired}\n";
+        }
     }
     void TryAddIngredient(Items item) {
-        if (currentIngredients.Count >= selectedRecipe.requiredSlots) return;
-
+        /*
+        if (currentIngredients.Count >= selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
         currentIngredients.Add(item);
         int slotIndex = currentIngredients.Count - 1;
         if (slotIndex < recipeSlotUIs.Count) {
@@ -122,9 +147,32 @@ public class CraftingUIManager : MonoBehaviour
             //text.text = item.itemName;
         }
         UpdatePreview();
+        */
+        foreach(var tag in item.tags) {
+            var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
+            if (req != null) {
+                int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
+                if (alreadyAssigned < req.quantityRequired) {
+                    currentIngredients.Add(item);
+                    if(!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
+                    assignedCounts[tag]++;
+
+                    int slotIndex = currentIngredients.Count - 1;
+                    if (slotIndex < recipeSlotUIs.Count) {
+                        var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
+                        if (text != null) text.text = item.itemName;
+                    }
+
+                    UpdatePreview();
+                    return;
+                    
+                }
+            }
+        }
+
     }
     void UpdatePreview(){
-        if (currentIngredients.Count != selectedRecipe.requiredSlots) {
+        if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) {
             previewText.text = "Select all ingredients...";
             return;
         }

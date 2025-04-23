@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
   m_Name: BasicSword
   m_EditorClassIdentifier: 
-  recipeId: 
-  recipeName: 
-  slot: 0
+  recipeId: basicSword
+  recipeName: baseSword
+  slot: 5
   requiredSlots: 0
   requirements: []
-  icon: {fileID: 0}
+  icon: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}

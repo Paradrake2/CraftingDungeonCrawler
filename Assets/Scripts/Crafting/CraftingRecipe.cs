@@ -12,7 +12,7 @@ public class CraftingRecipe : ScriptableObject
     public string recipeId;
     public string recipeName;
     public EquipmentSlot slot;
-    public int requiredSlots;
+    //public int requiredSlots;
     public List<RecipeSlotRequirement> requirements;
     public Sprite icon;
 
@@ -27,9 +27,9 @@ public class CraftingRecipe : ScriptableObject
         return slot;
     }
 
-    public int getRequiredSlots() {
-        return requiredSlots;
-    }
+    //public int getRequiredSlots() {
+        //return requiredSlots;
+    //}
     public Sprite getIcon() {
         return icon;
     }
