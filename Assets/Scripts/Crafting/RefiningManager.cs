@@ -1,0 +1,42 @@
+using UnityEngine;
+
+public class RefiningManager : MonoBehaviour
+{
+    public static RefiningManager Instance;
+    void Awake()
+    {
+        Instance = this;
+        Debug.LogWarning("Refining manager initialized");
+    }
+
+    public bool CanRefine(Items refinedItem) {
+        for (int i = 0; i < refinedItem.requiredMaterials.Count; i++) {
+            string id = refinedItem.requiredMaterials[i].ID;
+            int required = refinedItem.requiredQuantities[i];
+            if (!InventorySystem.Instance.HasItem(id, required)) return false;
+        }
+        return true;
+    }
+    public void Refine(Items refinedItem) {
+        if (!CanRefine(refinedItem)) return;
+
+        for (int i = 0; i < refinedItem.requiredMaterials.Count; i++) {
+            string id = refinedItem.requiredMaterials[i].ID;
+            int amount = refinedItem.requiredQuantities[i];
+            InventorySystem.Instance.RemoveItem(id, amount);
+        }
+        InventorySystem.Instance.AddItem(refinedItem.ID, 1);
+        CraftingUIManager.Instance.RefreshInventoryUI();
+        Debug.Log($"Refined: {refinedItem.itemName}");
+    }
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

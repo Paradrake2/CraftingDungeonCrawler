@@ -8,7 +8,7 @@ public class CraftingUIManager : MonoBehaviour
 {
     public Transform inventoryParent;
     public Transform recipeSlotsParent;
-    public Text previewText;
+    public TextMeshProUGUI previewText;
     public Button craftButton;
 
     public GameObject inventoryButtonPrefab;
@@ -22,13 +22,14 @@ public class CraftingUIManager : MonoBehaviour
     public List<CraftingRecipe> allRecipes;
     public Transform recipeButtonParent;
     public GameObject recipeButtonPrefab;
-
+    public static CraftingUIManager Instance;
     private void Start()
     {
         craftButton.onClick.AddListener(CraftItem);
         PopulateInventory();
         SetupRecipeSlots();
         GenerateRecipeButtons();
+        Instance = this;
     }
     void CraftItem() {
         if (InventorySystem.Instance == null)
@@ -48,7 +49,12 @@ public class CraftingUIManager : MonoBehaviour
         previewText.text = $"{result.itemName} crafted!";
         currentIngredients.Clear();
     }
+    public void RefreshInventoryUI() {
+        PopulateInventory();
+    }
     void PopulateInventory() {
+        /*
+        // this is for testing
         List<Items> allItems = new List<Items>(Resources.LoadAll<Items>("Items"));
 
         foreach(Items item in allItems) {
@@ -57,6 +63,26 @@ public class CraftingUIManager : MonoBehaviour
             iconImage.sprite = item.icon;
             button.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
             button.GetComponent<Button>().onClick.AddListener(() => {TryAddIngredient(item);});
+        }
+        */
+
+        // this is for actual use
+        foreach(Transform child in inventoryParent) Destroy(child.gameObject); // clear old buttons
+        foreach (var stack in InventorySystem.Instance.itemStacks) {
+            Items itemData = ItemRegistry.Instance.GetItemById(stack.itemId);
+            if (itemData == null) continue;
+            GameObject button = Instantiate(inventoryButtonPrefab, inventoryParent);
+
+            Image icon = button.GetComponentInChildren<Image>();
+            if (icon != null) icon.sprite = itemData.icon;
+
+            // Set up text
+            TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null) text.text = $"{itemData.itemName} x {stack.quantity}";
+
+            button.GetComponent<Button>().onClick.AddListener(() => {
+                TryAddIngredient(itemData);
+            });
         }
     }
     void SetupRecipeSlots() {

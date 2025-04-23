@@ -1,4 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
+public class RecipeSlotRequirement {
+    public string requiredTag;
+    public int quantityRequired;
+}
 
 [CreateAssetMenu(fileName = "CraftingRecipe", menuName = "Scriptable Objects/CraftingRecipe")]
 public class CraftingRecipe : ScriptableObject
@@ -7,6 +13,7 @@ public class CraftingRecipe : ScriptableObject
     public string recipeName;
     public EquipmentSlot slot;
     public int requiredSlots;
+    public List<RecipeSlotRequirement> requirements;
     public Sprite icon;
 
     public string getRecipeId() {
@@ -25,5 +32,9 @@ public class CraftingRecipe : ScriptableObject
     }
     public Sprite getIcon() {
         return icon;
+    }
+
+    public List<RecipeSlotRequirement> getRequirements() {
+        return requirements;
     }
 }
