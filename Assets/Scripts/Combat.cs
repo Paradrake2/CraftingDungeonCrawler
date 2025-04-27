@@ -39,13 +39,4 @@ public class Combat : MonoBehaviour
             Instantiate(slashPrefab, spawnPos, rotation);
         }
     }
-
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
-        {
-            other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
-        }
-    }
 }

@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
   m_Name: Helmet
   m_EditorClassIdentifier: 
-  recipeId: helmet
-  recipeName: Helmet
+  recipeId: baseHelmet
+  recipeName: BasicHelmet
   slot: 4
-  requiredSlots: 5
+  requirements:
+  - requiredTag: plate
+    quantityRequired: 3
+  - requiredTag: binding
+    quantityRequired: 2
   icon: {fileID: 7050702025778955408, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}

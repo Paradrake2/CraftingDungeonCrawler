@@ -28,10 +28,4 @@ public class PlayerAttackSlash : MonoBehaviour
             
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

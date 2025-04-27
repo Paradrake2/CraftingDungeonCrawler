@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: IronIngot
+  m_Name: goblinHide
   m_EditorClassIdentifier: 
-  itemName: Iron Ingot
-  icon: {fileID: 8125299359641852125, guid: 15276604d4dd63249a06f5f4653d313b, type: 3}
+  itemName: goblinHide
+  icon: {fileID: 1182498686323746458, guid: d5f272da9e4b0b345bcfa541226aa1ed, type: 3}
   description: 
-  itemType: 0
+  itemType: 1
   maxStackSize: 99
-  value: 5
-  Rarity: 1
+  value: 1
+  Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 0
-  defenseMult: 0
-  flatMaxHP: 0
-  HPMult: 0
+  flatDefense: 2
+  defenseMult: 0.05
+  flatMaxHP: 4
+  HPMult: 0.08
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -40,10 +40,10 @@ MonoBehaviour:
   attackSpeedMult: 0
   dropRate: 0
   tags:
-  - iron
-  - ingot
-  - metal
-  ID: ironingot
+  - goblin
+  - hide
+  - drop
+  ID: goblinHide
   isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []

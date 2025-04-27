@@ -3,7 +3,6 @@ using UnityEngine;
 public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager Instance;
-
     public int totalEnemies = 0;
     public int enemiesKilled = 0;
     public int floor;

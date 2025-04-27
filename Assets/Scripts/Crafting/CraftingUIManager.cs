@@ -12,7 +12,7 @@ public class CraftingUIManager : MonoBehaviour
     public TextMeshProUGUI previewText;
     public Button craftButton;
 
-    public GameObject inventoryButtonPrefab;
+    public GameObject inventoryButtonPrefab; // these are the inventory buttons the player clicks on that have the items
     public GameObject recipeSlotPrefab;
 
     public CraftingFactory craftingFactory;
@@ -20,13 +20,13 @@ public class CraftingUIManager : MonoBehaviour
 
     private List<Items> currentIngredients = new();
     private List<GameObject> recipeSlotUIs = new();
-    public List<CraftingRecipe> allRecipes;
     public Transform recipeButtonParent; // for recipe prefabs
     public GameObject recipeButtonPrefab;
     public static CraftingUIManager Instance;
     private Dictionary<string, int> assignedCounts = new(); // key = tag, value = assigned count
 
     public TextMeshProUGUI recipeInfoText;
+    public TextMeshProUGUI itemTagInfo;
 
     private void Start()
     {
@@ -38,10 +38,10 @@ public class CraftingUIManager : MonoBehaviour
     }
     void CraftItem() {
         if (InventorySystem.Instance == null)
-{
-    Debug.LogError("InventorySystem.Instance is null!");
-    return;
-}
+        {
+            Debug.LogError("InventorySystem.Instance is null!");
+            return;
+        }
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
 //        Debug.LogWarning(InventorySystem.Instance);
         Equipment result = craftingFactory.GenerateFromIngredients(currentIngredients, selectedRecipe);
@@ -77,7 +77,20 @@ public class CraftingUIManager : MonoBehaviour
             Items itemData = ItemRegistry.Instance.GetItemById(stack.itemId);
             if (itemData == null) continue;
             GameObject button = Instantiate(inventoryButtonPrefab, inventoryParent);
+            
+            // display tags when hover
+            var trigger = button.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            // pointer enter
+            var enterEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
+            enterEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter;
+            enterEntry.callback.AddListener((data) => {ShowItemTags(itemData);});
+            trigger.triggers.Add(enterEntry);
 
+            // pointer exit
+            var exitEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
+            exitEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit;
+            exitEntry.callback.AddListener((data) => {ClearItemTags();});
+            trigger.triggers.Add(exitEntry);
             Image icon = button.GetComponentInChildren<Image>();
             if (icon != null) icon.sprite = itemData.icon;
 
@@ -91,6 +104,19 @@ public class CraftingUIManager : MonoBehaviour
         }
     }
 
+    public void ShowItemTags(Items item) {
+        if (item == null || item.tags == null || item.tags.Length == 0) {
+            itemTagInfo.text = "Tags: None";
+            return;
+        }
+        string joinedTags = string.Join(", " ,item.tags);
+        itemTagInfo.text = $"Tags - {joinedTags}";
+    }
+
+    public void ClearItemTags() {
+        itemTagInfo.text = "";
+    }
+
     void SetupRecipeSlots() {
 
         if (selectedRecipe == null) return;
@@ -99,7 +125,7 @@ public class CraftingUIManager : MonoBehaviour
         /*
         for (int i = 0; i < selectedRecipe.requirements.Sum(req => req.quantityRequired); i++) {
             var slot = Instantiate(recipeSlotPrefab, recipeSlotsParent);
-//            slot.GetComponentInChildren<Text>().text = $"Slot {i + 1}";
+            slot.GetComponentInChildren<Text>().text = $"Slot {i + 1}";
             recipeSlotUIs.Add(slot);
         }
         */
@@ -132,10 +158,15 @@ public class CraftingUIManager : MonoBehaviour
         assignedCounts.Clear();
         SetupRecipeSlots();
         //UpdatePreview();
-        recipeInfoText.text = $"<b>{recipe.getRecipeName()}</b>\n";
-        foreach (var req in recipe.requirements) {
+        if(recipe != null) {
+            recipeInfoText.text = $"<b>{recipe.getRecipeName()}</b>\n";
+            foreach (var req in recipe.requirements) {
             recipeInfoText.text += $"- {req.requiredTag}: x {req.quantityRequired}\n";
         }
+        }
+        else
+            recipeInfoText.text = "";
+        
     }
     void TryAddIngredient(Items item) {
         /*

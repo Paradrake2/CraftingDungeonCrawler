@@ -23,6 +23,12 @@ public class RefiningUIManager : MonoBehaviour
             }
         });
     }
+    public void RefreshRefineUI() {
+        foreach (Transform child in recipeListParent) Destroy(child.gameObject);
+        GenerateRecipeList();
+        CraftingUIManager.Instance.selectedRecipe = null;
+        CraftingUIManager.Instance.SelectRecipe(null);
+    }
     void GenerateRecipeList() {
         Items[] allItems = Resources.LoadAll<Items>("");
         foreach(Items item in allItems) {

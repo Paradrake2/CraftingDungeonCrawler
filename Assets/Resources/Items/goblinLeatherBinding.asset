@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: IronIngot
+  m_Name: goblinLeatherBinding
   m_EditorClassIdentifier: 
-  itemName: Iron Ingot
-  icon: {fileID: 8125299359641852125, guid: 15276604d4dd63249a06f5f4653d313b, type: 3}
+  itemName: goblinLeatherBinding
+  icon: {fileID: -5255985705470490855, guid: 24a05244c96899e48b2eb4f9abc39300, type: 3}
   description: 
-  itemType: 0
+  itemType: 2
   maxStackSize: 99
-  value: 5
-  Rarity: 1
+  value: 0
+  Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 0
-  defenseMult: 0
-  flatMaxHP: 0
-  HPMult: 0
+  flatDefense: 3
+  defenseMult: 0.1
+  flatMaxHP: 10
+  HPMult: 0.05
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -40,11 +40,11 @@ MonoBehaviour:
   attackSpeedMult: 0
   dropRate: 0
   tags:
-  - iron
-  - ingot
-  - metal
-  ID: ironingot
+  - goblin
+  - binding
+  ID: goblinLeatherBinding
   isCraftingMaterial: 1
-  isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
+  isCraftable: 1
+  requiredMaterials:
+  - {fileID: 11400000, guid: 18099051f197ca74e9f3db596a8dab52, type: 2}
+  requiredQuantities: 01000000

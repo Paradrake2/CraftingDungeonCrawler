@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public Dictionary<EquipmentSlot, Equipment> equippedItems = new();
+    public static PlayerStats Instance;
     // Base stats
     public int Level = 1;
     public float XP = 0;
@@ -34,7 +35,16 @@ public class PlayerStats : MonoBehaviour
     public float CurrentDropRate => CalculateStat(StatType.DropRate);
     public float CurrentXPGain => CalculateStat(StatType.XPGain);
     public float XpToNextLevel => Level * 100;
+    void Awake()
+    {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
 
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         CurrentHealth = CurrentMaxHealth;
