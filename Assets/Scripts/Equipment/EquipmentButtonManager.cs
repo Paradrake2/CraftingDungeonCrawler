@@ -7,6 +7,10 @@ public class EquipmentButtonManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
     
+    public void loadDungeon() {
+        PlayerStats.Instance.CurrentHealth = PlayerStats.Instance.CurrentMaxHealth;
+        SceneManager.LoadScene("Dungeon");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

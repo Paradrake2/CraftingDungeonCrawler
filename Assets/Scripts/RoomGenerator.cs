@@ -17,7 +17,7 @@ public class RoomGenerator : MonoBehaviour {
         GenerateRoom();
     }
 
-    void GenerateRoom() {
+    public void GenerateRoom() {
         Vector2 center = new Vector2(0,0);
 
         for (int x = -radius; x <= radius; x++) {
@@ -67,6 +67,15 @@ public class RoomGenerator : MonoBehaviour {
             enemySpawn.SpawnEnemy(pos);
         }
         
+    }
+
+    public void ClearRoom() {
+        tilemap.ClearAllTiles();
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+
+        enemySpawnPoints.Clear();
     }
 }
 

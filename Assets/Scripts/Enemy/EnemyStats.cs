@@ -45,7 +45,7 @@ public class EnemyStats : MonoBehaviour
     }
     void Start()
     {
-        
+        playerStats = FindFirstObjectByType<PlayerStats>();
     }
 
     // Update is called once per frame

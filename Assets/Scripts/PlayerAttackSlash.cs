@@ -11,7 +11,8 @@ public class PlayerAttackSlash : MonoBehaviour
     private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
     void Start()
     {
-        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        //playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        playerStats = PlayerStats.Instance;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         Destroy(gameObject, lifetime);
     }

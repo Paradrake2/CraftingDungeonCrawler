@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +9,14 @@ public class Player : MonoBehaviour
     private float lastDamageTime = -999f;
     void Start()
     {
-        stats = GetComponent<PlayerStats>();
+        stats = PlayerStats.Instance;
     }
     public void TakeDamage(float damage) {
         if (Time.time - lastDamageTime < damageCooldown) return;
         lastDamageTime = Time.time;
+        if (stats == null) {
+            Debug.LogWarning("NO STATS");
+        }
         float finalDamage = Mathf.Max(0, damage - stats.CurrentDefense);
         stats.CurrentHealth -= finalDamage;
 

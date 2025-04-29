@@ -1,9 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Transform player;
     void Awake()
     {
         if (Instance != null && Instance != this) {
@@ -13,5 +13,9 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void LoadDungeon() {
+        SceneManager.LoadScene("Dungeon");
     }
 }

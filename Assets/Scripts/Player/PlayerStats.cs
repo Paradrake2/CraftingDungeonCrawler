@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public Dictionary<EquipmentSlot, Equipment> equippedItems = new();
+    public Equipment[] accessorySlots = new Equipment[5];
     public static PlayerStats Instance;
     // Base stats
     public int Level = 1;
@@ -51,7 +52,35 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void EquipItem(Equipment newItem) {
+        if (newItem == null) return;
+        if (newItem.category == SlotCategory.Accessory) {
+            EquipAccessory(newItem);
+        } else {
+            EquipMainGear(newItem);
+        }
+    }
+    private void EquipMainGear(Equipment newItem) {
         equippedItems[newItem.slot] = newItem;
+        Debug.Log($"Equipped {newItem.itemName} into {newItem.slot}");
+    }
+    private void EquipAccessory(Equipment newAccessory) {
+        for (int i = 0; i < accessorySlots.Length; i++) {
+            if (accessorySlots[i] == null) {
+                accessorySlots[i] = newAccessory;
+                Debug.Log($"Equipped {newAccessory.itemName} into slot {i}");
+                return;
+            }
+        }
+    }
+
+    public Equipment GetEquippedItem(EquipmentSlot slot) {
+        equippedItems.TryGetValue(slot, out Equipment item);
+        return item;
+    }
+
+    public Equipment GetAccessoryAt(int index) {
+        if (index >= 0 && index < accessorySlots.Length) return accessorySlots[index];
+        else {return null;}
     }
 
     float CalculateStat(StatType type) {
