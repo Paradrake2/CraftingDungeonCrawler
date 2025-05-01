@@ -15,16 +15,18 @@ MonoBehaviour:
   itemName: ironPlate
   icon: {fileID: 8276665627961977107, guid: 8d12ba2c8aea6d148ba1af985fe519ce, type: 3}
   description: 
+  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
+  sprites: []
   itemType: 2
-  maxStackSize: 99
+  maxStackSize: 9999
   value: 10
   Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 4
-  defenseMult: 0.2
-  flatMaxHP: 30
-  HPMult: 0.1
+  flatDefense: 0.5
+  defenseMult: 0.02
+  flatMaxHP: 20
+  HPMult: 0.025
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0

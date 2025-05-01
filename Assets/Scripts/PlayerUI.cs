@@ -11,7 +11,7 @@ public class PlayerUI : MonoBehaviour
     
     void Start()
     {
-        
+        playerStats = PlayerStats.Instance;
     }
 
     // Update is called once per frame

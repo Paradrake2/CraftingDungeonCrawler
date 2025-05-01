@@ -36,9 +36,8 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
-#pragma warning disable CS0618 // Type or member is obsolete
-        playerStats = FindObjectOfType<PlayerStats>();
-#pragma warning restore CS0618 // Type or member is obsolete
+        playerStats = FindFirstObjectByType<PlayerStats>();
+
         if (playerStats == null) {
             Debug.LogError("PlayerStats not found");
         }

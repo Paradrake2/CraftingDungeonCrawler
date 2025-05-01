@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 public class CraftingFactory : MonoBehaviour
 {
     public Equipment GenerateFromIngredients(List<Items> ingredients, CraftingRecipe recipeId) {
@@ -9,7 +8,10 @@ public class CraftingFactory : MonoBehaviour
         equipment.itemName = GenerateName(ingredients, recipeId);
         equipment.slot = recipeId.slot;
         equipment.modifiers = new List<StatModifier>();
-
+        equipment.icon = recipeId.baseImage; // this will be replaced with the sprite generation
+        
+        
+        
         foreach (Items item in ingredients)
         {
             TryAddModifier(equipment, StatType.Damage, item.flatDamage, item.damageMult);
@@ -29,6 +31,7 @@ public class CraftingFactory : MonoBehaviour
         }
         return equipment;
     }
+    
     public Equipment PreviewCraftedEquipment(List<Items> ingredients, CraftingRecipe recipe) {
         return GenerateFromIngredients(ingredients, recipe);
     }

@@ -10,11 +10,11 @@ public class EquipmentSlotManager : MonoBehaviour
     public void SetItem(Equipment item) {
         if (item!= null) {
             try {
-                iconImage.sprite = ItemRegistry.Instance.GetItemById(item.itemName)?.icon;
+                iconImage.sprite = item.icon;
 
                 iconImage.enabled = true;
             } catch (NullReferenceException e) {
-                Debug.LogWarning("no equipment icon image detected  " + e.StackTrace);
+                
             }
         } else {
             //iconImage.sprite = null;

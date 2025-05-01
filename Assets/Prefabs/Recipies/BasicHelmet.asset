@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
-  m_Name: TestRecipe
+  m_Name: BasicHelmet
   m_EditorClassIdentifier: 
-  recipeId: test
-  recipeName: test
-  slot: 5
-  requiredSlots: 4
+  recipeId: baseHelmet
+  recipeName: BasicHelmet
+  slot: 4
   requirements:
-  - requiredTag: 
-    quantityRequired: 0
-  icon: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
+  - requiredTag: plate
+    quantityRequired: 3
+  - requiredTag: binding
+    quantityRequired: 2
+  icon: {fileID: 7050702025778955408, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
+  baseImage: {fileID: -3077076032294960908, guid: 59bc765e2f3ff4648b406347e00c4749, type: 3}
+  visualPrefab: {fileID: 0}

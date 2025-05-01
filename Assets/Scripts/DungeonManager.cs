@@ -21,11 +21,19 @@ public class DungeonManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start() {
+    void OnEnable()
+    {
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (scene.name == "Dungeon") {
-            roomGenerator = GameObject.FindFirstObjectByType<RoomGenerator>();
+            roomGenerator = FindFirstObjectByType<RoomGenerator>();
             if (roomGenerator != null) {
                 roomGenerator.ClearRoom();
                 roomGenerator.GenerateRoom();

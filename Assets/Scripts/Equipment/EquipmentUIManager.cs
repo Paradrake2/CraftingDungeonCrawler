@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class EquipmentUIManager : MonoBehaviour
 {
     public Transform inventoryPanel;
+    public static EquipmentUIManager Instance;
     public GameObject equipmentButtonPrefab;
     public List<EquipmentSlotManager> slotManagers;
     void Start()
     {
+        RefreshSlots();
         PopulateInventory();
     }
     void PopulateInventory() {
@@ -23,13 +25,15 @@ public class EquipmentUIManager : MonoBehaviour
         }
     }
     Sprite GetSpriteForEquipment(Equipment equipment) {
-        return ItemRegistry.Instance.GetItemById(equipment.itemName)?.icon;
+        return equipment.icon;
     }
 
     public void RefreshSlots() {
         foreach (var slot in slotManagers) {
             if (PlayerStats.Instance.equippedItems.TryGetValue(slot.slotType, out var equippedItem)) {
                 slot.SetItem(equippedItem);
+                Image slotImage = slot.GetComponentInChildren<Image>();
+                slotImage.sprite = equippedItem.icon;
             }
             else {
                 slot.SetItem(null);

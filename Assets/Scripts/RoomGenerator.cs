@@ -14,7 +14,7 @@ public class RoomGenerator : MonoBehaviour {
     
 
     void Start() {
-        GenerateRoom();
+        //GenerateRoom();
     }
 
     public void GenerateRoom() {
@@ -53,7 +53,7 @@ public class RoomGenerator : MonoBehaviour {
                         GameObject obstacle = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnpos, Quaternion.identity);
                         obstacle.transform.parent = this.transform;
                     }
-                    if (tilemap.HasTile(tilePos) && Random.value < 0.05f) {
+                    if (tilemap.HasTile(tilePos) && Random.value < 0.09f) {
                         Vector3 spawnpos = tilemap.CellToWorld(tilePos) + new Vector3(0,0,0);
                         enemySpawnPoints.Add(spawnpos);
                         Debug.DrawLine(spawnpos, spawnpos + Vector3.up * 0.5f, Color.red, 5f);

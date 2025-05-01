@@ -15,6 +15,8 @@ MonoBehaviour:
   itemName: Iron Ingot
   icon: {fileID: 8125299359641852125, guid: 15276604d4dd63249a06f5f4653d313b, type: 3}
   description: 
+  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
+  sprites: []
   itemType: 0
   maxStackSize: 99
   value: 5

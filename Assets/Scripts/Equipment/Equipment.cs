@@ -45,7 +45,10 @@ public class StatModifier {
 public class Equipment
 {
     public string itemName;
+    public Sprite icon;
     public SlotCategory category;
     public EquipmentSlot slot;
     public List<StatModifier> modifiers = new List<StatModifier>();
+    public List<Augment> appliedAugments = new();
+    public int allowedAugments;
 }

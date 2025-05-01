@@ -15,6 +15,8 @@ MonoBehaviour:
   itemName: goblinHide
   icon: {fileID: 1182498686323746458, guid: d5f272da9e4b0b345bcfa541226aa1ed, type: 3}
   description: 
+  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
+  sprites: []
   itemType: 1
   maxStackSize: 99
   value: 1

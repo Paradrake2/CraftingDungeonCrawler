@@ -5,7 +5,10 @@ public class RecipeSlotRequirement {
     public string requiredTag;
     public int quantityRequired;
 }
-
+public class PartVisual {
+    public string partName;
+    public Color tintColor;
+}
 [CreateAssetMenu(fileName = "CraftingRecipe", menuName = "Scriptable Objects/CraftingRecipe")]
 public class CraftingRecipe : ScriptableObject
 {
@@ -15,7 +18,8 @@ public class CraftingRecipe : ScriptableObject
     //public int requiredSlots;
     public List<RecipeSlotRequirement> requirements;
     public Sprite icon;
-
+    public Sprite baseImage;
+    public Transform visualPrefab;
     public string getRecipeId() {
         return recipeId;
     }

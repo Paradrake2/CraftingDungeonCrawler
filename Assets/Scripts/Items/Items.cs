@@ -24,6 +24,10 @@ public class Items : ScriptableObject
     public string itemName;
     public Sprite icon;
     [TextArea] public string description;
+    [Header("MaterialColor")]
+    public Color color;
+    [Header("MaterialSpriteList")]
+    public Sprite[] sprites;
 
     public ItemType itemType;
     [Header("Stacking")]

@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Mathematics;
 using System.IO;
 using System.Linq;
+using System;
 public class CraftingUIManager : MonoBehaviour
 {
     public Transform inventoryParent;
@@ -45,6 +46,10 @@ public class CraftingUIManager : MonoBehaviour
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
 //        Debug.LogWarning(InventorySystem.Instance);
         Equipment result = craftingFactory.GenerateFromIngredients(currentIngredients, selectedRecipe);
+        foreach (var ingredients in currentIngredients) {
+            InventorySystem.Instance.RemoveItem(ingredients.itemName, 1);
+        }
+        PopulateInventory();
         Debug.Log(result);
         try {
         InventorySystem.Instance.AddEquipment(result);
@@ -180,7 +185,9 @@ public class CraftingUIManager : MonoBehaviour
         UpdatePreview();
         */
         foreach(var tag in item.tags) {
-            var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
+            try {
+                var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
+            
             if (req != null) {
                 int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
                 if (alreadyAssigned < req.quantityRequired) {
@@ -198,6 +205,9 @@ public class CraftingUIManager : MonoBehaviour
                     return;
                     
                 }
+            }
+            } catch(NullReferenceException e) {
+                Debug.Log(e.StackTrace);
             }
         }
 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
+  m_Name: BasicAccessory
+  m_EditorClassIdentifier: 
+  recipeId: basicAccessory
+  recipeName: Basic Accessory
+  slot: 6
+  requirements:
+  - requiredTag: goblin
+    quantityRequired: 1
+  icon: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
+  baseImage: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
+  visualPrefab: {fileID: 0}
