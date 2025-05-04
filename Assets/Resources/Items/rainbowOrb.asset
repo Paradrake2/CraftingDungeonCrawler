@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinBonePlate
+  m_Name: rainbowOrb
   m_EditorClassIdentifier: 
-  itemName: goblinBonePlate
-  icon: {fileID: 7438064671448259608, guid: 57cf78564d114364d942b4d3efbf235e, type: 3}
-  description: 
-  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
+  itemName: rainbowOrb
+  icon: {fileID: -8769410704393964359, guid: 374d8db6426ffcd48a0f4123d62d2a5e, type: 3}
+  description: 'A legendary orb given by the gods. '
+  color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
-  itemType: 2
+  itemType: 1
   maxStackSize: 99
-  value: 6
-  Rarity: 0
+  value: 99999
+  Rarity: 5
   flatDamage: 0
-  damageMult: 0
-  flatDefense: 2
-  defenseMult: 0.01
-  flatMaxHP: 5
-  HPMult: 0.01
-  flatPureDamage: 0
+  damageMult: 1
+  flatDefense: 0
+  defenseMult: 1
+  flatMaxHP: 0
+  HPMult: 1
+  flatPureDamage: 10
   pureDamageMult: 0
   flatMaxMana: 0
   maxManaMult: 0
   dropRateIncrease: 0
-  xpGainIncrease: 0
-  goldGainIncrease: 0
+  xpGainIncrease: 5
+  goldGainIncrease: 5
   flatKnockbackIncrease: 0
   knockbackMult: 0
   knockbackResistanceMult: 0
@@ -42,12 +42,11 @@ MonoBehaviour:
   attackSpeedMult: 0
   dropRate: 0
   tags:
-  - refined
-  - plate
-  - goblin
-  ID: goblinBonePlate
+  - gem
+  - accessoryCraft
+  - orb
+  ID: rainbowOrb
   isCraftingMaterial: 1
-  isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
-  requiredQuantities: 03000000
+  isCraftable: 0
+  requiredMaterials: []
+  requiredQuantities: 

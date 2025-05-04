@@ -7,11 +7,7 @@ public enum EquipmentSlot {
     Gauntlets,
     Helmet,
     Weapon,
-    Accessory1,
-    Accessory2,
-    Accessory3,
-    Accessory4,
-    Accessory5
+    Accessory
 }
 public enum SlotCategory {
     Armor,
@@ -51,4 +47,6 @@ public class Equipment
     public List<StatModifier> modifiers = new List<StatModifier>();
     public List<Augment> appliedAugments = new();
     public int allowedAugments;
+    public float equipmentLevel;
+    public float equipmentXP;
 }

@@ -350,6 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 3
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &142804099
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 1
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &280268501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 2
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &858494539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2034,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 6
   iconImage: {fileID: 0}
+  isAccessory: 1
+  accessoryIndex: 0
 --- !u!1 &1179109619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 5
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &1217930451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,6 +2718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 0
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &1406514249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,6 +2872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 6
   iconImage: {fileID: 0}
+  isAccessory: 1
+  accessoryIndex: 1
 --- !u!1 &1450208164
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAccessory: 1
-  slotType: 8
+  slotType: 6
   accessoryIndex: 2
 --- !u!114 &1697307328
 MonoBehaviour:
@@ -4053,8 +4067,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73802e078a0a8fc46b1093daa0c82d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 8
+  slotType: 6
   iconImage: {fileID: 0}
+  isAccessory: 1
+  accessoryIndex: 2
 --- !u!1 &1891826855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4191,7 +4207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAccessory: 1
-  slotType: 10
+  slotType: 6
   accessoryIndex: 4
 --- !u!114 &1891826861
 MonoBehaviour:
@@ -4205,8 +4221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73802e078a0a8fc46b1093daa0c82d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 10
+  slotType: 6
   iconImage: {fileID: 0}
+  isAccessory: 1
+  accessoryIndex: 4
 --- !u!1 &1981465064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,6 +4377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotType: 4
   iconImage: {fileID: 0}
+  isAccessory: 0
+  accessoryIndex: 0
 --- !u!1 &2021019113
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,7 +4648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAccessory: 1
-  slotType: 9
+  slotType: 6
   accessoryIndex: 3
 --- !u!114 &2038080819
 MonoBehaviour:
@@ -4642,8 +4662,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73802e078a0a8fc46b1093daa0c82d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotType: 9
+  slotType: 6
   iconImage: {fileID: 0}
+  isAccessory: 1
+  accessoryIndex: 3
 --- !u!1 &2128040053
 GameObject:
   m_ObjectHideFlags: 0

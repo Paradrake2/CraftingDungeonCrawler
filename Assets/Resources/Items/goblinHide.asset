@@ -24,9 +24,9 @@ MonoBehaviour:
   flatDamage: 0
   damageMult: 0
   flatDefense: 2
-  defenseMult: 0.05
-  flatMaxHP: 4
-  HPMult: 0.08
+  defenseMult: 0
+  flatMaxHP: 1
+  HPMult: 0.01
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0

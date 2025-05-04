@@ -6,8 +6,11 @@ public class EnemySpawn : MonoBehaviour
 {
     private EnemyRarity ChooseRarity() {
         float roll = Random.value;
-        if (roll <= 0.01f) return EnemyRarity.Legendary;
-        else if (roll <= 0.11f) return EnemyRarity.Rare;
+        if (roll <= 0.005f) return EnemyRarity.Mythical;
+        else if (roll <= 0.05f) return EnemyRarity.Legendary;
+        else if (roll <= 0.11f) return EnemyRarity.Epic;
+        else if (roll <= 0.23f) return EnemyRarity.Rare;
+        else if (roll <= 0.35f) return EnemyRarity.Uncommon;
         else return EnemyRarity.Common;
     }
     public List<EnemyArea> areaEnemyLists;

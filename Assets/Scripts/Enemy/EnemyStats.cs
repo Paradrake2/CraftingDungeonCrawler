@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum EnemyRarity {
     Common,
+    Uncommon,
     Rare,
+    Epic,
     Legendary,
+    Mythical,
     Boss
 }
 [System.Serializable]

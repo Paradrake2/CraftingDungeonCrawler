@@ -47,5 +47,13 @@ public class InventorySystem : MonoBehaviour
         var stack = itemStacks.Find(i => i.itemId == itemId);
         return stack != null && stack.quantity >= amount;
     }
+    public int GetQuantity(string requestedItemName) {
+        foreach (var item in itemStacks) {
+            if (item.itemId == requestedItemName) {
+                return item.quantity;
+            }
+        }
+        return 0;
+    }
 
 }

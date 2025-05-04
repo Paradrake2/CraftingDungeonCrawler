@@ -111,4 +111,8 @@ public class Items : ScriptableObject
     public List<Items> requiredMaterials;
     public List<int> requiredQuantities;
 
+    [Header("CoreTier")]
+    public int coreTier;
+    [Header("PowderAmount")]
+    public float powderAmount;
 }

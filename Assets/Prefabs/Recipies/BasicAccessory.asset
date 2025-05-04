@@ -15,8 +15,11 @@ MonoBehaviour:
   recipeId: basicAccessory
   recipeName: Basic Accessory
   slot: 6
+  slotCategory: 2
   requirements:
-  - requiredTag: goblin
+  - requiredTag: accessoryCraft
+    quantityRequired: 1
+  - requiredTag: ingot
     quantityRequired: 1
   icon: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   baseImage: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}

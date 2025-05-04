@@ -16,6 +16,7 @@ public class CraftingRecipe : ScriptableObject
     public string recipeName;
     public EquipmentSlot slot;
     //public int requiredSlots;
+    public SlotCategory slotCategory;
     public List<RecipeSlotRequirement> requirements;
     public Sprite icon;
     public Sprite baseImage;

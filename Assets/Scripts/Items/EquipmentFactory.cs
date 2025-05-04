@@ -37,13 +37,15 @@ public static class EquipmentFactory
         if (System.Array.Exists(item.tags, t => t == "Boots")) return EquipmentSlot.Boots;
         if (System.Array.Exists(item.tags, t => t == "Chestplate")) return EquipmentSlot.Chestplate;
         if (System.Array.Exists(item.tags, t => t == "Weapon")) return EquipmentSlot.Weapon;
-        if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory1;
+        if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory;
+        /*
         if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory2;
         if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory3;
         if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory4;
         if (System.Array.Exists(item.tags, t => t == "Accessory")) return EquipmentSlot.Accessory5;
+        */
     }
-    return EquipmentSlot.Accessory1; // fallback/default
+    return EquipmentSlot.Accessory; // fallback/default
 }
 
 }

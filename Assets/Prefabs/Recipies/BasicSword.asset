@@ -15,6 +15,7 @@ MonoBehaviour:
   recipeId: basicSword
   recipeName: baseSword
   slot: 5
+  slotCategory: 1
   requirements:
   - requiredTag: blade
     quantityRequired: 1
@@ -23,3 +24,5 @@ MonoBehaviour:
   - requiredTag: guard
     quantityRequired: 1
   icon: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
+  baseImage: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
+  visualPrefab: {fileID: 0}

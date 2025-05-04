@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinBonePlate
+  m_Name: toughLeatherBinding
   m_EditorClassIdentifier: 
-  itemName: goblinBonePlate
-  icon: {fileID: 7438064671448259608, guid: 57cf78564d114364d942b4d3efbf235e, type: 3}
+  itemName: toughLeatherBinding
+  icon: {fileID: -5481000624653672433, guid: f8b7839fabcd28f4fb4563869c46f2a9, type: 3}
   description: 
-  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
   itemType: 2
-  maxStackSize: 99
-  value: 6
+  maxStackSize: 999
+  value: 0
   Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 2
-  defenseMult: 0.01
-  flatMaxHP: 5
-  HPMult: 0.01
+  flatDefense: 4
+  defenseMult: 0.05
+  flatMaxHP: 8
+  HPMult: 0.02
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -42,12 +42,11 @@ MonoBehaviour:
   attackSpeedMult: 0
   dropRate: 0
   tags:
-  - refined
-  - plate
-  - goblin
-  ID: goblinBonePlate
+  - binding
+  - toughBinding
+  ID: toughLeatherBinding
   isCraftingMaterial: 1
   isCraftable: 1
   requiredMaterials:
-  - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
-  requiredQuantities: 03000000
+  - {fileID: 11400000, guid: 92af019a5432f7c40afa6759471404ad, type: 2}
+  requiredQuantities: 02000000

@@ -53,7 +53,8 @@ public class PlayerStats : MonoBehaviour
 
     public void EquipItem(Equipment newItem) {
         if (newItem == null) return;
-        if (newItem.category == SlotCategory.Accessory) {
+        if (newItem.slot == EquipmentSlot.Accessory) {
+            Debug.LogWarning("Is accessory");
             EquipAccessory(newItem);
         } else {
             EquipMainGear(newItem);
@@ -64,8 +65,14 @@ public class PlayerStats : MonoBehaviour
         Debug.Log($"Equipped {newItem.itemName} into {newItem.slot}");
     }
     private void EquipAccessory(Equipment newAccessory) {
+        foreach (var equipped in accessorySlots) {
+            if (equipped == newAccessory) {
+                Debug.Log("Already equipped");
+                return;
+            }
+        }
         for (int i = 0; i < accessorySlots.Length; i++) {
-            if (accessorySlots[i] == null) {
+            if (accessorySlots[i] == null || string.IsNullOrEmpty(accessorySlots[i].itemName)) {
                 accessorySlots[i] = newAccessory;
                 Debug.Log($"Equipped {newAccessory.itemName} into slot {i}");
                 return;
@@ -90,6 +97,15 @@ public class PlayerStats : MonoBehaviour
         foreach(var kvp in equippedItems) {
             var item = kvp.Value;
             foreach(var mod in item.modifiers) {
+                if (mod.statType == type) {
+                    flat += mod.flatAmount;
+                    percent += mod.percentAmount;
+                }
+            }
+        }
+        foreach(var accessory in accessorySlots) {
+            if (accessory == null) continue;
+            foreach(var mod in accessory.modifiers) {
                 if (mod.statType == type) {
                     flat += mod.flatAmount;
                     percent += mod.percentAmount;

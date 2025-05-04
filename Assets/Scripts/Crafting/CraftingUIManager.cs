@@ -174,38 +174,35 @@ public class CraftingUIManager : MonoBehaviour
         
     }
     void TryAddIngredient(Items item) {
-        /*
-        if (currentIngredients.Count >= selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
-        currentIngredients.Add(item);
-        int slotIndex = currentIngredients.Count - 1;
-        if (slotIndex < recipeSlotUIs.Count) {
-            var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
-            //text.text = item.itemName;
-        }
-        UpdatePreview();
-        */
+        // this code looks like ass, remember to clean it up
         foreach(var tag in item.tags) {
             try {
                 var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
-            
-            if (req != null) {
-                int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
-                if (alreadyAssigned < req.quantityRequired) {
-                    currentIngredients.Add(item);
-                    if(!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
-                    assignedCounts[tag]++;
+                if (req != null) {
+                    int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
+                    if (alreadyAssigned < req.quantityRequired) {
+                        int countAlreadyUsed = currentIngredients.Count(i => i.itemName == item.itemName);
+                        int available = InventorySystem.Instance.GetQuantity(item.itemName);
+                        if (countAlreadyUsed >= available) {
+                            Debug.Log($"Cannot add more {item.itemName}!");
+                            continue;
+                        }
+                        Debug.Log(alreadyAssigned + "<- number ingredient assigned");
+                        currentIngredients.Add(item);
+                        if(!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
+                        assignedCounts[tag]++;
 
-                    int slotIndex = currentIngredients.Count - 1;
-                    if (slotIndex < recipeSlotUIs.Count) {
-                        var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
-                        if (text != null) text.text = item.itemName;
+                        int slotIndex = currentIngredients.Count - 1;
+                        if (slotIndex < recipeSlotUIs.Count) {
+                            var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
+                            if (text != null) text.text = item.itemName;
+                        }
+
+                        UpdatePreview();
+                        return;
+                        
                     }
-
-                    UpdatePreview();
-                    return;
-                    
                 }
-            }
             } catch(NullReferenceException e) {
                 Debug.Log(e.StackTrace);
             }

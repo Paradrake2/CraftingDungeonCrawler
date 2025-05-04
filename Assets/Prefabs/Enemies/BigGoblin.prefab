@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 120
   currentHealth: 120
-  damage: 4
+  damage: 30
   defense: 9
   knockback: 1
   knockbackResistance: 0.4
@@ -142,7 +142,7 @@ MonoBehaviour:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
-    - {fileID: 11400000, guid: c240402a5ec84a4428766c850d50c08a, type: 2}
+    - {fileID: 11400000, guid: 075c991c24ed4de4d84e1c86d5a6ff12, type: 2}
   playerStats: {fileID: 0}
 --- !u!212 &666508812886193431
 SpriteRenderer:

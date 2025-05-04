@@ -9,6 +9,7 @@ public class EquipmentUIManager : MonoBehaviour
     public static EquipmentUIManager Instance;
     public GameObject equipmentButtonPrefab;
     public List<EquipmentSlotManager> slotManagers;
+
     void Start()
     {
         RefreshSlots();
@@ -30,13 +31,20 @@ public class EquipmentUIManager : MonoBehaviour
 
     public void RefreshSlots() {
         foreach (var slot in slotManagers) {
-            if (PlayerStats.Instance.equippedItems.TryGetValue(slot.slotType, out var equippedItem)) {
-                slot.SetItem(equippedItem);
+            if (slot.isAccessory) {
+                Equipment accessory = PlayerStats.Instance.GetAccessoryAt(slot.accessoryIndex);
                 Image slotImage = slot.GetComponentInChildren<Image>();
-                slotImage.sprite = equippedItem.icon;
-            }
-            else {
-                slot.SetItem(null);
+                slot.SetItem(accessory);
+                slotImage.sprite = accessory.icon;
+            } else {
+                if (PlayerStats.Instance.equippedItems.TryGetValue(slot.slotType, out var equippedItem)) {
+                    slot.SetItem(equippedItem);
+                    Image slotImage = slot.GetComponentInChildren<Image>();
+                    slotImage.sprite = equippedItem.icon;
+                }
+                else {
+                    slot.SetItem(null);
+                }
             }
         }
     }
