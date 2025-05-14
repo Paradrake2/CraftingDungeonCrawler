@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EquipmentButton : MonoBehaviour
@@ -12,8 +13,7 @@ public class EquipmentButton : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
     }
-    
-    private void OnClick() {
+    private void EquipmentMenuTasks() {
         if (!isAccessory) {
             Equipment equippedItem = PlayerStats.Instance.GetEquippedItem(slotType);
 
@@ -36,5 +36,11 @@ public class EquipmentButton : MonoBehaviour
                 Debug.Log($"Clicked Accessory Slot {accessoryIndex}: Empty");
             }
         }
+    }
+    private void OnClick() {
+        if (SceneManager.GetActiveScene().ToString() == "EquipmentMenu") {
+            EquipmentMenuTasks();
+        }
+        
     }
 }

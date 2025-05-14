@@ -50,20 +50,12 @@ public class EnemyStats : MonoBehaviour
         playerStats = FindFirstObjectByType<PlayerStats>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
-
     public void ApplyKnockback(Vector2 direction, float force, float duration) {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null) {
             StopCoroutine(KnockbackRoutine(direction, force, duration));
             StartCoroutine(WasHit());
             StartCoroutine(KnockbackRoutine(direction, force, duration));
-            Debug.Log(force);
         }
 
         

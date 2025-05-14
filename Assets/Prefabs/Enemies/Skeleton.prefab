@@ -75,8 +75,8 @@ MonoBehaviour:
   knockedBack: 0
   knockedBackTime: 0.1
   wasHitByPlayer: 0
-  minXP: 50
-  maxXP: 70
+  minXP: 5
+  maxXP: 20
   minGold: 100
   maxGold: 200
   dropPool:
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 6499578948018413549}
+  playerStats: {fileID: 0}
 --- !u!212 &7881530942931069204
 SpriteRenderer:
   m_ObjectHideFlags: 0

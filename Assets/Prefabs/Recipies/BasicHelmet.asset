@@ -15,11 +15,16 @@ MonoBehaviour:
   recipeId: baseHelmet
   recipeName: BasicHelmet
   slot: 4
+  slotCategory: 0
   requirements:
   - requiredTag: plate
     quantityRequired: 3
   - requiredTag: binding
     quantityRequired: 2
+  parts: []
   icon: {fileID: 7050702025778955408, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   baseImage: {fileID: -3077076032294960908, guid: 59bc765e2f3ff4648b406347e00c4749, type: 3}
-  visualPrefab: {fileID: 0}
+  visualLayers: []
+  visualPrefab: {fileID: 3321988923664724374, guid: dee0a169c4860e649a579484b0200419, type: 3}
+  augmentSlots: 0
+  requiredLevel: 0

@@ -27,7 +27,9 @@ public enum StatType {
     MagicDamage,
     Knockback,
     AttackSpeed,
-    ManaRegeneration
+    ManaRegeneration,
+    DashDistance,
+    DashNumber
 }
 
 [System.Serializable]
@@ -46,7 +48,34 @@ public class Equipment
     public EquipmentSlot slot;
     public List<StatModifier> modifiers = new List<StatModifier>();
     public List<Augment> appliedAugments = new();
+    public int augmentSlotNumber;
     public int allowedAugments;
-    public float equipmentLevel;
+    public int equipmentLevel = 1;
     public float equipmentXP;
+    /*
+    public int GetXpToNextLevel(Equipment equip) => equip.equipmentLevel * 100;
+    public void AddXP(float xp, Equipment equipment) {
+        equipmentXP += xp;
+        if (equipmentXP >= equipmentLevel*100) {
+            equipmentXP = 0;
+            equipmentLevel++;
+            EquipmentLevelUp(equipment);
+        }
+    }
+    public int XpNeeded(Equipment equipment) {
+        return equipment.equipmentLevel * 200;
+    }
+    public void EnhanceWithPowder(float powderXP, Equipment equipment) {
+        AddXP(powderXP, equipment);
+    }
+
+    public void EquipmentLevelUp(Equipment equipment) {
+        foreach (var mod in equipment.modifiers) {
+            if (mod.flatAmount > 0f) {
+                mod.percentAmount += 0.01f;
+                Debug.Log($"Boosted {mod.statType} + 1% on {equipment.itemName}");
+            }
+        }
+    }
+    */
 }

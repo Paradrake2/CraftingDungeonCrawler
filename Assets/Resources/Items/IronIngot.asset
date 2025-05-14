@@ -41,12 +41,17 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - iron
   - ingot
   - metal
   ID: ironingot
   isCraftingMaterial: 1
-  isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
+  isCraftable: 1
+  requiredMaterials:
+  - {fileID: 11400000, guid: bc87c77c445703148abec711dfbe4708, type: 2}
+  requiredQuantities: 02000000
+  coreTier: 0
+  coreSize: 0

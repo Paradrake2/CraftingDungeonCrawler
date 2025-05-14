@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: skeletonBone
   icon: {fileID: -4656034429768487166, guid: 35d44c380ade653418e5eb92934cec0d, type: 3}
-  description: 
+  description: A bone from a skeleton. Whose bone it is, or what species it comes
+    from is better left unknown.
   color: {r: 1, g: 1, b: 1, a: 0}
   sprites: []
   itemType: 1
@@ -41,6 +42,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - bone
   - skeleton
@@ -50,3 +53,5 @@ MonoBehaviour:
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  coreSize: 0

@@ -8,8 +8,15 @@ public class CraftingFactory : MonoBehaviour
         equipment.itemName = GenerateName(ingredients, recipeId);
         equipment.slot = recipeId.slot;
         equipment.modifiers = new List<StatModifier>();
-        equipment.icon = recipeId.baseImage; // this will be replaced with the sprite generation
-        
+        //equipment.icon = recipeId.baseImage; // this will be replaced with the sprite generation
+        //Transform prefabInstance = Instantiate(recipeId.visualPrefab, new Vector3(1000,1000,0), Quaternion.identity);
+        //GameObject visual = prefabInstance.gameObject;
+        recipeId.spriteGenerator = FindObjectOfType<SpriteGenerator>();
+        Sprite icon = recipeId.spriteGenerator.GenerateIcon(recipeId.visualPrefab, ingredients);
+
+        equipment.icon = icon;
+        //equipment.icon = recipeId.baseImage;
+        equipment.augmentSlotNumber = recipeId.augmentSlots;
         
         
         foreach (Items item in ingredients)

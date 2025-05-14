@@ -22,7 +22,7 @@ MonoBehaviour:
   value: 0
   Rarity: 0
   flatDamage: 2
-  damageMult: 0.08
+  damageMult: 0.06
   flatDefense: 1
   defenseMult: 0
   flatMaxHP: 0
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - handle
   - refined
@@ -51,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d518c0a483c3444481e8e55c1096c6b, type: 2}
   - {fileID: 11400000, guid: 18099051f197ca74e9f3db596a8dab52, type: 2}
   requiredQuantities: 0100000002000000
+  coreTier: 0
+  coreSize: 0

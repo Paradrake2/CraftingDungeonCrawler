@@ -9,18 +9,32 @@ public class PartVisual {
     public string partName;
     public Color tintColor;
 }
+public enum MaterialRoleType {
+    Plate,
+    Binding,
+    Blade,
+    Guard,
+    Handle,
+    Accessory,
+    Gem
+}
 [CreateAssetMenu(fileName = "CraftingRecipe", menuName = "Scriptable Objects/CraftingRecipe")]
 public class CraftingRecipe : ScriptableObject
 {
     public string recipeId;
+    [System.NonSerialized] public SpriteGenerator spriteGenerator;
     public string recipeName;
     public EquipmentSlot slot;
     //public int requiredSlots;
     public SlotCategory slotCategory;
     public List<RecipeSlotRequirement> requirements;
+    public List<EquipmentPartSprite> parts;
     public Sprite icon;
     public Sprite baseImage;
-    public Transform visualPrefab;
+    public MaterialVisualData[] visualLayers;
+    public GameObject visualPrefab;
+    public int augmentSlots;
+    public int requiredLevel;
     public string getRecipeId() {
         return recipeId;
     }
@@ -31,15 +45,18 @@ public class CraftingRecipe : ScriptableObject
     public EquipmentSlot GetEquipmentSlot() {
         return slot;
     }
-
-    //public int getRequiredSlots() {
-        //return requiredSlots;
-    //}
     public Sprite getIcon() {
         return icon;
     }
 
     public List<RecipeSlotRequirement> getRequirements() {
         return requirements;
+    }
+    public int getAugmentSlots() {
+        return augmentSlots;
+    }
+
+    public void GenerateSprite(GameObject visualPrefab, List<Items> ingredients) {
+        spriteGenerator.GenerateIcon(visualPrefab, ingredients);
     }
 }

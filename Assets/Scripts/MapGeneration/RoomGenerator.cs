@@ -7,6 +7,7 @@ public class RoomGenerator : MonoBehaviour {
     public TileBase[] floorTile;
     public GameObject[] obstaclePrefabs; // have colliders
     public GameObject[] enemySpawner; // spawn enemy
+    public GameObject[] environmentalResourcePrefabs;
     public EnemySpawn enemySpawn;
     public int radius = 30;
     
@@ -57,6 +58,11 @@ public class RoomGenerator : MonoBehaviour {
                         Vector3 spawnpos = tilemap.CellToWorld(tilePos) + new Vector3(0,0,0);
                         enemySpawnPoints.Add(spawnpos);
                         Debug.DrawLine(spawnpos, spawnpos + Vector3.up * 0.5f, Color.red, 5f);
+                    }
+                    if (tilemap.HasTile(tilePos) && Random.value < 0.005f) {
+                        Vector3 spawnPos = tilemap.CellToWorld(tilePos) + new Vector3(0.5f,0.5f,0);
+                        GameObject envResource = Instantiate(environmentalResourcePrefabs[Random.Range(0, environmentalResourcePrefabs.Length)], spawnPos, Quaternion.identity);
+                        envResource.transform.parent = this.transform;
                     }
 
                 }

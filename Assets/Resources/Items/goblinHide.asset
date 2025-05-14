@@ -23,7 +23,7 @@ MonoBehaviour:
   Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 2
+  flatDefense: 1
   defenseMult: 0
   flatMaxHP: 1
   HPMult: 0.01
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - goblin
   - hide
@@ -50,3 +52,5 @@ MonoBehaviour:
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  coreSize: 0

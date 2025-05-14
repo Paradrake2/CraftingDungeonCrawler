@@ -62,7 +62,7 @@ public class CraftingUIManager : MonoBehaviour
     public void RefreshInventoryUI() {
         PopulateInventory();
     }
-    void PopulateInventory() {
+    public void PopulateInventory() {
         /*
         // this is for testing
         List<Items> allItems = new List<Items>(Resources.LoadAll<Items>("Items"));
@@ -146,13 +146,15 @@ public class CraftingUIManager : MonoBehaviour
     void GenerateRecipeButtons() {
         Debug.LogWarning("GENERATING RECIPE BUTTONS");
         foreach (var recipe in PlayerRecipeBook.Instance.knownRecipes) {
-            GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
-            buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
-            buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
+            if(PlayerStats.Instance.Level >= recipe.requiredLevel) {
+                GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
+                buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
+                buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
 
-            var button = buttonObject.GetComponent<Button>();
-            if (button != null) {
-                button.onClick.AddListener(() => SelectRecipe(recipe));
+                var button = buttonObject.GetComponent<Button>();
+                if (button != null) {
+                    button.onClick.AddListener(() => SelectRecipe(recipe));
+                }
             }
 
         }
@@ -208,6 +210,10 @@ public class CraftingUIManager : MonoBehaviour
             }
         }
 
+    }
+    public void OpenCoreRefine(GameObject menu) {
+        menu.SetActive(true);
+        PowderMaker.Instance.PopulateCoreInventory();
     }
     void UpdatePreview(){
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) {

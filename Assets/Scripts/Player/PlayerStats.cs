@@ -24,6 +24,9 @@ public class PlayerStats : MonoBehaviour
     public float BaseRegeneration = 0f;
     public float BaseManaRegeneration = 1f;
     public float CurrentHealth;
+    public float DashDistance = 2f;
+    public int DashNumber = 2;
+    public bool isDashing = false;
     public float CurrentDefense => CalculateStat(StatType.Defense);
     public float CurrentDamage => CalculateStat(StatType.Damage) + PureDamage;
     public float CurrentMaxHealth => CalculateStat(StatType.MaxHealth);
@@ -35,14 +38,15 @@ public class PlayerStats : MonoBehaviour
     public float CurrentManaRegeneration => CalculateStat(StatType.ManaRegeneration);
     public float CurrentDropRate => CalculateStat(StatType.DropRate);
     public float CurrentXPGain => CalculateStat(StatType.XPGain);
-    public float XpToNextLevel => Level * 100;
+    public float CalculateDashDistance => CalculateStat(StatType.DashDistance);
+    public int CalculateDashNumber => Mathf.FloorToInt(CalculateStat(StatType.DashNumber));
+    public float XpToNextLevel => Level * 1000;
     void Awake()
     {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -123,6 +127,8 @@ public class PlayerStats : MonoBehaviour
             (float)StatType.Regeneration => BaseRegeneration,
             (float)StatType.XPGain => BaseXPGain,
             (float)StatType.ManaRegeneration => BaseManaRegeneration,
+            (float)StatType.DashDistance => DashDistance,
+            (float)StatType.DashNumber => DashNumber,
             _ => 0
         };
 
@@ -139,14 +145,11 @@ public class PlayerStats : MonoBehaviour
     void LevelUp() {
         Level++;
         BaseHealth += 10;
-        BaseDefense += 1;
-        CurrentHealth = CurrentMaxHealth;
-
+        BaseDefense += 0.5f;
+        
         Debug.Log("Leveled up to level " + Level);
     }
     public float GetStat(StatType statType) {
         return CalculateStat(statType);
     }
-    
-
 }

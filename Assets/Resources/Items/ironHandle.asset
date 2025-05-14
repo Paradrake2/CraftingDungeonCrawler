@@ -22,7 +22,7 @@ MonoBehaviour:
   value: 0
   Rarity: 0
   flatDamage: 1
-  damageMult: 0.02
+  damageMult: 0.04
   flatDefense: 0
   defenseMult: 0
   flatMaxHP: 0
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - handle
   - iron
@@ -50,3 +52,5 @@ MonoBehaviour:
   requiredMaterials:
   - {fileID: 11400000, guid: 9ceb70e2ac08683458cdfbe8432bbb63, type: 2}
   requiredQuantities: 02000000
+  coreTier: 0
+  coreSize: 0

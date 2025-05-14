@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 3544472735902610833}
+  playerStats: {fileID: 0}
 --- !u!114 &8065025720405977147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,11 +135,15 @@ MonoBehaviour:
   knockedBack: 0
   knockedBackTime: 0.1
   wasHitByPlayer: 0
-  minXP: 100
-  maxXP: 200
+  minXP: 20
+  maxXP: 50
   minGold: 200
   maxGold: 300
   dropPool:
+  - rarity: 0
+    items:
+    - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
+    - {fileID: 11400000, guid: 075c991c24ed4de4d84e1c86d5a6ff12, type: 2}
   - rarity: 0
     items:
     - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}

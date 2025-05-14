@@ -23,8 +23,8 @@ MonoBehaviour:
   Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 3
-  defenseMult: 0.1
+  flatDefense: 2
+  defenseMult: 0.02
   flatMaxHP: 10
   HPMult: 0.05
   flatPureDamage: 0
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - goblin
   - binding
@@ -50,3 +52,5 @@ MonoBehaviour:
   requiredMaterials:
   - {fileID: 11400000, guid: 18099051f197ca74e9f3db596a8dab52, type: 2}
   requiredQuantities: 01000000
+  coreTier: 0
+  coreSize: 0

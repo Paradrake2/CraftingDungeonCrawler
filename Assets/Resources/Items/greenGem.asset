@@ -24,7 +24,7 @@ MonoBehaviour:
   flatDamage: 1
   damageMult: 0.005
   flatDefense: 1
-  defenseMult: 0.007
+  defenseMult: 0.005
   flatMaxHP: 5
   HPMult: 0.01
   flatPureDamage: 0
@@ -45,8 +45,11 @@ MonoBehaviour:
   - gem
   - accessoryCraft
   - drop
+  - greenGem
   ID: greenGem
   isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  powderYield: 0

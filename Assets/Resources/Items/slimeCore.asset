@@ -43,8 +43,11 @@ MonoBehaviour:
   dropRate: 0
   tags:
   - slimeCore
+  - core
   ID: slimeCore
   isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 1
+  coreSize: 2

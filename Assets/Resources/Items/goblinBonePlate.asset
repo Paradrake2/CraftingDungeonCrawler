@@ -23,7 +23,7 @@ MonoBehaviour:
   Rarity: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 2
+  flatDefense: 1
   defenseMult: 0.01
   flatMaxHP: 5
   HPMult: 0.01
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - refined
   - plate
@@ -51,3 +53,5 @@ MonoBehaviour:
   requiredMaterials:
   - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
   requiredQuantities: 03000000
+  coreTier: 0
+  coreSize: 0

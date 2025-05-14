@@ -4,10 +4,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyStats enemyStats;
+    public PlayerStats playerStats;
     void Start()
     {
         DungeonManager.Instance.RegisterEnemy();
-
+        if (PlayerStats.Instance != null) {
+            playerStats = PlayerStats.Instance;
+        } else {
+            Debug.LogError("PlayerStats instance not found");
+        }
     }
     public void TakeDamage(float damage) {
         enemyStats.currentHealth = enemyStats.currentHealth - (float)damage;
@@ -22,7 +27,7 @@ public class Enemy : MonoBehaviour
         foreach(var item in drops) {
             InventorySystem.Instance.AddItem(item.ID, 1);
         }
-
+        playerStats.GainXP(enemyStats.getXP());
         Destroy(gameObject);
     }
 

@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 6795524164219144049}
+  playerStats: {fileID: 0}
 --- !u!114 &6795524164219144049
 MonoBehaviour:
   m_ObjectHideFlags: 0

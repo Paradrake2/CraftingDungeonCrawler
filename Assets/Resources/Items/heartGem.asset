@@ -45,8 +45,11 @@ MonoBehaviour:
   - accessoryCraft
   - gem
   - drop
+  - heartGem
   ID: heartGem
   isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  powderYield: 0

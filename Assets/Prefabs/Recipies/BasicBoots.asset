@@ -15,6 +15,7 @@ MonoBehaviour:
   recipeId: basicBoots
   recipeName: Basic Boots
   slot: 0
+  slotCategory: 0
   requirements:
   - requiredTag: plate
     quantityRequired: 4
@@ -23,3 +24,5 @@ MonoBehaviour:
   icon: {fileID: 906004363937815747, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   baseImage: {fileID: 906004363937815747, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   visualPrefab: {fileID: 0}
+  augmentSlots: 1
+  requiredLevel: 0

@@ -7,6 +7,7 @@ public class RefiningUIManager : MonoBehaviour
 {
     public Transform recipeListParent;
     public GameObject recipeButtonPrefab;
+    public GameObject refinePowderPrefab;
     public TextMeshProUGUI ingredientText;
     public TextMeshProUGUI statstext;
     public Button refineButton;
@@ -30,34 +31,49 @@ public class RefiningUIManager : MonoBehaviour
         CraftingUIManager.Instance.selectedRecipe = null;
         CraftingUIManager.Instance.SelectRecipe(null);
     }
+    bool CanRefine() {
+        return false;
+    }
     void GenerateRecipeList() {
         Items[] allItems = Resources.LoadAll<Items>("");
         foreach(Items item in allItems) {
             if (item.isCraftable && item.isCraftingMaterial) {
-                var btn = Instantiate(recipeButtonPrefab, recipeListParent);
-                var eventTrigger = btn.AddComponent<EventTrigger>();
-                
-                // on pointer enter
-                EventTrigger.Entry enter = new EventTrigger.Entry {eventID = EventTriggerType.PointerEnter};
-                enter.callback.AddListener((eventData) => {HoverNameUI.Instance.Show(item.itemName);});
-                eventTrigger.triggers.Add(enter);
+                bool canCraftNow = true;
+                for (int i = 0; i < item.requiredMaterials.Count; i++) {
+                    var reqMat = item.requiredMaterials[i];
+                    int needed = item.requiredQuantities[i];
+                    if (!InventorySystem.Instance.HasItem(reqMat.ID, needed)) {
+                        canCraftNow = false;
+                        break;
+                    }
+                }
+                bool hasCraftedBefore = InventorySystem.Instance.discoveredRefinedItems.Contains(item.ID);
+                if (canCraftNow || hasCraftedBefore) {
+                    var btn = Instantiate(recipeButtonPrefab, recipeListParent);
+                    var eventTrigger = btn.AddComponent<EventTrigger>();
+                    
+                    // on pointer enter
+                    EventTrigger.Entry enter = new EventTrigger.Entry {eventID = EventTriggerType.PointerEnter};
+                    enter.callback.AddListener((eventData) => {HoverNameUI.Instance.Show(item.itemName);});
+                    eventTrigger.triggers.Add(enter);
 
-                // on pointer exit
-                EventTrigger.Entry exit = new EventTrigger.Entry {eventID = EventTriggerType.PointerExit};
-                exit.callback.AddListener((eventData) => {HoverNameUI.Instance.Hide();});
-                eventTrigger.triggers.Add(exit);
+                    // on pointer exit
+                    EventTrigger.Entry exit = new EventTrigger.Entry {eventID = EventTriggerType.PointerExit};
+                    exit.callback.AddListener((eventData) => {HoverNameUI.Instance.Hide();});
+                    eventTrigger.triggers.Add(exit);
 
-                btn.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
-                var icon = btn.transform.Find("Icon")?.GetComponent<Image>();
-                if (icon != null) {
-                    icon.sprite = item.icon;
-                    icon.preserveAspect = true;
-                } 
+                    btn.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
+                    var icon = btn.transform.Find("Icon")?.GetComponent<Image>();
+                    if (icon != null) {
+                        icon.sprite = item.icon;
+                        icon.preserveAspect = true;
+                    } 
 
-                btn.GetComponent<Button>().onClick.AddListener(() =>{
-                    selectedRefinedItem = item;
-                    UpdateIngredientPreview();
-                });
+                    btn.GetComponent<Button>().onClick.AddListener(() =>{
+                        selectedRefinedItem = item;
+                        UpdateIngredientPreview();
+                    });
+                }
             }
         }
     }
@@ -94,8 +110,6 @@ public class RefiningUIManager : MonoBehaviour
         return statDisplay;
         
     }
-    
-    // Update is called once per frame
     void Update()
     {
         

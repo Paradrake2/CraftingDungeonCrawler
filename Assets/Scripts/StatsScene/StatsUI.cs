@@ -12,6 +12,7 @@ public class StatsUI : MonoBehaviour
     public TextMeshProUGUI mana;
     public TextMeshProUGUI magicDamage;
     public TextMeshProUGUI knockback;
+    public TextMeshProUGUI level;
     public void loadEquipment() {
         SceneManager.LoadScene("EquipmentMenu");
     }
@@ -29,6 +30,7 @@ public class StatsUI : MonoBehaviour
         mana.text = "Max Mana: " + playerStats.CurrentMaxMana;
         magicDamage.text = "Magic Damage: " + playerStats.CurrentMagicDamage;
         knockback.text = "Knockback " + playerStats.CurrentKnockback;
+        level.text = "Level " + playerStats.Level;
     }
 
     // Update is called once per frame

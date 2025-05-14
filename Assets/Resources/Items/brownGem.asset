@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
   m_Name: brownGem
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: brownGem
   icon: {fileID: -675795211735882530, guid: e60e67491e15fa84f915bd37180692f3, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
-  itemType: 0
-  maxStackSize: 99
-  value: 0
-  Rarity: 0
+  itemType: 1
+  maxStackSize: 999
+  value: 5
+  Rarity: 1
   flatDamage: 0
   damageMult: 0
-  flatDefense: 0
-  defenseMult: 0
+  flatDefense: 3
+  defenseMult: 0.1
   flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
@@ -41,9 +41,14 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
-  tags: []
-  ID: 
-  isCraftingMaterial: 0
+  tags:
+  - gem
+  - accessoryCraft
+  - brownGem
+  ID: bownGem
+  isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  powderYield: 0

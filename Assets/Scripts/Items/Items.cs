@@ -16,7 +16,8 @@ public enum ItemType {
     CraftingIngredient,
     Equipment,
     Consumable,
-    KeyItem
+    KeyItem,
+    MonsterCore
 }
 [CreateAssetMenu(menuName = "Item/Item Data")]
 public class Items : ScriptableObject
@@ -31,7 +32,7 @@ public class Items : ScriptableObject
 
     public ItemType itemType;
     [Header("Stacking")]
-    public int maxStackSize = 99;
+    public int maxStackSize = 999;
 
     [Header("Value")]
     public float value;
@@ -96,6 +97,10 @@ public class Items : ScriptableObject
 
     [Header("Drop Rate")]
     public float dropRate;
+    [Header("Dash Distance")]
+    public float dashDistance;
+    [Header("Dash Number")]
+    public int dashNumber;
 
     [Header("Tags")]
     public string[] tags;
@@ -113,6 +118,6 @@ public class Items : ScriptableObject
 
     [Header("CoreTier")]
     public int coreTier;
-    [Header("PowderAmount")]
-    public float powderAmount;
+    [Header("CoreSize")]
+    public int coreSize;
 }

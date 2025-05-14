@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: skeletonBonePlate
   icon: {fileID: 7438064671448259608, guid: 57cf78564d114364d942b4d3efbf235e, type: 3}
-  description: A bone from a skeleton. Whose bone it is, or what species it comes
-    from is better left unknown.
+  description: 
   color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
   itemType: 2
@@ -25,9 +24,9 @@ MonoBehaviour:
   flatDamage: 0
   damageMult: 0
   flatDefense: 0
-  defenseMult: 0.05
+  defenseMult: 0.03
   flatMaxHP: 0
-  HPMult: 0.05
+  HPMult: 0.02
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -42,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - plate
   - bone
@@ -50,4 +51,6 @@ MonoBehaviour:
   isCraftable: 1
   requiredMaterials:
   - {fileID: 11400000, guid: efb9adb1874042043a431d0d42df0c8f, type: 2}
-  requiredQuantities: 04000000
+  requiredQuantities: 03000000
+  coreTier: 0
+  coreSize: 0

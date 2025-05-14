@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6903890439704712260}
   - component: {fileID: 5563213648852317857}
   - component: {fileID: 486468417591483994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenSlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1096997675
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5822370736333308498, guid: afcc3386177e86a418a1cacacd9bd341, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 486468417591483994}
+  playerStats: {fileID: 0}
 --- !u!114 &486468417591483994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +217,8 @@ MonoBehaviour:
   knockedBack: 0
   knockedBackTime: 0.1
   wasHitByPlayer: 0
-  minXP: 50
-  maxXP: 100
+  minXP: 5
+  maxXP: 10
   minGold: 10
   maxGold: 40
   dropPool:

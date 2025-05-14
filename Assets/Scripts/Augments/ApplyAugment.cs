@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ApplyAugment : MonoBehaviour
+public static class ApplyAugment
 {
-    public void ApplyAugmentToEquipment(Augment augment, Equipment equipment) {
+    public static void ApplyAugmentToEquipment(Augment augment, Equipment equipment) {
         if (equipment.allowedAugments <= 0) return;
         equipment.appliedAugments.Add(augment);
         equipment.allowedAugments--;

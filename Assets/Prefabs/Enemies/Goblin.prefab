@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 1109583720606394420}
+  playerStats: {fileID: 0}
 --- !u!114 &187545636338631323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c240402a5ec84a4428766c850d50c08a, type: 2}
   - rarity: 1
     items:
-    - {fileID: 11400000, guid: 9ceb70e2ac08683458cdfbe8432bbb63, type: 2}
+    - {fileID: 11400000, guid: 4e1ff8b65794b7a4da910cf7e42ea72c, type: 2}
   playerStats: {fileID: 0}
 --- !u!50 &817514164775422055
 Rigidbody2D:

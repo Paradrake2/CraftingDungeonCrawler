@@ -3,6 +3,7 @@ using UnityEngine;
 public class RefiningManager : MonoBehaviour
 {
     public static RefiningManager Instance;
+    public RefiningUIManager refiningUIManager;
     void Awake()
     {
         Instance = this;
@@ -26,17 +27,9 @@ public class RefiningManager : MonoBehaviour
             InventorySystem.Instance.RemoveItem(id, amount);
         }
         InventorySystem.Instance.AddItem(refinedItem.ID, 1);
+        InventorySystem.Instance.discoveredRefinedItems.Add(refinedItem.ID);
         CraftingUIManager.Instance.RefreshInventoryUI();
+        refiningUIManager.RefreshRefineUI();
         Debug.Log($"Refined: {refinedItem.itemName}");
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

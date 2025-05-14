@@ -9,13 +9,23 @@ public class EquipmentUIManager : MonoBehaviour
     public static EquipmentUIManager Instance;
     public GameObject equipmentButtonPrefab;
     public List<EquipmentSlotManager> slotManagers;
+    public EquipmentInventoryManager equipmentInventoryManager;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         RefreshSlots();
-        PopulateInventory();
+        equipmentInventoryManager.PopulateInventory((Equipment item) => {
+            PlayerStats.Instance.EquipItem(item);
+            EquipmentUIManager.Instance.RefreshSlots();
+        });
+        //PopulateInventory(equipmentButtonPrefab, inventoryPanel);
     }
-    void PopulateInventory() {
+    /*
+    public void PopulateInventory(GameObject equipmentButtonPrefab, Transform inventoryPanel) {
         foreach (var item in InventorySystem.Instance.ownedGear) {
             GameObject btn = Instantiate(equipmentButtonPrefab, inventoryPanel);
             // below is placeholder for when i have sprite generation and shit, idk its just a placeholder dont @ me
@@ -25,10 +35,14 @@ public class EquipmentUIManager : MonoBehaviour
             btn.GetComponent<Button>().onClick.AddListener(() => EquipToSlot(item));
         }
     }
+    
     Sprite GetSpriteForEquipment(Equipment equipment) {
         return equipment.icon;
     }
+    PlayerStats.Instance.EquipItem(item);
+                EquipmentUIManager.Instance?.RefreshSlots(); // Trigger slot update
 
+    */
     public void RefreshSlots() {
         foreach (var slot in slotManagers) {
             if (slot.isAccessory) {

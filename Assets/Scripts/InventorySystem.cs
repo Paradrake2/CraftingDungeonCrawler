@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
     public List<Equipment> ownedGear = new List<Equipment>();
+    public HashSet<String> discoveredRefinedItems = new();
     public static InventorySystem Instance;
     public void RemoveItem(string itemId, int amount) {
         var stack = itemStacks.Find(i => i.itemId == itemId);
