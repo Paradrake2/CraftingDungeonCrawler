@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class AugmentManager : MonoBehaviour
     public Equipment selectedEquipment;
     public Augment selectedAugment;
     public EquipmentInventoryManager equipmentInventoryManager;
-
+    public AugmentInventory augmentInventory;
 
     public PowderInventory powderInventory;
     //UI menus
@@ -34,6 +35,7 @@ public class AugmentManager : MonoBehaviour
     public float xp = 0;
     public void MainApply() {
         // bring up UI to confirm and show new stats of item.
+        Debug.LogWarning("APPLIED AUGMENT TO EQUIPMENT(OR ATTEMPTED TO)");
         ApplyAugment.ApplyAugmentToEquipment(selectedAugment, selectedEquipment);
     }
 
@@ -80,7 +82,11 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
-
+    public void RefreshAugmentInventory() {
+        augmentInventory.PopulateInventory((Augment augment) => {
+            selectedEquipment.EquipAugment(selectedAugment);
+        });
+    }
 
     public void SelectEquipment(Equipment item) {
         // when player clicks on equipment in inventory, adds the equipment.icon to augmentSlotPrefab
@@ -94,6 +100,17 @@ public class AugmentManager : MonoBehaviour
         }
 
     }
+
+    public void SelectAugment(Augment augment) {
+        Debug.LogWarning($"SELECTED {augment.augmentName}");
+        selectedAugment = augment;
+        if (selectedAugment != null) {
+            selectedAugment.icon = augment.icon;
+            Image augIm = augmentSlotPrefab.GetComponent<Image>();
+            augIm.sprite = augment.icon;
+            GenerateAugmentSlots(selectedEquipment);
+        }
+    }
     // for equipmentAugmentSlotPrefab, the number of times it is generated depends on equipment augment slots
     public void GenerateAugmentSlots(Equipment selectedEquipment) {
         // Clear old slots first
@@ -105,14 +122,26 @@ public class AugmentManager : MonoBehaviour
             // get any augments already applied
         }
     }
+    // get equipment, show the augments it has
+    public void ShowEquippedAugments(Equipment selectedEquipment) {
+        foreach(var augment in selectedEquipment.appliedAugments) {
+            Instantiate(augmentSlotPrefab, equipmentAugmentSlotHolder);
+        }
+    }
+
+    // need to have a panel for the augment selection
     void Awake()
     {
         Instance = this;
     }
     void Start()
     {
+        powderInventory = FindFirstObjectByType<PowderInventory>();
         equipmentInventoryManager.PopulateInventory((Equipment item) => {
             SelectEquipment(item);
+        });
+        augmentInventory.PopulateInventory((Augment augment) => {
+            SelectAugment(augment);
         });
     }
     

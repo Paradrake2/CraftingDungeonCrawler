@@ -15,11 +15,16 @@ MonoBehaviour:
   recipeId: basicChestplate
   recipeName: Basic Chestplate
   slot: 2
+  slotCategory: 0
   requirements:
   - requiredTag: plate
     quantityRequired: 9
   - requiredTag: binding
     quantityRequired: 6
+  parts: []
   icon: {fileID: -2220343515620535138, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
-  baseImage: {fileID: -2220343515620535138, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
-  visualPrefab: {fileID: 0}
+  baseImage: {fileID: 4260060156299511793, guid: 9f41866980d02f94080a314bcc9a90a3, type: 3}
+  visualLayers: []
+  visualPrefab: {fileID: 7395943187799561241, guid: 2dc8b030fee2a8446881483110466af0, type: 3}
+  augmentSlots: 3
+  requiredLevel: 0

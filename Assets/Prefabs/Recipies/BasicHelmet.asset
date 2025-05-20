@@ -25,6 +25,6 @@ MonoBehaviour:
   icon: {fileID: 7050702025778955408, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   baseImage: {fileID: -3077076032294960908, guid: 59bc765e2f3ff4648b406347e00c4749, type: 3}
   visualLayers: []
-  visualPrefab: {fileID: 3321988923664724374, guid: dee0a169c4860e649a579484b0200419, type: 3}
+  visualPrefab: {fileID: 1283214869244997734, guid: 2aa7853c64555524abe3d1aa3b1c2675, type: 3}
   augmentSlots: 0
   requiredLevel: 0

@@ -78,4 +78,20 @@ public class Equipment
         }
     }
     */
+    public void EquipAugment(Augment augment) {
+        if (appliedAugments.Contains(augment)) {
+            ApplyAugment.ApplyAugmentToEquipment(augment, this);
+        } else {
+            Debug.LogWarning($"Equipment does not have {augment} equipped");
+        }
+    }
+    public void RemoveAugment(Augment augment) {
+        if (appliedAugments.Contains(augment)) {
+            ApplyAugment.RemoveAugment(appliedAugments.IndexOf(augment), this);
+        }
+    }
+    public bool TryAddAugment(Equipment equipment) {
+        if (equipment.appliedAugments.Count >= equipment.allowedAugments) return false;
+        return true;
+    }
 }

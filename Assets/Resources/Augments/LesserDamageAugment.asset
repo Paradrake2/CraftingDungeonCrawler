@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7088bb95b3a47419dabe1f5b1d577b, type: 3}
+  m_Name: LesserDamageAugment
+  m_EditorClassIdentifier: 
+  augmentName: LesserDamageAugment
+  augmentId: LesserDamageAugment
+  description: 
+  icon: {fileID: -1897227162571157334, guid: 40a0a207ba967ad4fa4ded88ddbe18ce, type: 3}
+  modifiers:
+  - statType: 2
+    flatAmount: 10
+    percentAmount: 0.05
+  dropRate: 0
+  augmentRarity: 1
+  dropFloor: 0

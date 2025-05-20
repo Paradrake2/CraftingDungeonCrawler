@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7088bb95b3a47419dabe1f5b1d577b, type: 3}
+  m_Name: epicPlaceholder
+  m_EditorClassIdentifier: 
+  augmentName: epicPlaceholder
+  augmentId: epicPlaceholder
+  description: 
+  icon: {fileID: -6020173557333471935, guid: 10b70694f4067fd46be73f40dd03fcd9, type: 3}
+  modifiers:
+  - statType: 0
+    flatAmount: 1
+    percentAmount: 1
+  dropRate: 0
+  augmentRarity: 0
+  dropFloor: 0

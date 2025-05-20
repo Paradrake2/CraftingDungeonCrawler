@@ -21,8 +21,10 @@ MonoBehaviour:
     quantityRequired: 4
   - requiredTag: binding
     quantityRequired: 4
+  parts: []
   icon: {fileID: 906004363937815747, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
-  baseImage: {fileID: 906004363937815747, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
-  visualPrefab: {fileID: 0}
+  baseImage: {fileID: 4247692965858531000, guid: d0d0863035cadbd448d4fdb6919156ce, type: 3}
+  visualLayers: []
+  visualPrefab: {fileID: 3782704502978151132, guid: 40010bea77cc4014c96408265c287fbc, type: 3}
   augmentSlots: 1
   requiredLevel: 0

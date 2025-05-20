@@ -33,6 +33,7 @@ public class DungeonManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (scene.name == "Dungeon") {
+            floor++;
             roomGenerator = FindFirstObjectByType<RoomGenerator>();
             if (roomGenerator != null) {
                 roomGenerator.ClearRoom();

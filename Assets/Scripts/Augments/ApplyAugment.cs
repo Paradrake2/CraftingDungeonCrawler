@@ -2,9 +2,11 @@ using UnityEngine;
 
 public static class ApplyAugment
 {
+    
     public static void ApplyAugmentToEquipment(Augment augment, Equipment equipment) {
-        if (equipment.allowedAugments <= 0) return;
+        if (!equipment.TryAddAugment(equipment)) return;
         equipment.appliedAugments.Add(augment);
+        InventorySystem.Instance.RemoveAugment(augment);
         equipment.allowedAugments--;
         foreach(var mod in augment.modifiers) {
             equipment.modifiers.Add(new StatModifier {
@@ -12,6 +14,12 @@ public static class ApplyAugment
                 flatAmount = mod.flatAmount,
                 percentAmount = mod.percentAmount
             });
+        }
+    }
+    public static void RemoveAugment(int index, Equipment equipment) {
+        if (index >= 0 && index < equipment.appliedAugments.Count) {
+            InventorySystem.Instance.AddAugment(equipment.appliedAugments[index]);
+            equipment.appliedAugments.RemoveAt(index);
         }
     }
 }

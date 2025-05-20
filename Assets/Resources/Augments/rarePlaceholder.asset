@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7088bb95b3a47419dabe1f5b1d577b, type: 3}
+  m_Name: rarePlaceholder
+  m_EditorClassIdentifier: 
+  augmentName: rarePlaceholder
+  augmentId: rarePlaceholder
+  description: 
+  icon: {fileID: -8769410704393964359, guid: 374d8db6426ffcd48a0f4123d62d2a5e, type: 3}
+  modifiers:
+  - statType: 0
+    flatAmount: 1
+    percentAmount: 0.01
+  dropRate: 0
+  augmentRarity: 2
+  dropFloor: 0

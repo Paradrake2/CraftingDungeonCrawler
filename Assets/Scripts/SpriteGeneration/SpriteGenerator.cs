@@ -33,6 +33,7 @@ public class SpriteGenerator : MonoBehaviour
             bool matched = false;
             for (int i = 0; i < ingredients.Count; i++) {
                 if (!used[i] && ingredients[i].tags.Contains(part.partTag)) {
+                    ingredients[i].color.a = 1f;
                     part.Renderer.color = ingredients[i].color;
                     used[i] = true;
                     matched = true;
@@ -45,15 +46,9 @@ public class SpriteGenerator : MonoBehaviour
         }
     }
     public Sprite GenerateIcon(GameObject equipmentVisual, List<Items> ingredients) {
-        Debug.LogError("CALLING GENERATE ICON"); // just to check if it is called and have it stand out, is not real error
-        Debug.LogError(equipmentVisual.name);
         if (equipmentVisual == null) {
             Debug.LogError("PREFAB REF IS NULL");
         }
-        Debug.Log($"Is prefab destroyed? {equipmentVisual == null}");
-Debug.Log($"HideFlags: {equipmentVisual.hideFlags}");
-Debug.Log($"Prefab asset path: {UnityEditor.AssetDatabase.GetAssetPath(equipmentVisual)}");
-        GameObject TEST = Instantiate(test, Vector3.zero, Quaternion.identity);
         GameObject prefabInstance = Instantiate(equipmentVisual, new Vector3(1000,1000,0), Quaternion.identity);
         List<EquipmentPartSprite> parts = prefabInstance.GetComponentsInChildren<EquipmentPartSprite>(true).ToList();
         prefabInstance.SetActive(true);
@@ -80,7 +75,7 @@ Debug.Log($"Prefab asset path: {UnityEditor.AssetDatabase.GetAssetPath(equipment
         tex.Apply();
         RenderTexture.active = null;
 
-        //Destroy(equipmentVisual);
+        //Destroy(prefabInstance);
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
 

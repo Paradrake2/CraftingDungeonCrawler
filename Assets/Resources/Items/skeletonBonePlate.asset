@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: skeletonBonePlate
   icon: {fileID: 7438064671448259608, guid: 57cf78564d114364d942b4d3efbf235e, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   sprites: []
   itemType: 2
   maxStackSize: 99
