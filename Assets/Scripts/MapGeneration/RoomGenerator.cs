@@ -73,7 +73,6 @@ public class RoomGenerator : MonoBehaviour {
             }
         }
         foreach (Vector3 pos in enemySpawnPoints) {
-            Debug.Log(pos);
             enemySpawn.SpawnEnemy(pos);
         }
     }

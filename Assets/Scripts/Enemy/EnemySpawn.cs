@@ -35,7 +35,6 @@ public class EnemySpawn : MonoBehaviour
             }
         }
         GameObject chosenEnemy = group.enemies[Random.Range(0, group.enemies.Count)];
-        Debug.Log(chosenEnemy + "  " + group.rarity);
         //int attempts = 0;
         //while (chosenEnemy == null && attempts < 10) {
         //    chosenEnemy = group.enemies[Random.Range(0, group.enemies.Count)];

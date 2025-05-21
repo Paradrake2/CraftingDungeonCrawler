@@ -179,7 +179,7 @@ public class CraftingUIManager : MonoBehaviour
         // this code looks like ass, remember to clean it up
         foreach(var tag in item.tags) {
             try {
-                var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
+                var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag.Contains(tag)); // was == tag
                 if (req != null) {
                     int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
                     if (alreadyAssigned < req.quantityRequired) {

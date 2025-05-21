@@ -41,11 +41,16 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0.3
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - drop
   - goblin
+  - baseMaterial
   ID: goblinbone
   isCraftingMaterial: 1
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
+  coreTier: 0
+  coreSize: 0

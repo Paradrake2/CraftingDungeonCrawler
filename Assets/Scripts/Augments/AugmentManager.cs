@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -32,12 +33,19 @@ public class AugmentManager : MonoBehaviour
     public TextMeshProUGUI powderPreviewText;
     public TextMeshProUGUI statsPreviewText;
 
+
     public float xp = 0;
-    public void MainApply() {
+    
+    public void MainApply()
+    {
         // bring up UI to confirm and show new stats of item.
         Debug.LogWarning("APPLIED AUGMENT TO EQUIPMENT(OR ATTEMPTED TO)");
         ApplyAugment.ApplyAugmentToEquipment(selectedAugment, selectedEquipment);
+        GenerateAugmentSlots(selectedEquipment);
+        RefreshAugmentInventory();
+        selectedAugment = null;
     }
+    
 
 
 
@@ -82,22 +90,40 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
-    public void RefreshAugmentInventory() {
-        augmentInventory.PopulateInventory((Augment augment) => {
-            selectedEquipment.EquipAugment(selectedAugment);
+
+
+    public void RefreshAugmentInventory()
+    {
+        augmentInventory.PopulateInventory((Augment augment) =>
+        {
+            //selectedEquipment.EquipAugment(selectedAugment);
+            //SelectAugment(augment);
+            if (selectedEquipment == null) return;
+
+            if (selectedEquipment.appliedAugments.Count < selectedEquipment.augmentSlotNumber)
+            {
+                ApplyAugment.ApplyAugmentToEquipment(augment, selectedEquipment);
+                GenerateAugmentSlots(selectedEquipment);
+                RefreshAugmentInventory();
+            }
+            else
+            {
+                Debug.LogWarning("No available augment slots.");
+            }
         });
     }
 
-    public void SelectEquipment(Equipment item) {
-        // when player clicks on equipment in inventory, adds the equipment.icon to augmentSlotPrefab
-        // as well as some text(item name, etc). Changes selected equipment to this equipment. Calls
-        // to the equipment location in memory(current idea of how to do it, not sure).
+    public void SelectEquipment(Equipment item)
+    {
         selectedEquipment = item;
-        if (selectedEquipment != null) {
+        if (selectedEquipment != null)
+        {
             selectedEquipmentIcon.sprite = item.icon;
             selectedEquipmentIcon.enabled = true;
             GenerateAugmentSlots(selectedEquipment);
         }
+        //MainApply();
+        RefreshAugmentInventory();
 
     }
 
@@ -105,27 +131,23 @@ public class AugmentManager : MonoBehaviour
         Debug.LogWarning($"SELECTED {augment.augmentName}");
         selectedAugment = augment;
         if (selectedAugment != null) {
-            selectedAugment.icon = augment.icon;
-            Image augIm = augmentSlotPrefab.GetComponent<Image>();
-            augIm.sprite = augment.icon;
-            GenerateAugmentSlots(selectedEquipment);
+            //selectedAugment.icon = augment.icon;
+            //Image augIm = augmentSlotPrefab.GetComponent<Image>();
+            //augIm.sprite = augment.icon;
         }
+        GenerateAugmentSlots(selectedEquipment);
     }
     // for equipmentAugmentSlotPrefab, the number of times it is generated depends on equipment augment slots
     public void GenerateAugmentSlots(Equipment selectedEquipment) {
         // Clear old slots first
         foreach (Transform child in equipmentAugmentSlotHolder) Destroy(child.gameObject);
         int augmentSlotCount = selectedEquipment.augmentSlotNumber;
-        for (int i = 0; i < augmentSlotCount; i++) {
+        for (int i = 0; i < augmentSlotCount; i++)
+        {
             // instantiate the augment slots
             GameObject slot = Instantiate(augmentSlotPrefab, equipmentAugmentSlotHolder);
-            // get any augments already applied
-        }
-    }
-    // get equipment, show the augments it has
-    public void ShowEquippedAugments(Equipment selectedEquipment) {
-        foreach(var augment in selectedEquipment.appliedAugments) {
-            Instantiate(augmentSlotPrefab, equipmentAugmentSlotHolder);
+            AugmentSlotUI augmentSlotUI = slot.GetComponent<AugmentSlotUI>();
+            augmentSlotUI.Setup(this, selectedEquipment, i);
         }
     }
 
@@ -144,7 +166,6 @@ public class AugmentManager : MonoBehaviour
             SelectAugment(augment);
         });
     }
-    
     public void ShowEquipmentStats() {
 
     }

@@ -91,7 +91,7 @@ public class Equipment
         }
     }
     public bool TryAddAugment(Equipment equipment) {
-        if (equipment.appliedAugments.Count >= equipment.allowedAugments) return false;
+        if (equipment.appliedAugments.Count >= equipment.augmentSlotNumber) return false;
         return true;
     }
 }

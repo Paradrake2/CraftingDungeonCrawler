@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: brownGem
   icon: {fileID: -675795211735882530, guid: e60e67491e15fa84f915bd37180692f3, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.5943396, g: 0.15299833, b: 0, a: 0}
   sprites: []
   itemType: 1
   maxStackSize: 999
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - gem
   - accessoryCraft
@@ -51,4 +53,4 @@ MonoBehaviour:
   requiredMaterials: []
   requiredQuantities: 
   coreTier: 0
-  powderYield: 0
+  coreSize: 0

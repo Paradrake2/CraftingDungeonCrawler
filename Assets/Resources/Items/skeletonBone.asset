@@ -22,9 +22,9 @@ MonoBehaviour:
   maxStackSize: 999
   value: 0
   Rarity: 0
-  flatDamage: 0
+  flatDamage: 1
   damageMult: 0
-  flatDefense: 0
+  flatDefense: 2
   defenseMult: 0
   flatMaxHP: 0
   HPMult: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   - bone
   - skeleton
   - drop
+  - baseMaterial
   ID: skeletonBone
   isCraftingMaterial: 1
   isCraftable: 0

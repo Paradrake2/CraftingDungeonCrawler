@@ -17,10 +17,14 @@ MonoBehaviour:
   slot: 6
   slotCategory: 2
   requirements:
+  - requiredTag: baseMaterial
+    quantityRequired: 1
   - requiredTag: accessoryCraft
     quantityRequired: 1
-  - requiredTag: ingot
-    quantityRequired: 1
+  parts: []
   icon: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
   baseImage: {fileID: 6681031012342387884, guid: 4ffeebc01e64806419a4d1c6b3b69b71, type: 3}
-  visualPrefab: {fileID: 0}
+  visualLayers: []
+  visualPrefab: {fileID: 4329898693117668303, guid: 0e151600dbe24cb42a63d793312e25f7, type: 3}
+  augmentSlots: 0
+  requiredLevel: 0

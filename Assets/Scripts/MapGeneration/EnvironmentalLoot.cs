@@ -6,31 +6,41 @@ public class EnvironmentalLoot : MonoBehaviour
 {
     public ItemRegistry itemRegistry;
     public DungeonManager dungeonManager;
-    public Augment GetLootAugment() {
+    void Start()
+    {
+        dungeonManager = FindFirstObjectByType<DungeonManager>();
+        itemRegistry = FindFirstObjectByType<ItemRegistry>();
+    }
+    public Augment GetLootAugment()
+    {
         int currentFloor = dungeonManager.getFloor();
         List<Augment> tempList = new List<Augment>();
         // Get dungeon floor and add all valid augments to tempList. Then return a random augment from tempList
-        foreach(var augment in ItemRegistry.Instance.allAugments) {
+        foreach (var augment in ItemRegistry.Instance.allAugments)
+        {
             if (augment.dropFloor <= currentFloor) tempList.Add(augment);
         }
-        if (tempList.Count == 0) {
+        if (tempList.Count == 0)
+        {
             Debug.LogWarning($"No valid augments for floor {currentFloor}");
             return null;
         }
         Dictionary<AugmentRarity, List<Augment>> rarityGroups = new();
-        foreach (var augment in tempList) {
+        foreach (var augment in tempList)
+        {
             if (!rarityGroups.ContainsKey(augment.augmentRarity)) rarityGroups[augment.augmentRarity] = new List<Augment>();
             rarityGroups[augment.augmentRarity].Add(augment);
         }
         Dictionary<AugmentRarity, float> rarityWeights = new();
-        foreach (var rarity in rarityGroups.Keys) {
+        foreach (var rarity in rarityGroups.Keys)
+        {
             rarityWeights[rarity] = GetBaseAugmentDropRate(rarity);
         }
 
         AugmentRarity chosenRarity = GetRandomAugmentRarity(rarityWeights);
         var pool = rarityGroups[chosenRarity];
         Debug.LogError("CALLED LOOT AUGMENT");
-        return pool[Random.Range(0,pool.Count)];
+        return pool[Random.Range(0, pool.Count)];
     }
     private float GetBaseAugmentDropRate(AugmentRarity rarity) {
         return rarity switch {

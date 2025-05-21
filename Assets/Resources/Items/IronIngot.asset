@@ -21,12 +21,12 @@ MonoBehaviour:
   maxStackSize: 99
   value: 5
   Rarity: 1
-  flatDamage: 0
+  flatDamage: 2
   damageMult: 0
   flatDefense: 0
-  defenseMult: 0
+  defenseMult: 3
   flatMaxHP: 0
-  HPMult: 0
+  HPMult: 10
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   - iron
   - ingot
   - metal
+  - baseMaterial
   ID: ironingot
   isCraftingMaterial: 1
   isCraftable: 1

@@ -26,8 +26,6 @@ public class PlayerAttackSlash : MonoBehaviour
         other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
         Vector2 knockbackDirection = other.transform.position - playerTransform.position;
         float knockbackForce = playerStats.CurrentKnockback * other.GetComponent<EnemyStats>().getKnockbackResistance();
-        Debug.LogWarning(other.GetComponent<EnemyStats>().getKnockbackResistance());
-        Debug.Log(other);
         other.GetComponent<EnemyStats>()?.ApplyKnockback(knockbackDirection, knockbackForce, knockbackTime);
         
         if (other.tag == "EnvironmentalResource") {

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -9,13 +11,24 @@ public class InventorySystem : MonoBehaviour
     public List<Augment> ownedAugments = new List<Augment>();
     public HashSet<String> discoveredRefinedItems = new();
     public static InventorySystem Instance;
-    public void RemoveItem(string itemId, int amount) {
+    public Log log;
+    public void RemoveItem(string itemId, int amount)
+    {
         var stack = itemStacks.Find(i => i.itemId == itemId);
-        if (stack != null) {
+        if (stack != null)
+        {
             stack.quantity -= amount;
-            if (stack.quantity <= 0) {
+            if (stack.quantity <= 0)
+            {
                 itemStacks.Remove(stack);
             }
+        }
+    }
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Dungeon")
+        {
+            log = FindFirstObjectByType<Log>();
         }
     }
     void Awake()
@@ -51,9 +64,13 @@ public class InventorySystem : MonoBehaviour
         } else {
             itemStacks.Add(new InventoryItem {itemId = itemId, quantity = amount});
         }
+        if (SceneManager.GetActiveScene().name == "Dungeon") log.AddLogMessage(itemId, amount);
         Debug.Log($"Added{amount} of {itemId} to inventory.");
     }
-    public bool HasItem(string itemId, int amount) {
+
+    
+    public bool HasItem(string itemId, int amount)
+    {
         var stack = itemStacks.Find(i => i.itemId == itemId);
         return stack != null && stack.quantity >= amount;
     }

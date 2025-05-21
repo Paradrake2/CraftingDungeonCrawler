@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: redGem
   icon: {fileID: -7004392042648151656, guid: 6b2c14c3abee55846af585f50c298351, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
   sprites: []
   itemType: 1
   maxStackSize: 999
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - gem
   - accessoryCraft
@@ -51,4 +53,4 @@ MonoBehaviour:
   requiredMaterials: []
   requiredQuantities: 
   coreTier: 0
-  powderYield: 0
+  coreSize: 0

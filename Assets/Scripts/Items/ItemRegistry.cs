@@ -41,7 +41,6 @@ public class ItemRegistry : MonoBehaviour
             }
         }
 
-        Debug.Log($"[ItemRegistry] Loaded {itemLookup.Count} items.");
     }
     public void LoadAllAugments() {
         Augment[] augments = Resources.LoadAll<Augment>("Augments");

@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PowderMaker : MonoBehaviour
 {
     public static PowderMaker Instance;
-    public GameObject holder;
     public Transform coreListParent;
+    public GameObject holder;
     public GameObject coreButtonPrefab;
+    public GameObject powderTextAmount;
     public List<Items> coreList;
+
 
     List<Items> GenerateCoreList() {
         List<Items> cores = new List<Items>();
@@ -37,12 +40,19 @@ public class PowderMaker : MonoBehaviour
 
                 btn.GetComponent<Button>().onClick.AddListener(() => {
                     PowderInventory.Instance.CoreToPowder(item);
+                    PowderAmount();
                     PopulateCoreInventory();
                 });
             }
         }
     }
-    public void OpenCoreRefineMenu() {
+    public void PowderAmount()
+    {
+        TextMeshProUGUI txt = powderTextAmount.GetComponent<TextMeshProUGUI>();
+        txt.text =$"Powder total: {PowderInventory.Instance.totalPowder}";
+    }
+    public void OpenCoreRefineMenu()
+    {
         holder.SetActive(true);
         PopulateCoreInventory();
     }

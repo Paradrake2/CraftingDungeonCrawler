@@ -26,5 +26,5 @@ MonoBehaviour:
   baseImage: {fileID: 4260060156299511793, guid: 9f41866980d02f94080a314bcc9a90a3, type: 3}
   visualLayers: []
   visualPrefab: {fileID: 7395943187799561241, guid: 2dc8b030fee2a8446881483110466af0, type: 3}
-  augmentSlots: 3
+  augmentSlots: 4
   requiredLevel: 0

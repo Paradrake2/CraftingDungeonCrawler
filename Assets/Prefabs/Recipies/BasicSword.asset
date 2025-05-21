@@ -19,10 +19,14 @@ MonoBehaviour:
   requirements:
   - requiredTag: blade
     quantityRequired: 1
-  - requiredTag: handle
-    quantityRequired: 1
   - requiredTag: guard
     quantityRequired: 1
+  - requiredTag: handle
+    quantityRequired: 1
+  parts: []
   icon: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
   baseImage: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
-  visualPrefab: {fileID: 0}
+  visualLayers: []
+  visualPrefab: {fileID: 4257026382633524170, guid: 707f9f54374d5ce4c84a2db4d94a507d, type: 3}
+  augmentSlots: 0
+  requiredLevel: 0

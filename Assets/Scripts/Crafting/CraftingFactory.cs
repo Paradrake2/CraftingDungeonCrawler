@@ -17,7 +17,7 @@ public class CraftingFactory : MonoBehaviour
         equipment.icon = icon;
         //equipment.icon = recipeId.baseImage;
         equipment.augmentSlotNumber = recipeId.augmentSlots;
-        
+        equipment.allowedAugments = recipeId.augmentSlots;
         
         foreach (Items item in ingredients)
         {
