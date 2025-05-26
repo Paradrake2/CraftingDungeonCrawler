@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: tinGuard
+  m_EditorClassIdentifier: 
+  recipeName: tinGuard
+  icon: {fileID: 3705136311241474354, guid: df664e6b04ac85d4cb2878a5b2c0e38d, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: tinIngot
+    quantityRequired: 2
+  outputItem: {fileID: 11400000, guid: 7fd65ab776ad91e4aa4604859e8b54bb, type: 2}

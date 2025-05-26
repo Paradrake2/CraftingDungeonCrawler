@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
   m_Name: goblinBlade
   m_EditorClassIdentifier: 
-  itemName: goblinBlade
-  icon: {fileID: 2159502054573250821, guid: 78e90b241a9704e4ab4aa11b79739186, type: 3}
+  itemName: goblinBoneBlade
+  icon: {fileID: 4093884403888032865, guid: 0404c825ed5596844b1ff0b8e2dbd609, type: 3}
   description: 
   color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
   sprites: []
@@ -41,12 +41,17 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - blade
   - goblin
-  ID: goblinBlade
+  - bladeT1
+  ID: goblinBoneBlade
   isCraftingMaterial: 1
   isCraftable: 1
   requiredMaterials:
   - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
   requiredQuantities: 04000000
+  coreTier: 0
+  coreSize: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: skeletonBoneBlade
+  m_EditorClassIdentifier: 
+  recipeName: skeletonBoneBlade
+  icon: {fileID: 4093884403888032865, guid: 0404c825ed5596844b1ff0b8e2dbd609, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: skeletonBone
+    quantityRequired: 6
+  outputItem: {fileID: 11400000, guid: 52815da77422a8d4a9e535f6a625c612, type: 2}

@@ -24,8 +24,8 @@ public class CraftingUIManager : MonoBehaviour
     public Transform recipeButtonParent; // for recipe prefabs
     public GameObject recipeButtonPrefab;
     public static CraftingUIManager Instance;
+    public RefiningUIManager refiningUIManager;
     private Dictionary<string, int> assignedCounts = new(); // key = tag, value = assigned count
-
     public TextMeshProUGUI recipeInfoText;
     public TextMeshProUGUI itemTagInfo;
 
@@ -44,7 +44,7 @@ public class CraftingUIManager : MonoBehaviour
             return;
         }
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
-//        Debug.LogWarning(InventorySystem.Instance);
+        //        Debug.LogWarning(InventorySystem.Instance);
         Equipment result = craftingFactory.GenerateFromIngredients(currentIngredients, selectedRecipe);
         foreach (var ingredients in currentIngredients) {
             InventorySystem.Instance.RemoveItem(ingredients.itemName, 1);
@@ -52,17 +52,35 @@ public class CraftingUIManager : MonoBehaviour
         PopulateInventory();
         Debug.Log(result);
         try {
-        InventorySystem.Instance.AddEquipment(result);
-        } catch(IOException e) {
+            InventorySystem.Instance.AddEquipment(result);
+        } catch (IOException e) {
             Debug.Log(e.StackTrace);
         }
         previewText.text = $"{result.itemName} crafted!";
         currentIngredients.Clear();
     }
-    public void RefreshInventoryUI() {
-        PopulateInventory();
+    public void DisplayShader(string[] tags)
+    {
+        foreach (Transform child in inventoryParent)
+        {
+            if (tags == null) continue;
+            Image overlay = child.Find("Shader")?.GetComponent<Image>();
+            if (overlay == null) Debug.LogWarning("no overlay");
+            InventoryButtonController btnCtrl = child.GetComponent<InventoryButtonController>();
+            if (btnCtrl == null || btnCtrl.item == null || btnCtrl.overlayImage == null) continue;
+            bool isValid = btnCtrl.item.tags.Any(tag => tags.Any(tags => tag.Equals(tags, StringComparison.OrdinalIgnoreCase)));
+            if (btnCtrl.overlayImage == null) Debug.LogError("overlay is null");
+            btnCtrl.overlayImage.enabled = !isValid;
+            overlay.enabled = !isValid;
+        }
     }
-    public void PopulateInventory() {
+    public Image GetOverlay()
+    {
+        Image overlay = transform.Find("Shader")?.GetComponent<Image>();
+        return overlay;
+    }
+    public void PopulateInventory(string[] validTags = null)
+    {
         /*
         // this is for testing
         List<Items> allItems = new List<Items>(Resources.LoadAll<Items>("Items"));
@@ -77,55 +95,79 @@ public class CraftingUIManager : MonoBehaviour
         */
 
         // this is for actual use
-        foreach(Transform child in inventoryParent) Destroy(child.gameObject); // clear old buttons
-        foreach (var stack in InventorySystem.Instance.itemStacks) {
+        //foreach (Transform child in inventoryParent) Destroy(child.gameObject); // clear old buttons
+        ClearChildren(inventoryParent);
+
+        foreach (var stack in InventorySystem.Instance.itemStacks)
+        {
             Items itemData = ItemRegistry.Instance.GetItemById(stack.itemId);
             if (itemData == null) continue;
             GameObject button = Instantiate(inventoryButtonPrefab, inventoryParent);
-            
+            InventoryButtonController btnCtrl = button.GetComponent<InventoryButtonController>();
+            btnCtrl.item = itemData;
+
             // display tags when hover
             var trigger = button.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+
             // pointer enter
             var enterEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
             enterEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter;
-            enterEntry.callback.AddListener((data) => {ShowItemTags(itemData);});
+            enterEntry.callback.AddListener((data) => { ShowItemTags(itemData); });
+            enterEntry.callback.AddListener((data) => { HoverTextShow(itemData); });
             trigger.triggers.Add(enterEntry);
 
             // pointer exit
             var exitEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
             exitEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit;
-            exitEntry.callback.AddListener((data) => {ClearItemTags();});
+            exitEntry.callback.AddListener((data) => { ClearItemTags(); });
+            exitEntry.callback.AddListener((data) => { HideHoverText(); });
             trigger.triggers.Add(exitEntry);
             Image icon = button.GetComponentInChildren<Image>();
             if (icon != null) icon.sprite = itemData.icon;
 
             // Set up text
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
-            if (text != null) text.text = $"{itemData.itemName} x {stack.quantity}";
+            if (text != null) text.text = $"{stack.quantity}";
 
-            button.GetComponent<Button>().onClick.AddListener(() => {
+
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
                 TryAddIngredient(itemData);
+                refiningUIManager.TryAddIngredient(itemData);
             });
         }
+        // Shader overlay
+        DisplayShader(validTags);
     }
-
-    public void ShowItemTags(Items item) {
-        if (item == null || item.tags == null || item.tags.Length == 0) {
-            itemTagInfo.text = "Tags: None";
-            return;
-        }
-        string joinedTags = string.Join(", " ,item.tags);
-        itemTagInfo.text = $"Tags - {joinedTags}";
+    void HoverTextShow(Items itemData)
+    {
+        HoverNameUI.Instance.Show(itemData.itemName);
     }
+    void HideHoverText()
+    {
+        HoverNameUI.Instance.Hide();
+    }
+    public void ShowItemTags(Items item)
+{
+    if (item == null || item.tags == null || item.tags.Length == 0)
+    {
+        itemTagInfo.text = "Tags: None";
+        return;
+    }
+    string joinedTags = string.Join(", ", item.tags);
+    itemTagInfo.text = $"Tags - {joinedTags}";
+}
 
     public void ClearItemTags() {
         itemTagInfo.text = "";
     }
 
-    void SetupRecipeSlots() {
+    void SetupRecipeSlots()
+    {
 
         if (selectedRecipe == null) return;
-        foreach(Transform child in recipeSlotsParent) Destroy(child.gameObject);
+        ClearChildren(recipeSlotsParent);
+        //foreach (Transform child in recipeSlotsParent) Destroy(child.gameObject);
         recipeSlotUIs.Clear();
         /*
         for (int i = 0; i < selectedRecipe.requirements.Sum(req => req.quantityRequired); i++) {
@@ -134,14 +176,25 @@ public class CraftingUIManager : MonoBehaviour
             recipeSlotUIs.Add(slot);
         }
         */
-        foreach (var req in selectedRecipe.requirements) {
-            for (int i = 0; i < req.quantityRequired; i++) {
+        foreach (var req in selectedRecipe.requirements)
+        {
+            for (int i = 0; i < req.quantityRequired; i++)
+            {
                 GameObject slot = Instantiate(recipeSlotPrefab, recipeSlotsParent);
                 var text = slot.GetComponentInChildren<TextMeshProUGUI>();
                 if (text != null) text.text = $"Needs: {req.requiredTag}";
                 recipeSlotUIs.Add(slot);
             }
         }
+        DisplayShader(selectedRecipe.GetTags());
+    }
+    void ClearChildren(Transform parent = null)
+    {
+        if (parent != null)
+        {
+            foreach (Transform child in parent) Destroy(child.gameObject);
+        }
+
     }
     void GenerateRecipeButtons() {
         Debug.LogWarning("GENERATING RECIPE BUTTONS");
@@ -159,24 +212,27 @@ public class CraftingUIManager : MonoBehaviour
 
         }
     }
-    public void SelectRecipe(CraftingRecipe recipe) {
+    
+    public void SelectRecipe(CraftingRecipe recipe)
+    {
         selectedRecipe = recipe;
         currentIngredients.Clear();
         assignedCounts.Clear();
         SetupRecipeSlots();
         //UpdatePreview();
-        if(recipe != null) {
+        if (recipe != null)
+        {
             recipeInfoText.text = $"<b>{recipe.getRecipeName()}</b>\n";
-            foreach (var req in recipe.requirements) {
-            recipeInfoText.text += $"- {req.requiredTag}: x {req.quantityRequired}\n";
-        }
+            foreach (var req in recipe.requirements)
+            {
+                recipeInfoText.text += $"- {req.requiredTag}: x {req.quantityRequired}\n";
+            }
         }
         else
             recipeInfoText.text = "";
-        
+
     }
     void TryAddIngredient(Items item) {
-        // this code looks like ass, remember to clean it up
         foreach(var tag in item.tags) {
             try {
                 var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag.Contains(tag)); // was == tag
@@ -195,9 +251,13 @@ public class CraftingUIManager : MonoBehaviour
                         assignedCounts[tag]++;
 
                         int slotIndex = currentIngredients.Count - 1;
-                        if (slotIndex < recipeSlotUIs.Count) {
+                        if (slotIndex < recipeSlotUIs.Count)
+                        {
                             var text = recipeSlotUIs[slotIndex].GetComponentInChildren<TextMeshProUGUI>();
                             if (text != null) text.text = item.itemName;
+
+                            var image = recipeSlotUIs[slotIndex].GetComponentInChildren<Image>();
+                            if (image != null) image.sprite = item.icon;
                         }
 
                         UpdatePreview();

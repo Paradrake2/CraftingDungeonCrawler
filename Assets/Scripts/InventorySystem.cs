@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,30 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
+    public void RemoveItemsWithTag(string tag, int quantity)
+    {
+        for (int i = 0; i < itemStacks.Count && quantity > 0; i++)
+        {
+            var entry = itemStacks[i];
+            Items item = ItemRegistry.Instance.GetItemById(entry.itemId);
+            if (item != null && item.tags.Contains(tag))
+            {
+                int toRemove = Mathf.Min(entry.quantity, quantity);
+                entry.quantity -= toRemove;
+                quantity -= toRemove;
+
+                if (entry.quantity <= 0)
+                {
+                    itemStacks.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        if (quantity > 0)
+        {
+            Debug.LogWarning($"Tried to remove more items with tag {tag} than were available");
+        }
+    }
     void Start()
     {
         if (SceneManager.GetActiveScene().name == "Dungeon")
@@ -41,13 +66,15 @@ public class InventorySystem : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        
+
     }
-    public void AddAugment(Augment newAugment) {
+    public void AddAugment(Augment newAugment)
+    {
         ownedAugments.Add(newAugment);
         Debug.Log($"Added new augment: {newAugment.augmentName}");
     }
-    public void RemoveAugment(Augment augment) {
+    public void RemoveAugment(Augment augment)
+    {
         ownedAugments.Remove(augment);
         Debug.Log($"Removed {augment}");
     }
@@ -56,39 +83,91 @@ public class InventorySystem : MonoBehaviour
         ownedGear.Add(newEquip);
         Debug.Log($"Added new equipment: {newEquip.itemName}");
     }
-    public void AddItem(string itemId, int amount) {
+    public void AddItem(string itemId, int amount)
+    {
         InventoryItem existing = itemStacks.Find(i => i.itemId == itemId);
 
-        if (existing != null) {
+        if (existing != null)
+        {
             existing.quantity += amount;
-        } else {
-            itemStacks.Add(new InventoryItem {itemId = itemId, quantity = amount});
         }
-        if (SceneManager.GetActiveScene().name == "Dungeon") log.AddLogMessage(itemId, amount);
+        else
+        {
+            itemStacks.Add(new InventoryItem { itemId = itemId, quantity = amount });
+        }
+        if (SceneManager.GetActiveScene().name == "Dungeon")
+        {
+            if (log == null) log = FindFirstObjectByType<Log>();
+            if (log != null) log.AddLogMessage(itemId, amount);
+        }
+
         Debug.Log($"Added{amount} of {itemId} to inventory.");
     }
+    public bool HasItemsWithTag(string tag, int requiredAmount)
+    {
+        int total = 0;
+        foreach (var entry in InventorySystem.Instance.itemStacks)
+        {
+            Items item = ItemRegistry.Instance.GetItemById(entry.itemId);
+            if (item != null && item.tags.Contains(tag))
+            {
+                total += entry.quantity;
+                if (total >= requiredAmount) return true;
+            }
+        }
+        return false;
+    }
 
-    
     public bool HasItem(string itemId, int amount)
     {
         var stack = itemStacks.Find(i => i.itemId == itemId);
         return stack != null && stack.quantity >= amount;
     }
-    public Augment GetAugment(string augmentName) {
-        foreach (var augment in ownedAugments) {
-            if (augment.augmentName == augmentName) {
+    public Augment GetAugment(string augmentName)
+    {
+        foreach (var augment in ownedAugments)
+        {
+            if (augment.augmentName == augmentName)
+            {
                 return augment;
             }
         }
         return null;
     }
-    public int GetQuantity(string requestedItemName) {
-        foreach (var item in itemStacks) {
-            if (item.itemId == requestedItemName) {
+    public int GetQuantity(string requestedItemName)
+    {
+        foreach (var item in itemStacks)
+        {
+            if (item.itemId == requestedItemName)
+            {
                 return item.quantity;
             }
         }
         return 0;
     }
+    public int GetMaxRefinableAmount(RefineRecipe recipe)
+    {
+        int min = int.MaxValue;
+        foreach (var req in recipe.requirements)
+        {
+            int totalHave = GetTotalItemCountByTag(req.requiredTag);
+            int maxForThisTag = totalHave / req.quantityRequired;
+            min = Mathf.Min(min, maxForThisTag);
+        }
+        return Mathf.Clamp(min, 0, 99999);
+    }
 
+    public int GetTotalItemCountByTag(string tag)
+    {
+        int total = 0;
+        foreach (var stack in itemStacks)
+        {
+            Items item = ItemRegistry.Instance.GetItemById(stack.itemId);
+            if (item.tags.Contains(tag))
+            {
+                total += stack.quantity;
+            }
+        }
+        return total;
+    }
 }

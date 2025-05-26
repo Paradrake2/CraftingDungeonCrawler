@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: leatherBinding
+  m_EditorClassIdentifier: 
+  recipeName: leatherBinding
+  icon: {fileID: -5255985705470490855, guid: 24a05244c96899e48b2eb4f9abc39300, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: leather
+    quantityRequired: 1
+  outputItem: {fileID: 11400000, guid: 89e753c950302414883cc56b0a19e30c, type: 2}

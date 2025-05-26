@@ -9,7 +9,7 @@ public class Log : MonoBehaviour
     public Transform log;
     public GameObject lootLogMessage;
     public InventorySystem inventorySystem;
-    public static Log Instance;
+    public Log Instance;
     public float entryDuration = 3f;
     public int maxEntries = 5;
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: BasicDefenseAugment
   augmentId: BasicDefenseAugment
   description: 
-  icon: {fileID: -2714553371818879577, guid: bf2856da80a820247bae27ded3a6391d, type: 3}
+  icon: {fileID: -2870671088603869733, guid: 0a485611a8379d5458294435cdcf5017, type: 3}
   modifiers:
   - statType: 1
     flatAmount: 5

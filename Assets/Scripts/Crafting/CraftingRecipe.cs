@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 [System.Serializable]
 public class RecipeSlotRequirement {
@@ -55,8 +56,14 @@ public class CraftingRecipe : ScriptableObject
     public int getAugmentSlots() {
         return augmentSlots;
     }
+    public string[] GetTags()
+    {
+        foreach (var tag in requirements) return requirements.Select(r => r.requiredTag).Distinct().ToArray();
+        return null;
+    }
 
-    public void GenerateSprite(GameObject visualPrefab, List<Items> ingredients) {
+    public void GenerateSprite(GameObject visualPrefab, List<Items> ingredients)
+    {
         spriteGenerator.GenerateIcon(visualPrefab, ingredients);
     }
 }

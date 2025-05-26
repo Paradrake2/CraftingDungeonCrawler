@@ -11,7 +11,7 @@ public class CraftingFactory : MonoBehaviour
         //equipment.icon = recipeId.baseImage; // this will be replaced with the sprite generation
         //Transform prefabInstance = Instantiate(recipeId.visualPrefab, new Vector3(1000,1000,0), Quaternion.identity);
         //GameObject visual = prefabInstance.gameObject;
-        recipeId.spriteGenerator = FindObjectOfType<SpriteGenerator>();
+        recipeId.spriteGenerator = FindFirstObjectByType<SpriteGenerator>();
         Sprite icon = recipeId.spriteGenerator.GenerateIcon(recipeId.visualPrefab, ingredients);
 
         equipment.icon = icon;

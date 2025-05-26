@@ -6,6 +6,9 @@ public class EnvironmentalLoot : MonoBehaviour
 {
     public ItemRegistry itemRegistry;
     public DungeonManager dungeonManager;
+    public bool augmentChest = false;
+    public bool oreChest = false;
+    public bool dropChest = false;
     void Start()
     {
         dungeonManager = FindFirstObjectByType<DungeonManager>();
@@ -69,10 +72,8 @@ public class EnvironmentalLoot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogError("COLLIDED");
         if(collision.gameObject.tag == "Player") {
-            Debug.LogError("COLLIDED WITH ENV LOOT");
-            InventorySystem.Instance.AddAugment(GetLootAugment());
+            if (augmentChest) InventorySystem.Instance.AddAugment(GetLootAugment());
             Destroy(gameObject);
         }
     }

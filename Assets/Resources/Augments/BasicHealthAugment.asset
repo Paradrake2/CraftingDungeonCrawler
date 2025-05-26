@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: BasicHealthAugment
   augmentId: BasicHealthAugment
   description: 
-  icon: {fileID: -4896046418310136036, guid: b147410ffeaf21c45862f30e5f4b4a99, type: 3}
+  icon: {fileID: -8228707123285972341, guid: 119d5710eeef5bc47bd6eb2853590ac9, type: 3}
   modifiers:
   - statType: 0
     flatAmount: 50

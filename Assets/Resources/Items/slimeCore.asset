@@ -17,7 +17,7 @@ MonoBehaviour:
   description: the core of a slime
   color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
-  itemType: 1
+  itemType: 6
   maxStackSize: 99
   value: 4
   Rarity: 0
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - slimeCore
   - core

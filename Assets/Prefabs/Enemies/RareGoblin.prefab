@@ -93,7 +93,23 @@ MonoBehaviour:
   maxXP: 40
   minGold: 100
   maxGold: 200
-  dropPool: []
+  dropPool:
+  - rarity: 0
+    items:
+    - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
+    - {fileID: 11400000, guid: c240402a5ec84a4428766c850d50c08a, type: 2}
+  - rarity: 1
+    items:
+    - {fileID: 11400000, guid: 246b197d91b0ccc45a34f9b694ef18b4, type: 2}
+  - rarity: 2
+    items:
+    - {fileID: 11400000, guid: 24e5ff9321a096748b0134250b782651, type: 2}
+    - {fileID: 11400000, guid: 324d387dfc214244e9fe0d0d22750de3, type: 2}
+    - {fileID: 11400000, guid: 21c826d0b25797246b83ee219a02c1f0, type: 2}
+    - {fileID: 11400000, guid: 3eb722424a948e041893de75679e8d78, type: 2}
+  - rarity: 5
+    items:
+    - {fileID: 11400000, guid: b74f03728df120e419ad8d8f218d5591, type: 2}
   playerStats: {fileID: 0}
 --- !u!50 &4109565210571369576
 Rigidbody2D:

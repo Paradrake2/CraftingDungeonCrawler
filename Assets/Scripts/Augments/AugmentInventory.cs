@@ -14,12 +14,21 @@ public class AugmentInventory : MonoBehaviour
         }
         foreach (var augment in InventorySystem.Instance.ownedAugments) {
             GameObject btn = Instantiate(augmentInventorySlot, augmentInventory);
+            /*
             var icon = btn.GetComponentInChildren<Image>();
             var text = btn.GetComponentInChildren<TextMeshProUGUI>();
 
+            
+            */
+
+            Transform iconTransform = btn.transform.Find("Icon");
+            Image icon = iconTransform != null ? iconTransform.GetComponent<Image>() : null;
+
+            Transform textTransform = btn.transform.Find("Text");
+            TextMeshProUGUI text = textTransform != null ? textTransform.GetComponent<TextMeshProUGUI>() : null;
+
             if (icon != null) icon.sprite = augment.icon;
             if (text != null) text.text = augment.augmentName;
-
             btn.GetComponent<Button>().onClick.AddListener(() => onClickAction?.Invoke(augment));
         }
     }

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
+  m_Name: improvedBinding
+  m_EditorClassIdentifier: 
+  itemName: 
+  icon: {fileID: -5255985705470490855, guid: 24a05244c96899e48b2eb4f9abc39300, type: 3}
+  description: 
+  color: {r: 0.4056604, g: 0.109069064, b: 0.109069064, a: 0}
+  sprites: []
+  itemType: 2
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  flatDamage: 1
+  damageMult: 0
+  flatDefense: 4
+  defenseMult: 0.008
+  flatMaxHP: 20
+  HPMult: 0.01
+  flatPureDamage: 0
+  pureDamageMult: 0
+  flatMaxMana: 0
+  maxManaMult: 0
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - binding
+  - bindingT2
+  ID: improvedBinding
+  isCraftingMaterial: 1
+  isCraftable: 0
+  requiredMaterials: []
+  requiredQuantities: 
+  coreTier: 0
+  coreSize: 0

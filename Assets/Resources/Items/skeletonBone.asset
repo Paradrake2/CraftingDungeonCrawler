@@ -49,6 +49,7 @@ MonoBehaviour:
   - skeleton
   - drop
   - baseMaterial
+  - skeletonBone
   ID: skeletonBone
   isCraftingMaterial: 1
   isCraftable: 0

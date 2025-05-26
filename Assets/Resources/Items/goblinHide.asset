@@ -47,6 +47,7 @@ MonoBehaviour:
   - goblin
   - hide
   - drop
+  - goblinHide
   ID: goblinHide
   isCraftingMaterial: 1
   isCraftable: 0

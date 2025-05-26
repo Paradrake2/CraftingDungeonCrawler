@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: ironGuard
+  m_EditorClassIdentifier: 
+  recipeName: ironGuard
+  icon: {fileID: -4531890925566935295, guid: e50b769582975fa4b8b921bab0aaa2ca, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: ironIngot
+    quantityRequired: 2
+  outputItem: {fileID: 11400000, guid: 1a2cd94ee164f484ea8b91c9c5c1a3db, type: 2}

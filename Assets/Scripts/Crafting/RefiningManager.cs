@@ -9,7 +9,7 @@ public class RefiningManager : MonoBehaviour
         Instance = this;
         Debug.LogWarning("Refining manager initialized");
     }
-
+    /*
     public bool CanRefine(Items refinedItem) {
         for (int i = 0; i < refinedItem.requiredMaterials.Count; i++) {
             string id = refinedItem.requiredMaterials[i].ID;
@@ -32,4 +32,6 @@ public class RefiningManager : MonoBehaviour
         refiningUIManager.RefreshRefineUI();
         Debug.Log($"Refined: {refinedItem.itemName}");
     }
+    */
+    
 }

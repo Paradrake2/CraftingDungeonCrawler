@@ -83,6 +83,9 @@ MonoBehaviour:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: efb9adb1874042043a431d0d42df0c8f, type: 2}
+  - rarity: 1
+    items:
+    - {fileID: 11400000, guid: 95bd59409ecb0784194b948ae342ca90, type: 2}
   playerStats: {fileID: 0}
 --- !u!114 &6043865382567283765
 MonoBehaviour:

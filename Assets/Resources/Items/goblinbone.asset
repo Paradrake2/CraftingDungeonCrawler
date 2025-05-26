@@ -47,6 +47,7 @@ MonoBehaviour:
   - drop
   - goblin
   - baseMaterial
+  - goblinBone
   ID: goblinbone
   isCraftingMaterial: 1
   isCraftable: 0

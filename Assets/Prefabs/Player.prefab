@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  dashCooldown: 0.5
+  remainingDashes: 0
+  dashDuration: 0.1
+  playerStats: {fileID: 0}
 --- !u!114 &6547295481753364346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8198b9c9cf79a474f9a4729cd1cbe932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCooldown: 1
+  damageCooldown: 0.5
+  isAttacking: 0
+  isMoving: 0
 --- !u!114 &1505054748417422464
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: rainbowAugment
   augmentId: rainbowAugment
   description: 
-  icon: {fileID: -8769410704393964359, guid: 374d8db6426ffcd48a0f4123d62d2a5e, type: 3}
+  icon: {fileID: 7067166007384660799, guid: 37253bd506b97a04090f7b0877fe42b5, type: 3}
   modifiers:
   - statType: 0
     flatAmount: 400

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
   m_Name: IronIngot
   m_EditorClassIdentifier: 
-  itemName: Iron Ingot
-  icon: {fileID: 8125299359641852125, guid: 15276604d4dd63249a06f5f4653d313b, type: 3}
+  itemName: ironIngot
+  icon: {fileID: -4285704637475842466, guid: ccc5bc1b200027544acb3c0c9899bf94, type: 3}
   description: 
   color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
   sprites: []
-  itemType: 0
+  itemType: 2
   maxStackSize: 99
   value: 5
   Rarity: 1
@@ -44,11 +44,12 @@ MonoBehaviour:
   dashDistance: 0
   dashNumber: 0
   tags:
+  - ironIngot
   - iron
   - ingot
   - metal
   - baseMaterial
-  ID: ironingot
+  ID: ironIngot
   isCraftingMaterial: 1
   isCraftable: 1
   requiredMaterials:

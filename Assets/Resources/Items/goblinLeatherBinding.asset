@@ -26,7 +26,7 @@ MonoBehaviour:
   flatDefense: 2
   defenseMult: 0.02
   flatMaxHP: 10
-  HPMult: 0.05
+  HPMult: 0.01
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   tags:
   - goblin
   - binding
+  - bindingT1
   ID: goblinLeatherBinding
   isCraftingMaterial: 1
   isCraftable: 1

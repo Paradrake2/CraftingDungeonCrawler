@@ -12,14 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7088bb95b3a47419dabe1f5b1d577b, type: 3}
   m_Name: legendaryPlaceholder
   m_EditorClassIdentifier: 
-  augmentName: legendaryPlaceholder
-  augmentId: legendaryPlaceholder
+  augmentName: legendaryAllRound1
+  augmentId: legendaryAllRound1
   description: 
-  icon: {fileID: -7004392042648151656, guid: 6b2c14c3abee55846af585f50c298351, type: 3}
+  icon: {fileID: -9101838113477507290, guid: 5c97f1cf673ba3d4da9fd62445f50914, type: 3}
   modifiers:
   - statType: 1
-    flatAmount: 1
-    percentAmount: 1
+    flatAmount: 10
+    percentAmount: 0.2
+  - statType: 0
+    flatAmount: 50
+    percentAmount: 0.2
+  - statType: 2
+    flatAmount: 10
+    percentAmount: 0.2
   dropRate: 0
   augmentRarity: 4
   dropFloor: 0

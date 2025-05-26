@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7088bb95b3a47419dabe1f5b1d577b, type: 3}
   m_Name: epicPlaceholder
   m_EditorClassIdentifier: 
-  augmentName: epicPlaceholder
-  augmentId: epicPlaceholder
+  augmentName: Scroll of Regeneration
+  augmentId: scrollOfRegeneration
   description: 
-  icon: {fileID: -6020173557333471935, guid: 10b70694f4067fd46be73f40dd03fcd9, type: 3}
+  icon: {fileID: 8693454828428746936, guid: 7667ff58c8d73214385e0164a7d52da6, type: 3}
   modifiers:
-  - statType: 0
-    flatAmount: 1
-    percentAmount: 1
+  - statType: 5
+    flatAmount: 10
+    percentAmount: 0
   dropRate: 0
-  augmentRarity: 0
+  augmentRarity: 3
   dropFloor: 0

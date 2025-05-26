@@ -21,12 +21,12 @@ MonoBehaviour:
   maxStackSize: 99
   value: 0
   Rarity: 0
-  flatDamage: 2
+  flatDamage: 3
   damageMult: 0.06
   flatDefense: 1
   defenseMult: 0
-  flatMaxHP: 0
-  HPMult: 0
+  flatMaxHP: 50
+  HPMult: 0.01
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
   tags:
   - handle
   - refined
+  - basicHandle
+  - handleT2
   ID: basicHandle
   isCraftingMaterial: 1
   isCraftable: 1

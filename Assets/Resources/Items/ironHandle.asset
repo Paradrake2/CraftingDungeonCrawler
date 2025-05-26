@@ -46,6 +46,8 @@ MonoBehaviour:
   tags:
   - handle
   - iron
+  - baseHandle
+  - handleT1
   ID: ironHandle
   isCraftingMaterial: 1
   isCraftable: 1

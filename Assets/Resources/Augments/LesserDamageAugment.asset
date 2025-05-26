@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: LesserDamageAugment
   augmentId: LesserDamageAugment
   description: 
-  icon: {fileID: -1897227162571157334, guid: 40a0a207ba967ad4fa4ded88ddbe18ce, type: 3}
+  icon: {fileID: -2261687021811969703, guid: 7859492f9d1bbc04b864680fb05b5617, type: 3}
   modifiers:
   - statType: 2
     flatAmount: 10

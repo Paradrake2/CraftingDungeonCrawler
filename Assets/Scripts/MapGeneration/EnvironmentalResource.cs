@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnvironmentalResource : MonoBehaviour
 {
     public List<Items> resourceDrops;

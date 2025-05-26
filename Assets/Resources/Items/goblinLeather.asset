@@ -41,13 +41,18 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - goblin
   - plate
   - refined
+  - leather
   ID: goblinLeather
   isCraftingMaterial: 1
   isCraftable: 1
   requiredMaterials:
   - {fileID: 11400000, guid: c240402a5ec84a4428766c850d50c08a, type: 2}
   requiredQuantities: 03000000
+  coreTier: 0
+  coreSize: 0
