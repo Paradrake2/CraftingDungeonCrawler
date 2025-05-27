@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: goblinBoneHandle
   icon: {fileID: -6627735892928340510, guid: 384e84f3cfe507f449a1f4cf7d42c57c, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.85882354, g: 1, b: 0.8352941, a: 0}
   sprites: []
   itemType: 2
   maxStackSize: 999

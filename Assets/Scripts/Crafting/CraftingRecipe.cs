@@ -36,7 +36,18 @@ public class CraftingRecipe : ScriptableObject
     public GameObject visualPrefab;
     public int augmentSlots;
     public int requiredLevel;
-    public string getRecipeId() {
+
+    // For weapons
+    public WeaponType weaponType;
+    public float attackRange = 0f;
+    public float attackSpeed = 1f;
+    public float manaCost = 0f;
+    public float projectileSpeed = 0f;
+    public GameObject projectilePrefab;
+    
+
+    public string getRecipeId()
+    {
         return recipeId;
     }
     public string getRecipeName() {

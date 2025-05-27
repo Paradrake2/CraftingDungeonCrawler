@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-public enum EquipmentSlot {
+public enum EquipmentSlot
+{
     Boots,
     Leggings,
     Chestplate,
@@ -8,6 +9,13 @@ public enum EquipmentSlot {
     Helmet,
     Weapon,
     Accessory
+}
+public enum WeaponType
+{
+    Melee,
+    Ranged,
+    Magic,
+    None
 }
 public enum SlotCategory {
     Armor,
@@ -52,6 +60,12 @@ public class Equipment
     public int allowedAugments;
     public int equipmentLevel = 1;
     public float equipmentXP;
+    public WeaponType weaponType = WeaponType.None;
+    public float attackRange = 0f;
+    public float attackSpeed = 1f;
+    public float manaCost = 0f;
+    public float projectileSpeed = 0f;
+    public GameObject projectilePrefab;
     /*
     public int GetXpToNextLevel(Equipment equip) => equip.equipmentLevel * 100;
     public void AddXP(float xp, Equipment equipment) {
@@ -78,20 +92,39 @@ public class Equipment
         }
     }
     */
-    public void EquipAugment(Augment augment) {
-        if (appliedAugments.Contains(augment)) {
+    public void EquipAugment(Augment augment)
+    {
+        if (appliedAugments.Contains(augment))
+        {
             ApplyAugment.ApplyAugmentToEquipment(augment, this);
-        } else {
+        }
+        else
+        {
             Debug.LogWarning($"Equipment does not have {augment} equipped");
         }
     }
-    public void RemoveAugment(Augment augment) {
-        if (appliedAugments.Contains(augment)) {
+    public void RemoveAugment(Augment augment)
+    {
+        if (appliedAugments.Contains(augment))
+        {
             ApplyAugment.RemoveAugment(appliedAugments.IndexOf(augment), this);
         }
     }
-    public bool TryAddAugment(Equipment equipment) {
+    public bool TryAddAugment(Equipment equipment)
+    {
         if (equipment.appliedAugments.Count >= equipment.augmentSlotNumber) return false;
         return true;
+    }
+    public GameObject GetProjectile()
+    {
+        return projectilePrefab;
+    }
+    public float GetProjectileSpeed()
+    {
+        return projectileSpeed;
+    }
+    public float GetManaCost()
+    {
+        return manaCost;
     }
 }

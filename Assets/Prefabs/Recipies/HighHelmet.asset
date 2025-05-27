@@ -18,15 +18,21 @@ MonoBehaviour:
   slotCategory: 0
   requirements:
   - requiredTag: plate
-    quantityRequired: 6
+    quantityRequired: 7
   - requiredTag: binding
     quantityRequired: 4
-  - requiredTag: accessoryCraft
-    quantityRequired: 1
   - requiredTag: gem
     quantityRequired: 1
+  parts: []
   icon: {fileID: -3077076032294960908, guid: 59bc765e2f3ff4648b406347e00c4749, type: 3}
   baseImage: {fileID: -3077076032294960908, guid: 59bc765e2f3ff4648b406347e00c4749, type: 3}
-  visualPrefab: {fileID: 0}
+  visualLayers: []
+  visualPrefab: {fileID: 2964145312629745445, guid: 080ed982c570a654480f5cb439f34947, type: 3}
   augmentSlots: 2
   requiredLevel: 4
+  weaponType: 3
+  attackRange: 0
+  attackSpeed: 1
+  manaCost: 0
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}

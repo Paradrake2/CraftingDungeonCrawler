@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: greenGem
   icon: {fileID: 5451560212847992510, guid: 348c9aacd2d7de1469eee1c1dd83abc8, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0, g: 0.735849, b: 0.1262244, a: 0}
   sprites: []
   itemType: 1
   maxStackSize: 99
@@ -41,6 +41,8 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - gem
   - accessoryCraft
@@ -52,4 +54,4 @@ MonoBehaviour:
   requiredMaterials: []
   requiredQuantities: 
   coreTier: 0
-  powderYield: 0
+  coreSize: 0

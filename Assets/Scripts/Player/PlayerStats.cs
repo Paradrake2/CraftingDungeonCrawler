@@ -41,9 +41,12 @@ public class PlayerStats : MonoBehaviour
     public float CalculateDashDistance => CalculateStat(StatType.DashDistance);
     public int CalculateDashNumber => Mathf.FloorToInt(CalculateStat(StatType.DashNumber));
     public float XpToNextLevel => Level * 1000;
+    public float CurrentMana;
+    private Coroutine manaRegenCoroutine;
     void Awake()
     {
-        if (Instance != null && Instance != this) {
+        if (Instance != null && Instance != this)
+        {
             Destroy(gameObject);
             return;
         }
@@ -53,30 +56,52 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         CurrentHealth = CurrentMaxHealth;
+        CurrentMana = CurrentMaxMana;
+        manaRegenCoroutine = StartCoroutine(RegenerateMana());
     }
-
-    public void EquipItem(Equipment newItem) {
+    IEnumerator RegenerateMana()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (CurrentMana < CurrentMaxMana)
+            {
+                CurrentMana = Mathf.Min(CurrentMana + CurrentManaRegeneration * 0.5f, CurrentMaxMana);
+            }
+        }
+    }
+    public void EquipItem(Equipment newItem)
+    {
         if (newItem == null) return;
-        if (newItem.slot == EquipmentSlot.Accessory) {
+        if (newItem.slot == EquipmentSlot.Accessory)
+        {
             Debug.LogWarning("Is accessory");
             EquipAccessory(newItem);
-        } else {
+        }
+        else
+        {
             EquipMainGear(newItem);
         }
     }
-    private void EquipMainGear(Equipment newItem) {
+    private void EquipMainGear(Equipment newItem)
+    {
         equippedItems[newItem.slot] = newItem;
         Debug.Log($"Equipped {newItem.itemName} into {newItem.slot}");
     }
-    private void EquipAccessory(Equipment newAccessory) {
-        foreach (var equipped in accessorySlots) {
-            if (equipped == newAccessory) {
+    private void EquipAccessory(Equipment newAccessory)
+    {
+        foreach (var equipped in accessorySlots)
+        {
+            if (equipped == newAccessory)
+            {
                 Debug.Log("Already equipped");
                 return;
             }
         }
-        for (int i = 0; i < accessorySlots.Length; i++) {
-            if (accessorySlots[i] == null || string.IsNullOrEmpty(accessorySlots[i].itemName)) {
+        for (int i = 0; i < accessorySlots.Length; i++)
+        {
+            if (accessorySlots[i] == null || string.IsNullOrEmpty(accessorySlots[i].itemName))
+            {
                 accessorySlots[i] = newAccessory;
                 Debug.Log($"Equipped {newAccessory.itemName} into slot {i}");
                 return;
@@ -84,39 +109,49 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public Equipment GetEquippedItem(EquipmentSlot slot) {
+    public Equipment GetEquippedItem(EquipmentSlot slot)
+    {
         equippedItems.TryGetValue(slot, out Equipment item);
         return item;
     }
 
-    public Equipment GetAccessoryAt(int index) {
+    public Equipment GetAccessoryAt(int index)
+    {
         if (index >= 0 && index < accessorySlots.Length) return accessorySlots[index];
-        else {return null;}
+        else { return null; }
     }
 
-    float CalculateStat(StatType type) {
+    float CalculateStat(StatType type)
+    {
         float flat = 0f;
         float percent = 1f;
 
-        foreach(var kvp in equippedItems) {
+        foreach (var kvp in equippedItems)
+        {
             var item = kvp.Value;
-            foreach(var mod in item.modifiers) {
-                if (mod.statType == type) {
+            foreach (var mod in item.modifiers)
+            {
+                if (mod.statType == type)
+                {
                     flat += mod.flatAmount;
                     percent += mod.percentAmount;
                 }
             }
         }
-        foreach(var accessory in accessorySlots) {
+        foreach (var accessory in accessorySlots)
+        {
             if (accessory == null) continue;
-            foreach(var mod in accessory.modifiers) {
-                if (mod.statType == type) {
+            foreach (var mod in accessory.modifiers)
+            {
+                if (mod.statType == type)
+                {
                     flat += mod.flatAmount;
                     percent += mod.percentAmount;
                 }
             }
         }
-        float baseValue = (float)type switch {
+        float baseValue = (float)type switch
+        {
             (float)StatType.MaxHealth => BaseHealth,
             (float)StatType.Defense => BaseDefense,
             (float)StatType.Damage => BaseDamage,
@@ -135,21 +170,29 @@ public class PlayerStats : MonoBehaviour
         return Mathf.RoundToInt((baseValue + flat) * percent);
 
     }
-    public void GainXP(float amount) {
+    public void GainXP(float amount)
+    {
         XP += amount;
-        while(XP >= XpToNextLevel) {
+        while (XP >= XpToNextLevel)
+        {
             XP -= XpToNextLevel;
             LevelUp();
         }
     }
-    void LevelUp() {
+    void LevelUp()
+    {
         Level++;
         BaseHealth += 10;
         BaseDefense += 0.5f;
-        
+
         Debug.Log("Leveled up to level " + Level);
     }
-    public float GetStat(StatType statType) {
+    public float GetStat(StatType statType)
+    {
         return CalculateStat(statType);
+    }
+    public void DebugEquippedItem()
+    {
+        Debug.LogError($"{GetEquippedItem(EquipmentSlot.Weapon).weaponType}");
     }
 }

@@ -13,22 +13,26 @@ public class Player : MonoBehaviour
     {
         stats = PlayerStats.Instance;
     }
-    public void TakeDamage(float damage) {
+    public void TakeDamage(float damage)
+    {
         if (Time.time - lastDamageTime < damageCooldown) return;
         if (stats.isDashing == true) return;
         lastDamageTime = Time.time;
-        if (stats == null) {
+        if (stats == null)
+        {
             Debug.LogWarning("NO STATS");
         }
         float finalDamage = Mathf.Max(0, damage - stats.CurrentDefense);
         stats.CurrentHealth -= finalDamage;
 
-        if (stats.CurrentHealth <= 0) {
+        if (stats.CurrentHealth <= 0)
+        {
             Die();
         }
     }
 
-    void Die() {
+    void Die()
+    {
         Debug.Log("Player has died");
         SceneManager.LoadScene("Menu");
     }

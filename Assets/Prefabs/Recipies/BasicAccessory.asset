@@ -28,3 +28,9 @@ MonoBehaviour:
   visualPrefab: {fileID: 4329898693117668303, guid: 0e151600dbe24cb42a63d793312e25f7, type: 3}
   augmentSlots: 0
   requiredLevel: 0
+  weaponType: 3
+  attackRange: 0
+  attackSpeed: 1
+  manaCost: 0
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}

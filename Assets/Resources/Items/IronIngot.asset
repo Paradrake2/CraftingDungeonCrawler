@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: ironIngot
   icon: {fileID: -4285704637475842466, guid: ccc5bc1b200027544acb3c0c9899bf94, type: 3}
   description: 
-  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
+  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 1}
   sprites: []
   itemType: 2
   maxStackSize: 99
@@ -23,10 +23,10 @@ MonoBehaviour:
   Rarity: 1
   flatDamage: 2
   damageMult: 0
-  flatDefense: 0
-  defenseMult: 3
-  flatMaxHP: 0
-  HPMult: 10
+  flatDefense: 2
+  defenseMult: 0
+  flatMaxHP: 10
+  HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0

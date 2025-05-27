@@ -47,6 +47,7 @@ MonoBehaviour:
   - copper
   - copperGuard
   - basicGuard
+  - guard
   ID: copperGuard
   isCraftingMaterial: 1
   isCraftable: 0

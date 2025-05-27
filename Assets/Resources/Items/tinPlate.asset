@@ -25,7 +25,7 @@ MonoBehaviour:
   damageMult: 0
   flatDefense: 0
   defenseMult: 0
-  flatMaxHP: 30
+  flatMaxHP: 25
   HPMult: 0.005
   flatPureDamage: 0
   pureDamageMult: 0

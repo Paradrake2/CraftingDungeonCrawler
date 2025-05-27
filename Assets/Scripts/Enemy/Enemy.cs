@@ -1,23 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     public EnemyStats enemyStats;
     public PlayerStats playerStats;
+    [SerializeField] FloatingHealthBarSlider healthBar;
+    
     void Start()
     {
         DungeonManager.Instance.RegisterEnemy();
-        if (PlayerStats.Instance != null) {
+        healthBar = GetComponentInChildren<FloatingHealthBarSlider>();
+        if (PlayerStats.Instance != null)
+        {
             playerStats = PlayerStats.Instance;
-        } else {
+        }
+        else
+        {
             Debug.LogError("PlayerStats instance not found");
         }
     }
     public void TakeDamage(float damage) {
         enemyStats.currentHealth = enemyStats.currentHealth - (float)damage;
         enemyStats.wasHitByPlayer = true;
-        if(enemyStats.getHealth() <= 0) {
+        healthBar.ShowHealthBar();
+        healthBar.UpdateHealthBar(enemyStats.currentHealth, enemyStats.maxHealth);
+        if (enemyStats.getHealth() <= 0)
+        {
             Die();
         }
     }
@@ -30,7 +40,6 @@ public class Enemy : MonoBehaviour
         playerStats.GainXP(enemyStats.getXP());
         Destroy(gameObject);
     }
-
     void Update()
     {
         

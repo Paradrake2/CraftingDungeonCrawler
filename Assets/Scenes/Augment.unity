@@ -1952,7 +1952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 770.8
+      value: 749.8
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1988,7 +1988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 744.6
+      value: 734.1
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2261,6 +2261,12 @@ MonoBehaviour:
     allowedAugments: 0
     equipmentLevel: 0
     equipmentXP: 0
+    weaponType: 3
+    attackRange: 0
+    attackSpeed: 1
+    manaCost: 0
+    projectileSpeed: 0
+    projectilePrefab: {fileID: 0}
   selectedAugment: {fileID: 0}
   equipmentInventoryManager: {fileID: 1080188384}
   augmentInventory: {fileID: 1951634773}

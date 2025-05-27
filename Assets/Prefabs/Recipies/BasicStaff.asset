@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
+  m_Name: BasicStaff
+  m_EditorClassIdentifier: 
+  recipeId: basicStaff
+  recipeName: basicStaff
+  slot: 5
+  slotCategory: 1
+  requirements:
+  - requiredTag: ingot
+    quantityRequired: 6
+  - requiredTag: gem
+    quantityRequired: 1
+  parts: []
+  icon: {fileID: 4374234352399755547, guid: b28e7b23b97586d4da5e4dfa9baec636, type: 3}
+  baseImage: {fileID: 4374234352399755547, guid: b28e7b23b97586d4da5e4dfa9baec636, type: 3}
+  visualLayers: []
+  visualPrefab: {fileID: 2395868684294298502, guid: 6546a5f22ae98634b80e5a4c6a9b517c, type: 3}
+  augmentSlots: 0
+  requiredLevel: 0
+  weaponType: 2
+  attackRange: 0
+  attackSpeed: 1
+  manaCost: 1
+  projectileSpeed: 10
+  projectilePrefab: {fileID: 3250185572127824335, guid: d5836d461a0c3db489c91d2de3cdb2ba, type: 3}
