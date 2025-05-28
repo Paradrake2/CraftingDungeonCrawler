@@ -66,7 +66,7 @@ public class Items : ScriptableObject
 
     [Header("FlatMaxMana")]
     public float flatMaxMana;
-    
+
     [Header("MaxManaMult")]
     public float maxManaMult;
 
@@ -80,7 +80,7 @@ public class Items : ScriptableObject
     public float goldGainIncrease;
     [Header("FlatKnockback")]
     public float flatKnockbackIncrease;
-    
+
     [Header("KnockbackMult")]
     public float knockbackMult;
 
@@ -113,11 +113,14 @@ public class Items : ScriptableObject
 
     [Header("Can be crafted?")]
     public bool isCraftable;
-    public List<Items> requiredMaterials;
-    public List<int> requiredQuantities;
+    public List<Items> requiredMaterials; // deprecated
+    public List<int> requiredQuantities; // deprecated
 
     [Header("CoreTier")]
     public int coreTier;
     [Header("CoreSize")]
     public int coreSize;
+    [Header("Times enhanced")]
+    public int enhancedNum;
+    public List<StatModifier> bonusStats = new();
 }

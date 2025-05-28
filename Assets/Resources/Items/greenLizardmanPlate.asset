@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
+  m_Name: greenLizardmanPlate
+  m_EditorClassIdentifier: 
+  itemName: greenLizardmanPlate
+  icon: {fileID: -2066787279625910198, guid: 69560925adeb77c459c96dde9ca2180b, type: 3}
+  description: 
+  color: {r: 0.03090134, g: 0.3679245, b: 0.01561943, a: 0}
+  sprites: []
+  itemType: 2
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  flatDamage: 4
+  damageMult: 0.005
+  flatDefense: 5
+  defenseMult: 0
+  flatMaxHP: 10
+  HPMult: 0.01
+  flatPureDamage: 0
+  pureDamageMult: 0
+  flatMaxMana: 0
+  maxManaMult: 0
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - plate
+  - plateT2
+  - greenLizardmanPlate
+  ID: greenLizardmanPlate
+  isCraftingMaterial: 1
+  isCraftable: 1
+  requiredMaterials: []
+  requiredQuantities: 
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0

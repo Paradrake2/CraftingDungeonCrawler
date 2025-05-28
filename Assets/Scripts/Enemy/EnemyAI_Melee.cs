@@ -19,7 +19,7 @@ public class EnemyAI_Melee : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
+        
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= detectionRadius) {
             MoveTowardsPlayer();
@@ -29,6 +29,9 @@ public class EnemyAI_Melee : MonoBehaviour
     }
     void MoveTowardsPlayer() {
         Vector3 direction = (player.position - transform.position).normalized;
+        Vector2 directionS = player.position - transform.position;
+        if (directionS.x > 0) transform.localScale = new Vector3(1, 1, 1);
+        else if (directionS.x < 0) transform.localScale = new Vector3(-1, 1, 1);
         transform.position += direction * stats.getMovementSpeed() * Time.deltaTime;
     }
 

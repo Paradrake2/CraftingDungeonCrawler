@@ -184,7 +184,12 @@ public class PlayerStats : MonoBehaviour
         Level++;
         BaseHealth += 10;
         BaseDefense += 0.5f;
-
+        BaseMana += 5f;
+        if (Level % 5 == 0) // if new level is multiple of 5
+        {
+            BaseDamage += 3f;
+            BaseManaRegeneration += 1f;
+        }
         Debug.Log("Leveled up to level " + Level);
     }
     public float GetStat(StatType statType)

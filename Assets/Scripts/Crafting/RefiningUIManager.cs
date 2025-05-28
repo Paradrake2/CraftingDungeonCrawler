@@ -108,6 +108,7 @@ public class RefiningUIManager : MonoBehaviour
                         eventID = EventTriggerType.PointerEnter
                     };
                     enter.callback.AddListener((eventData) => { HoverNameUI.Instance.Show(recipe.outputItem.itemName); });
+                    enter.callback.AddListener((eventData) => { craftingUIManager.MaterialStatShow(recipe.outputItem); });
                     eventTrigger.triggers.Add(enter);
 
                     var exit = new EventTrigger.Entry
@@ -115,6 +116,7 @@ public class RefiningUIManager : MonoBehaviour
                         eventID = EventTriggerType.PointerExit
                     };
                     exit.callback.AddListener((eventData) => { HoverNameUI.Instance.Hide(); });
+                    exit.callback.AddListener((eventData) => { craftingUIManager.MaterialStatHide(); });
                     eventTrigger.triggers.Add(exit);
 
                     btn.GetComponent<Button>().onClick.AddListener(() =>

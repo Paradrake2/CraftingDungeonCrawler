@@ -6,6 +6,8 @@ using Unity.Mathematics;
 using System.IO;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 public class CraftingUIManager : MonoBehaviour
 {
     public Transform inventoryParent;
@@ -114,6 +116,7 @@ public class CraftingUIManager : MonoBehaviour
             enterEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter;
             enterEntry.callback.AddListener((data) => { ShowItemTags(itemData); });
             enterEntry.callback.AddListener((data) => { HoverTextShow(itemData); });
+            enterEntry.callback.AddListener((data) => { MaterialStatShow(itemData); });
             trigger.triggers.Add(enterEntry);
 
             // pointer exit
@@ -121,6 +124,7 @@ public class CraftingUIManager : MonoBehaviour
             exitEntry.eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit;
             exitEntry.callback.AddListener((data) => { ClearItemTags(); });
             exitEntry.callback.AddListener((data) => { HideHoverText(); });
+            exitEntry.callback.AddListener((data) => { MaterialStatHide(); });
             trigger.triggers.Add(exitEntry);
             Image icon = button.GetComponentInChildren<Image>();
             if (icon != null) icon.sprite = itemData.icon;
@@ -138,6 +142,27 @@ public class CraftingUIManager : MonoBehaviour
         }
         // Shader overlay
         DisplayShader(validTags);
+    }
+    public void MaterialStatShow(Items item)
+    {
+        if (item.flatDamage != 0) recipeInfoText.text += "Flat Damage: " + item.flatDamage + "\n";
+        if (item.damageMult != 0) recipeInfoText.text += "Damage Mult: " + item.damageMult + "\n";
+        if (item.flatDefense != 0) recipeInfoText.text += "Flat Defense: " + item.flatDefense + "\n";
+        if (item.defenseMult != 0) recipeInfoText.text += "Defense Mult: " + item.defenseMult + "\n";
+        if (item.flatMaxHP != 0) recipeInfoText.text += "Flat Max HP: " + item.flatMaxHP + "\n";
+        if (item.HPMult != 0) recipeInfoText.text += "HP Mult: " + item.HPMult + "\n";
+        if (item.flatPureDamage != 0) recipeInfoText.text += "Flat Pure Damage: " + item.flatPureDamage + "\n";
+        if (item.pureDamageMult != 0) recipeInfoText.text += "Pure Damage Mult: " + item.pureDamageMult + "\n";
+        if (item.flatMaxMana != 0) recipeInfoText.text += "Flat Max Mana: " + item.flatMaxMana + "\n";
+        if (item.maxManaMult != 0) recipeInfoText.text += "Max Mana Mult: " + item.maxManaMult + "\n";
+    }
+    public void MaterialStatHide()
+    {
+        recipeInfoText.text = "";
+    }
+    public void LoadEnhance()
+    {
+        SceneManager.LoadScene("Enhance");
     }
     void HoverTextShow(Items itemData)
     {

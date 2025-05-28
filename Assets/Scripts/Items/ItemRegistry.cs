@@ -42,14 +42,25 @@ public class ItemRegistry : MonoBehaviour
         }
 
     }
-    public void LoadAllAugments() {
+    public void AddItem(Items item)
+    {
+        allItems.Add(item);
+        Debug.Log($"Added {item.itemName} to item registry");
+        itemLookup.Add(item.ID, item);
+    }
+    public void LoadAllAugments()
+    {
         Augment[] augments = Resources.LoadAll<Augment>("Augments");
         allAugments = new List<Augment>(augments);
 
-        foreach (var augment in augments) {
-            if (!string.IsNullOrEmpty(augment.augmentId)) {
+        foreach (var augment in augments)
+        {
+            if (!string.IsNullOrEmpty(augment.augmentId))
+            {
                 augmentLookup[augment.augmentId] = augment;
-            } else {
+            }
+            else
+            {
                 Debug.LogWarning($"Augment '{augment.augmentId}' has no name");
             }
         }

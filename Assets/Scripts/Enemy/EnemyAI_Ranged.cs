@@ -29,14 +29,18 @@ public class EnemyAI_Ranged : MonoBehaviour
     {
         if (player == null) return;
         float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= detectionRadius) {
+        
+        if (distance <= detectionRadius)
+        {
             lastAttackTime -= Time.deltaTime;
-            if(lastAttackTime<= 0f) {
+            if (lastAttackTime <= 0f)
+            {
                 Attack();
                 lastAttackTime = attackCooldown;
             }
             MoveTowardsPlayer();
-            if (distance <= standOffRadius) {
+            if (distance <= standOffRadius)
+            {
                 MoveAwayFromPlayer();
             }
         }
@@ -45,8 +49,12 @@ public class EnemyAI_Ranged : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         return direction;
     }
-    void MoveTowardsPlayer() {
+    void MoveTowardsPlayer()
+    {
         transform.position += getPlayerDirection() * stats.getMovementSpeed() * Time.deltaTime;
+        Vector2 direction = player.position - transform.position;
+        if (direction.x > 0) transform.localScale = new Vector3(1, 1, 1);
+        else if (direction.x < 0) transform.localScale = new Vector3(-1, 1, 1);
     }
     void MoveAwayFromPlayer() {
         transform.position -= getPlayerDirection() * (stats.getMovementSpeed() * 0.5f) *Time.deltaTime;

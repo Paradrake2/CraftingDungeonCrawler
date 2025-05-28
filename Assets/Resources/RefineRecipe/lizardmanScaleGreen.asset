@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: lizardmanScaleGreen
+  m_EditorClassIdentifier: 
+  recipeName: lizardmanScaleGreen
+  icon: {fileID: -2066787279625910198, guid: 69560925adeb77c459c96dde9ca2180b, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: lizardmanScaleGreen
+    quantityRequired: 4
+  - requiredTag: ingot
+    quantityRequired: 4
+  outputItem: {fileID: 11400000, guid: 49479fa2976fa7e438d68b8df753cadc, type: 2}
