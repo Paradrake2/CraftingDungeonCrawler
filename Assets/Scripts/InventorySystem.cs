@@ -101,7 +101,6 @@ public class InventorySystem : MonoBehaviour
             if (log != null) log.AddLogMessage(itemId, amount);
         }
 
-        Debug.Log($"Added{amount} of {itemId} to inventory.");
     }
     public bool HasItemsWithTag(string tag, int requiredAmount)
     {

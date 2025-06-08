@@ -4,8 +4,10 @@ public class PlayerProjectile : MonoBehaviour
 {
     public float projectileSpeed;
     public float projectileDamage;
+    public float projectileSize;
     public Vector2 projectileDirection;
     public Transform spriteTransform;
+    public float aoeRadius;
     private Rigidbody2D rb;
     public int piercingAmount;
     public float timeoutTime; // this will destroy the gameobject after a certain amount of time

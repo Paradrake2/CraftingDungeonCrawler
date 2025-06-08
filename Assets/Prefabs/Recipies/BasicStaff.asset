@@ -34,3 +34,4 @@ MonoBehaviour:
   manaCost: 1
   projectileSpeed: 10
   projectilePrefab: {fileID: 3250185572127824335, guid: d5836d461a0c3db489c91d2de3cdb2ba, type: 3}
+  isUnlocked: 1

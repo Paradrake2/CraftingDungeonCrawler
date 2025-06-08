@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     public Dictionary<EquipmentSlot, Equipment> equippedItems = new();
     public Equipment[] accessorySlots = new Equipment[5];
+    public List<string> acquiredSkillIDs = new List<string>();
     public static PlayerStats Instance;
     // Base stats
     public int Level = 1;
@@ -43,6 +44,9 @@ public class PlayerStats : MonoBehaviour
     public float XpToNextLevel => Level * 1000;
     public float CurrentMana;
     private Coroutine manaRegenCoroutine;
+
+    public int skillPoints;
+    public Dictionary<StatType, float> addedStats = new Dictionary<StatType, float>();
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -82,6 +86,18 @@ public class PlayerStats : MonoBehaviour
         {
             EquipMainGear(newItem);
         }
+    }
+    public void AddBonusStats()
+    {
+        BaseHealth += GetBonusStat(StatType.MaxHealth);
+        BaseDamage += GetBonusStat(StatType.Damage);
+        BaseDefense += GetBonusStat(StatType.Defense);
+        addedStats.Clear();
+    }
+    public float GetBonusStat(StatType type)
+    {
+        if (addedStats.ContainsKey(type)) return addedStats[type];
+        return 0f;
     }
     private void EquipMainGear(Equipment newItem)
     {
@@ -185,6 +201,7 @@ public class PlayerStats : MonoBehaviour
         BaseHealth += 10;
         BaseDefense += 0.5f;
         BaseMana += 5f;
+        skillPoints++;
         if (Level % 5 == 0) // if new level is multiple of 5
         {
             BaseDamage += 3f;

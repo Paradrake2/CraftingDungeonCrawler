@@ -5,7 +5,8 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-public class RefiningUIManager : MonoBehaviour
+using System.Collections;
+public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Transform recipeListParent;
     public GameObject recipeButtonPrefab;
@@ -28,11 +29,27 @@ public class RefiningUIManager : MonoBehaviour
     public InventorySystem inventorySystem;
 
     public List<Items> lastUsedIngredients = new();
+    private bool isHolding = false;
+    public float holdInterval = 0.2f;
     void Start()
     {
         refineButton.onClick.AddListener(RefineItem);
         inventorySystem = FindFirstObjectByType<InventorySystem>();
         GenerateRecipeButtons();
+    }
+
+    void OnPointerDown(PointerEventData eventData)
+    {
+        isHolding = true;
+        StartCoroutine(RefineLoop());
+    }
+    private IEnumerator RefineLoop()
+    {
+        while (isHolding)
+        {
+            refineButton.onClick.Invoke();
+            yield return new WaitForSeconds(holdInterval);
+        }
     }
     void RefineItem()
     {
@@ -63,7 +80,6 @@ public class RefiningUIManager : MonoBehaviour
         {
             TryAutoAssignLastUsedIngredients();
         }
-        Debug.LogWarning(canRefineAgain.ToString());
     }
     void TryAutoAssignLastUsedIngredients()
     {
@@ -83,6 +99,7 @@ public class RefiningUIManager : MonoBehaviour
         foreach (var recipe in allRecipes)
         {
             bool canCraftNow = true;
+#pragma warning disable CS0168 // Variable is declared but never used
             try
             {
                 foreach (var req in recipe.requirements)
@@ -130,6 +147,7 @@ public class RefiningUIManager : MonoBehaviour
             {
                 //Debug.LogError(e.StackTrace);
             }
+#pragma warning restore CS0168 // Variable is declared but never used
 
 
         }
@@ -212,6 +230,16 @@ public class RefiningUIManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    {
+        OnPointerDown(eventData);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isHolding = false;
     }
 
 

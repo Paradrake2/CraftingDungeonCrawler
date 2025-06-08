@@ -34,3 +34,4 @@ MonoBehaviour:
   manaCost: 0
   projectileSpeed: 0
   projectilePrefab: {fileID: 0}
+  isUnlocked: 1

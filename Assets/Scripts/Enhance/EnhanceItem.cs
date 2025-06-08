@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class EnhanceItem : MonoBehaviour
 {
+    public EnhanceUIManager enhanceUIManager;
     public void EnhanceMaterial(Items item)
     {
         float successChance = GetSuccessChance(item);
-
+        int powderCost = GetPowderCost(item);
+        if (powderCost > PowderInventory.Instance.totalPowder)
+        {
+            enhanceUIManager.NotEnoughPowder();
+            return;
+        }
+        PowderInventory.Instance.RemovePowder(powderCost);
         if (Random.value <= successChance)
         {
             // give enhanced item
@@ -15,7 +22,7 @@ public class EnhanceItem : MonoBehaviour
         }
         else
         {
-            // Failed
+            enhanceUIManager.FailedEnhance();
         }
         InventorySystem.Instance.RemoveItem(item.ID, 1);
         return;
@@ -47,7 +54,8 @@ public class EnhanceItem : MonoBehaviour
             dashNumber = original.dashNumber,
             dashDistance = original.dashDistance,
             ID = newID,
-            value = original.value + 1
+            value = original.value + 1,
+            color = original.color
         };
         if (original.flatDamage != 0) enhance.flatDamage = original.flatDamage + 1;
         if (original.damageMult != 0) enhance.damageMult = original.damageMult + 0.01f;
@@ -63,6 +71,10 @@ public class EnhanceItem : MonoBehaviour
         // add to InventorySystem and ItemRegistery
         ItemRegistry.Instance.AddItem(enhance);
         return enhance;
+    }
+    public int GetPowderCost(Items item)
+    {
+        return (item.enhancedNum * 100) + 100;
     }
     void Start()
     {

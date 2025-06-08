@@ -9,10 +9,11 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI floorNum;
     public TextMeshProUGUI enemiesKilled;
     public TextMeshProUGUI manaText;
-    
+
     void Start()
     {
         playerStats = PlayerStats.Instance;
+        dungeonManager = GameObject.FindFirstObjectByType<DungeonManager>();
     }
 
     // Update is called once per frame

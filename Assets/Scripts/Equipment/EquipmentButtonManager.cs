@@ -18,6 +18,10 @@ public class EquipmentButtonManager : MonoBehaviour
     public void loadAugment() {
         SceneManager.LoadScene("Augment");
     }
+    public void loadSkillTree()
+    {
+        SceneManager.LoadScene("SkillTree");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

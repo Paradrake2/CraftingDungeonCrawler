@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7247784872377959074}
   - component: {fileID: 4959699038381631149}
   - component: {fileID: 2387290855759484470}
+  - component: {fileID: 4954656612716922651}
+  - component: {fileID: 8434440163461628362}
   m_Layer: 6
   m_Name: GreenLizardman
   m_TagString: Enemy
@@ -76,8 +78,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 1.9, y: 1.76}
+    oldSize: {x: 1.26, y: 1.41}
+    newSize: {x: 1.26, y: 1.41}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -112,7 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  detectionRadius: 5
   attackCooldown: 0
   stats: {fileID: 7247784872377959074}
 --- !u!114 &7247784872377959074
@@ -194,12 +195,12 @@ SpriteRenderer:
   m_SortingLayerID: -1096997675
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3863698342087588104, guid: 87090c242d4792d4dbf89b66c22c6d66, type: 3}
+  m_Sprite: {fileID: -8095919413769702950, guid: e4f9e630ec17a9840a4671887405eba3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.9, y: 1.76}
+  m_Size: {x: 1.26, y: 1.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -232,6 +233,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4954656612716922651
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815513356673008546}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e66a575b0e2f914f87ebdb619e0b418, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8434440163461628362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815513356673008546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c363c89ebcf8a41a83f6b004638b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  detectionRadius: 6
+  stats: {fileID: 7247784872377959074}
+  animator: {fileID: 4954656612716922651}
+  isFacingRight: 1
 --- !u!1001 &5522999047000158115
 PrefabInstance:
   m_ObjectHideFlags: 0

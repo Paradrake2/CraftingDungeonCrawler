@@ -14,10 +14,10 @@ public class HoverNameUI : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
         hoverText.text = "";
         hoverText.gameObject.SetActive(false);
         canvas = GetComponentInParent<Canvas>();
+            Instance = this;
     }
 
     public void Show(string name)

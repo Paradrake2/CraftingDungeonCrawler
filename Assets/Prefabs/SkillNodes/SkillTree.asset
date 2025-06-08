@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1427d473b9a4ca54a840925b8dc3849c, type: 3}
+  m_Name: SkillTree
+  m_EditorClassIdentifier: 
+  skills:
+  - nodeID: healthNode1
+    nodeType: 
+    description: 
+    icon: {fileID: -1269097992975305616, guid: c07787f6c0cefab46849627699712e29, type: 3}
+    prerequisites: []
+    unlocked: 1
+    recipeUnlocks: []
+    addedStats:
+    - statType: 0
+      value: 20
+    acquired: 1
+  - nodeID: damageNode1
+    nodeType: 
+    description: 
+    icon: {fileID: 551179015348185998, guid: 5dc9a873a8531334bb560fc141a85a12, type: 3}
+    prerequisites:
+    - healthNode1
+    unlocked: 1
+    recipeUnlocks: []
+    addedStats:
+    - statType: 2
+      value: 5
+    acquired: 0
+  - nodeID: defenseNode1
+    nodeType: 
+    description: 
+    icon: {fileID: -1113770219816995942, guid: 93c057e1b7cf594418f053a2c3d6bf27, type: 3}
+    prerequisites:
+    - healthNode1
+    unlocked: 1
+    recipeUnlocks: []
+    addedStats:
+    - statType: 1
+      value: 5
+    acquired: 0
+  - nodeID: craftingRecipe1
+    nodeType: 
+    description: 
+    icon: {fileID: 6250844062588926590, guid: 2d4eb06e69a4183458573b11f958322c, type: 3}
+    prerequisites:
+    - healthNode1
+    unlocked: 1
+    recipeUnlocks:
+    - {fileID: 11400000, guid: fab282dd0ee2ce44f85a3d598ca2e765, type: 2}
+    addedStats: []
+    acquired: 0
+  - nodeID: healthNode2
+    nodeType: 
+    description: 
+    icon: {fileID: -1269097992975305616, guid: c07787f6c0cefab46849627699712e29, type: 3}
+    prerequisites:
+    - healthNode1
+    unlocked: 1
+    recipeUnlocks: []
+    addedStats:
+    - statType: 0
+      value: 30
+    acquired: 0

@@ -44,7 +44,7 @@ public class CraftingRecipe : ScriptableObject
     public float manaCost = 0f;
     public float projectileSpeed = 0f;
     public GameObject projectilePrefab;
-    
+    public bool isUnlocked = false;
 
     public string getRecipeId()
     {

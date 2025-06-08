@@ -39,7 +39,8 @@ public class CraftingUIManager : MonoBehaviour
         SetupRecipeSlots();
         Instance = this;
     }
-    void CraftItem() {
+    void CraftItem()
+    {
         if (InventorySystem.Instance == null)
         {
             Debug.LogError("InventorySystem.Instance is null!");
@@ -48,14 +49,17 @@ public class CraftingUIManager : MonoBehaviour
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
         //        Debug.LogWarning(InventorySystem.Instance);
         Equipment result = craftingFactory.GenerateFromIngredients(currentIngredients, selectedRecipe);
-        foreach (var ingredients in currentIngredients) {
+        foreach (var ingredients in currentIngredients)
+        {
             InventorySystem.Instance.RemoveItem(ingredients.itemName, 1);
         }
         PopulateInventory();
-        Debug.Log(result);
-        try {
+        try
+        {
             InventorySystem.Instance.AddEquipment(result);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             Debug.Log(e.StackTrace);
         }
         previewText.text = $"{result.itemName} crafted!";
@@ -127,7 +131,11 @@ public class CraftingUIManager : MonoBehaviour
             exitEntry.callback.AddListener((data) => { MaterialStatHide(); });
             trigger.triggers.Add(exitEntry);
             Image icon = button.GetComponentInChildren<Image>();
-            if (icon != null) icon.sprite = itemData.icon;
+            if (icon != null)
+            {
+                icon.sprite = itemData.icon;
+                icon.preserveAspect = true;
+            }
 
             // Set up text
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
@@ -173,17 +181,18 @@ public class CraftingUIManager : MonoBehaviour
         HoverNameUI.Instance.Hide();
     }
     public void ShowItemTags(Items item)
-{
-    if (item == null || item.tags == null || item.tags.Length == 0)
     {
-        itemTagInfo.text = "Tags: None";
-        return;
+        if (item == null || item.tags == null || item.tags.Length == 0)
+        {
+            itemTagInfo.text = "Tags: None";
+            return;
+        }
+        string joinedTags = string.Join(", ", item.tags);
+        itemTagInfo.text = $"Tags - {joinedTags}";
     }
-    string joinedTags = string.Join(", ", item.tags);
-    itemTagInfo.text = $"Tags - {joinedTags}";
-}
 
-    public void ClearItemTags() {
+    public void ClearItemTags()
+    {
         itemTagInfo.text = "";
     }
 
@@ -221,23 +230,27 @@ public class CraftingUIManager : MonoBehaviour
         }
 
     }
-    void GenerateRecipeButtons() {
+    void GenerateRecipeButtons()
+    {
         Debug.LogWarning("GENERATING RECIPE BUTTONS");
-        foreach (var recipe in PlayerRecipeBook.Instance.knownRecipes) {
-            if(PlayerStats.Instance.Level >= recipe.requiredLevel) {
+        foreach (var recipe in PlayerRecipeBook.Instance.knownRecipes)
+        {
+            if (recipe.isUnlocked)
+            {
                 GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
                 buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
                 buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
 
                 var button = buttonObject.GetComponent<Button>();
-                if (button != null) {
+                if (button != null)
+                {
                     button.onClick.AddListener(() => SelectRecipe(recipe));
                 }
             }
 
         }
     }
-    
+
     public void SelectRecipe(CraftingRecipe recipe)
     {
         selectedRecipe = recipe;
@@ -257,22 +270,28 @@ public class CraftingUIManager : MonoBehaviour
             recipeInfoText.text = "";
 
     }
-    void TryAddIngredient(Items item) {
-        foreach(var tag in item.tags) {
-            try {
+    void TryAddIngredient(Items item)
+    {
+        foreach (var tag in item.tags)
+        {
+            try
+            {
                 var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag.Contains(tag)); // was == tag
-                if (req != null) {
+                if (req != null)
+                {
                     int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
-                    if (alreadyAssigned < req.quantityRequired) {
+                    if (alreadyAssigned < req.quantityRequired)
+                    {
                         int countAlreadyUsed = currentIngredients.Count(i => i.itemName == item.itemName);
                         int available = InventorySystem.Instance.GetQuantity(item.itemName);
-                        if (countAlreadyUsed >= available) {
+                        if (countAlreadyUsed >= available)
+                        {
                             Debug.Log($"Cannot add more {item.itemName}!");
                             continue;
                         }
                         Debug.Log(alreadyAssigned + "<- number ingredient assigned");
                         currentIngredients.Add(item);
-                        if(!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
+                        if (!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
                         assignedCounts[tag]++;
 
                         int slotIndex = currentIngredients.Count - 1;
@@ -287,21 +306,26 @@ public class CraftingUIManager : MonoBehaviour
 
                         UpdatePreview();
                         return;
-                        
+
                     }
                 }
-            } catch(NullReferenceException e) {
+            }
+            catch (NullReferenceException e)
+            {
                 Debug.Log(e.StackTrace);
             }
         }
 
     }
-    public void OpenCoreRefine(GameObject menu) {
+    public void OpenCoreRefine(GameObject menu)
+    {
         menu.SetActive(true);
         PowderMaker.Instance.PopulateCoreInventory();
     }
-    void UpdatePreview(){
-        if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) {
+    void UpdatePreview()
+    {
+        if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired))
+        {
             previewText.text = "Select all ingredients...";
             return;
         }
@@ -309,12 +333,17 @@ public class CraftingUIManager : MonoBehaviour
         Equipment preview = craftingFactory.PreviewCraftedEquipment(currentIngredients, selectedRecipe);
         string result = $"<b>{preview.itemName}</b>\n\n";
 
-        foreach (var mod in preview.modifiers) {
+        foreach (var mod in preview.modifiers)
+        {
             result += $"{mod.statType}: + {mod.flatAmount}";
-            if (mod.percentAmount != 0) result += $" (+{mod.percentAmount*100}% bonus)";
+            if (mod.percentAmount != 0) result += $" (+{mod.percentAmount * 100}% bonus)";
             result += "\n";
         }
 
         previewText.text = result;
+    }
+    public void LoadMagicCreator()
+    {
+        SceneManager.LoadScene("MagicCreator");
     }
 }

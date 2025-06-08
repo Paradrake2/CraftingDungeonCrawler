@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3544472735902610833}
   - component: {fileID: 666508812886193431}
   - component: {fileID: -2155302122988365753}
+  - component: {fileID: 4150021061882720388}
+  - component: {fileID: -1951433754735623064}
   m_Layer: 6
   m_Name: BigGoblin
   m_TagString: Enemy
@@ -112,7 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  detectionRadius: 5
   attackCooldown: 0
   stats: {fileID: 3544472735902610833}
 --- !u!114 &3544472735902610833
@@ -232,6 +233,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4150021061882720388
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987013313724879601}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4679d0978df65a54e894f33696c57142, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1951433754735623064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987013313724879601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c363c89ebcf8a41a83f6b004638b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  detectionRadius: 5
+  stats: {fileID: 3544472735902610833}
+  animator: {fileID: 4150021061882720388}
+  isFacingRight: 0
 --- !u!1001 &3694428058725940653
 PrefabInstance:
   m_ObjectHideFlags: 0
