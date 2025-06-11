@@ -469,6 +469,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 3
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &103747609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 1
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &142804105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,6 +1788,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 2
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &518823374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,6 +2431,7 @@ MonoBehaviour:
   isAccessory: 1
   slotType: 6
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1170823972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,6 +2719,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 5
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1179109625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3245,6 +3250,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 0
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1361678435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3399,6 +3405,7 @@ MonoBehaviour:
   isAccessory: 1
   slotType: 6
   accessoryIndex: 1
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1406514255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,6 +4508,7 @@ MonoBehaviour:
   isAccessory: 1
   slotType: 6
   accessoryIndex: 2
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1697307328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4655,6 +4663,7 @@ MonoBehaviour:
   isAccessory: 1
   slotType: 6
   accessoryIndex: 4
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1891826861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4809,6 +4818,7 @@ MonoBehaviour:
   isAccessory: 0
   slotType: 4
   accessoryIndex: 0
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &1981465070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5096,6 +5106,7 @@ MonoBehaviour:
   isAccessory: 1
   slotType: 6
   accessoryIndex: 3
+  equipmentInventoryManager: {fileID: 4586934547875444207}
 --- !u!114 &2038080819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5286,7 +5297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -427.454
+      value: -439.45
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5322,7 +5333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 213.72705
+      value: 219.73
       objectReference: {fileID: 0}
     - target: {fileID: 9073596436130956276, guid: 714ed4527e3d3a64f9724c0385cefa8e, type: 3}
       propertyPath: m_AnchoredPosition.y

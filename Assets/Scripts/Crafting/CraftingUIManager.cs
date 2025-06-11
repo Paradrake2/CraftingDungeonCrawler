@@ -235,19 +235,16 @@ public class CraftingUIManager : MonoBehaviour
         Debug.LogWarning("GENERATING RECIPE BUTTONS");
         foreach (var recipe in PlayerRecipeBook.Instance.knownRecipes)
         {
-            if (recipe.isUnlocked)
+            Debug.Log(recipe.name);
+            GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
+            buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
+            buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
+
+            var button = buttonObject.GetComponent<Button>();
+            if (button != null)
             {
-                GameObject buttonObject = Instantiate(recipeButtonPrefab, recipeButtonParent);
-                buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = recipe.getRecipeName();
-                buttonObject.GetComponentInChildren<Image>().sprite = recipe.getIcon();
-
-                var button = buttonObject.GetComponent<Button>();
-                if (button != null)
-                {
-                    button.onClick.AddListener(() => SelectRecipe(recipe));
-                }
+                button.onClick.AddListener(() => SelectRecipe(recipe));
             }
-
         }
     }
 

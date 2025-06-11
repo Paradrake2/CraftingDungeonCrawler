@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public Dictionary<EquipmentSlot, Equipment> equippedItems = new();
+    public List<Equipment> ownedGear = new List<Equipment>();
+    public List<Equipment> existingGear = new List<Equipment>();
     public Equipment[] accessorySlots = new Equipment[5];
     public List<string> acquiredSkillIDs = new List<string>();
     public static PlayerStats Instance;
@@ -76,6 +78,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void EquipItem(Equipment newItem)
     {
+        Debug.Log("Called equip item");
         if (newItem == null) return;
         if (newItem.slot == EquipmentSlot.Accessory)
         {
@@ -86,18 +89,7 @@ public class PlayerStats : MonoBehaviour
         {
             EquipMainGear(newItem);
         }
-    }
-    public void AddBonusStats()
-    {
-        BaseHealth += GetBonusStat(StatType.MaxHealth);
-        BaseDamage += GetBonusStat(StatType.Damage);
-        BaseDefense += GetBonusStat(StatType.Defense);
-        addedStats.Clear();
-    }
-    public float GetBonusStat(StatType type)
-    {
-        if (addedStats.ContainsKey(type)) return addedStats[type];
-        return 0f;
+        ownedGear.Remove(newItem);
     }
     private void EquipMainGear(Equipment newItem)
     {
@@ -106,6 +98,7 @@ public class PlayerStats : MonoBehaviour
     }
     private void EquipAccessory(Equipment newAccessory)
     {
+        Debug.Log("Called equip accessory");
         foreach (var equipped in accessorySlots)
         {
             if (equipped == newAccessory)
@@ -123,6 +116,50 @@ public class PlayerStats : MonoBehaviour
                 return;
             }
         }
+    }
+    public void UnequipItem(Equipment equipment)
+    {
+        if (equipment == null) return;
+        if (equipment.slot == EquipmentSlot.Accessory)
+        {
+            UnequipAccessory(equipment);
+        }
+        else
+        {
+            UnequipEquipment(equipment);
+        }
+    }
+    void UnequipAccessory(Equipment accessory)
+    {
+        for (int i = 0; i < accessorySlots.Length; i++)
+        {
+            if (accessorySlots[i] == accessory)
+            {
+                if (accessory != null) ownedGear.Add(accessory);
+                accessorySlots[i] = null;
+                return;
+            }
+        }
+        Debug.LogWarning("Accessory not found in equipped slots.");
+    }
+    void UnequipEquipment(Equipment equipment)
+    {
+        // Get equipped item, add to owned gear
+        Equipment item = GetEquippedItem(equipment.slot);
+        if (item != null) ownedGear.Add(item);
+        equippedItems[equipment.slot] = null;
+    }
+    public void AddBonusStats()
+    {
+        BaseHealth += GetBonusStat(StatType.MaxHealth);
+        BaseDamage += GetBonusStat(StatType.Damage);
+        BaseDefense += GetBonusStat(StatType.Defense);
+        addedStats.Clear();
+    }
+    public float GetBonusStat(StatType type)
+    {
+        if (addedStats.ContainsKey(type)) return addedStats[type];
+        return 0f;
     }
 
     public Equipment GetEquippedItem(EquipmentSlot slot)
@@ -145,6 +182,7 @@ public class PlayerStats : MonoBehaviour
         foreach (var kvp in equippedItems)
         {
             var item = kvp.Value;
+            if (item == null) continue;
             foreach (var mod in item.modifiers)
             {
                 if (mod.statType == type)

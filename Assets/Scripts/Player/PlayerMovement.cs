@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         if (dashTimeRemaining > 0f) {
             rb.MovePosition(rb.position + dashVelocity * Time.fixedDeltaTime);
             dashTimeRemaining -= Time.fixedDeltaTime;
-            Debug.LogWarning(dashTimeRemaining);
             playerStats.isDashing = true;
         } else {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

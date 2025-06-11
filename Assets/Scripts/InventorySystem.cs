@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
-    public List<Equipment> ownedGear = new List<Equipment>();
     public List<Augment> ownedAugments = new List<Augment>();
     public HashSet<String> discoveredRefinedItems = new();
     public static InventorySystem Instance;
@@ -80,7 +79,8 @@ public class InventorySystem : MonoBehaviour
     }
     public void AddEquipment(Equipment newEquip)
     {
-        ownedGear.Add(newEquip);
+        PlayerStats.Instance.ownedGear.Add(newEquip);
+        PlayerStats.Instance.existingGear.Add(newEquip);
         Debug.Log($"Added new equipment: {newEquip.itemName}");
     }
     public void AddItem(string itemId, int amount)

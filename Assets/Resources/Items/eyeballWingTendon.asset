@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: IronIngot
+  m_Name: eyeballWingTendon
   m_EditorClassIdentifier: 
-  itemName: ironIngot
-  icon: {fileID: -4285704637475842466, guid: ccc5bc1b200027544acb3c0c9899bf94, type: 3}
-  description: A simple iron ingot. Not very tasty, might break your teeth.
-  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 1}
+  itemName: eyeballWingTendon
+  icon: {fileID: 8671996093109669374, guid: 7f65e54869fd6334baf58e8e0bb355d8, type: 3}
+  description: 'A tendon from the floating eyeball''s wing. Can be used to string
+    bows. '
+  color: {r: 0.5943396, g: 0, b: 0, a: 0}
   sprites: []
-  itemType: 2
-  maxStackSize: 99
-  value: 5
-  Rarity: 1
-  flatDamage: 2
-  damageMult: 0
-  flatDefense: 2
+  itemType: 1
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  flatDamage: 4
+  damageMult: 0.01
+  flatDefense: 0
   defenseMult: 0
-  flatMaxHP: 10
+  flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -44,17 +45,14 @@ MonoBehaviour:
   dashDistance: 0
   dashNumber: 0
   tags:
-  - ironIngot
-  - iron
-  - ingot
-  - metal
-  - baseMaterial
-  ID: ironIngot
+  - tendon
+  - string
+  - eyeballWingTendon
+  ID: eyeballWingTendon
   isCraftingMaterial: 1
-  isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: bc87c77c445703148abec711dfbe4708, type: 2}
-  requiredQuantities: 02000000
+  isCraftable: 0
+  requiredMaterials: []
+  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

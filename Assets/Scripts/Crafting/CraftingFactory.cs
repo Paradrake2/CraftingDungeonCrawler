@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,14 @@ public class CraftingFactory : MonoBehaviour
 
         recipeId.spriteGenerator = FindFirstObjectByType<SpriteGenerator>();
         Sprite icon = recipeId.spriteGenerator.GenerateIcon(recipeId.visualPrefab, ingredients);
+
+        // Create ID
+        equipment.ID = GenerateID();
+        if (equipment.ID == null)
+        {
+            Debug.LogError("Failed Generating Equipment. Reason: Couldn't create unique ID.");
+            return null;
+        }
 
         equipment.icon = icon;
         equipment.augmentSlotNumber = recipeId.augmentSlots;
@@ -43,7 +52,29 @@ public class CraftingFactory : MonoBehaviour
         }
         return equipment;
     }
-    
+    public string GenerateID()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int idLength = 10;
+        string id;
+        int maxAttempts = 100;
+
+        do
+        {
+            id = new string(Enumerable.Repeat(chars, idLength).Select(s => s[UnityEngine.Random.Range(0, s.Length)]).ToArray());
+            maxAttempts--;
+        }
+        while (EquipmentIDManager.IsIDTaken(id) && maxAttempts > 0);
+
+        if (maxAttempts == 0)
+        {
+            Debug.LogError("Failed to generate unique Equipment ID after 100 attempts");
+            return null;
+        }
+
+        EquipmentIDManager.RegisterID(id);
+        return id;
+    }
     public Equipment PreviewCraftedEquipment(List<Items> ingredients, CraftingRecipe recipe) {
         return GenerateFromIngredients(ingredients, recipe);
     }

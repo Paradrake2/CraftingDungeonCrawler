@@ -139,7 +139,8 @@ MonoBehaviour:
   dropPool:
   - rarity: 1
     items:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: deee0cd805536484dac618d776cf67fc, type: 2}
+    - {fileID: 11400000, guid: d00148e6cc332a14d87c172b513e925a, type: 2}
   playerStats: {fileID: 0}
 --- !u!114 &6649340105269689841
 MonoBehaviour:

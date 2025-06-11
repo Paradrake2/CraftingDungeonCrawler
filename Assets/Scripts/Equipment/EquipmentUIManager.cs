@@ -17,27 +17,71 @@ public class EquipmentUIManager : MonoBehaviour
     }
     void Start()
     {
+        int accessoryCounter = 0;
+        foreach (var slot in slotManagers)
+        {
+            if (slot.isAccessory)
+            {
+                slot.accessoryIndex = accessoryCounter;
+                accessoryCounter++;
+            }
+        }
+
         RefreshSlots();
-        equipmentInventoryManager.PopulateInventory((Equipment item) => {
+        equipmentInventoryManager.PopulateInventory((Equipment item) =>
+        {
             PlayerStats.Instance.EquipItem(item);
-            EquipmentUIManager.Instance.RefreshSlots();
+            RefreshSlots();
+            RefreshInventoryUI();
         });
     }
-    public void RefreshSlots() {
-        foreach (var slot in slotManagers) {
-            if (slot.isAccessory) {
+    public void RefreshInventoryUI()
+    {
+        equipmentInventoryManager.PopulateInventory((Equipment item) =>
+        {
+            PlayerStats.Instance.EquipItem(item);
+            RefreshSlots();
+            RefreshInventoryUI();
+        });
+    }
+    public void RefreshSlots()
+    {
+        foreach (var slot in slotManagers)
+        {
+            if (slot.isAccessory)
+            {
                 Equipment accessory = PlayerStats.Instance.GetAccessoryAt(slot.accessoryIndex);
                 Image slotImage = slot.GetComponentInChildren<Image>();
                 slot.SetItem(accessory);
-                slotImage.sprite = accessory.icon;
-            } else {
-                if (PlayerStats.Instance.equippedItems.TryGetValue(slot.slotType, out var equippedItem)) {
+                if (accessory != null)
+                {
+                    slotImage.sprite = accessory.icon;
+                }
+                else
+                {
+                    slotImage.sprite = null;
+                }
+            }
+            else
+            {
+                if (PlayerStats.Instance.equippedItems.TryGetValue(slot.slotType, out var equippedItem))
+                {
                     slot.SetItem(equippedItem);
                     Image slotImage = slot.GetComponentInChildren<Image>();
-                    slotImage.sprite = equippedItem.icon;
+                    if (equippedItem != null)
+                    {
+                        slotImage.sprite = equippedItem.icon;
+                    }
+                    else
+                    {
+                        slotImage.sprite = null;
+                    }
                 }
-                else {
+                else
+                {
                     slot.SetItem(null);
+                    Image slotImage = slot.GetComponentInChildren<Image>();
+                    slotImage.sprite = null;
                 }
             }
         }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
   m_Name: eyeballCore
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
+  itemName: eyeballCore
+  icon: {fileID: -5363316019395005153, guid: 7d7841edc0db4da41ab464305507b396, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
   sprites: []
-  itemType: 0
+  itemType: 6
   maxStackSize: 999
   value: 0
   Rarity: 0
@@ -43,13 +43,14 @@ MonoBehaviour:
   dropRate: 0
   dashDistance: 0
   dashNumber: 0
-  tags: []
-  ID: 
+  tags:
+  - core
+  ID: eyeballCore
   isCraftingMaterial: 0
   isCraftable: 0
   requiredMaterials: []
   requiredQuantities: 
-  coreTier: 0
-  coreSize: 0
+  coreTier: 2
+  coreSize: 3
   enhancedNum: 0
   bonusStats: []

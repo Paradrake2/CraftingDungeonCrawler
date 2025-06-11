@@ -51,6 +51,7 @@ public class StatModifier {
 public class Equipment
 {
     public string itemName;
+    public string ID;
     public Sprite icon;
     public SlotCategory category;
     public EquipmentSlot slot;
@@ -126,5 +127,9 @@ public class Equipment
     public float GetManaCost()
     {
         return manaCost;
+    }
+    public string GetID()
+    {
+        return ID;
     }
 }

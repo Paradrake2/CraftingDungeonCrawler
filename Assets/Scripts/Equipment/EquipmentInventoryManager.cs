@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class EquipmentInventoryManager : MonoBehaviour
 {
-    public EquipmentInventoryManager Instance;
+    public static EquipmentInventoryManager Instance;
     public Transform inventoryPanel;
     public GameObject equipmentButtonPrefab;
 
@@ -16,7 +16,7 @@ public class EquipmentInventoryManager : MonoBehaviour
         foreach (Transform child in inventoryPanel)
             Destroy(child.gameObject); // Clear existing buttons
 
-        foreach (var item in InventorySystem.Instance.ownedGear)
+        foreach (var item in PlayerStats.Instance.ownedGear)
         {
             GameObject btn = Instantiate(equipmentButtonPrefab, inventoryPanel);
             var icon = btn.GetComponentInChildren<Image>();
@@ -25,7 +25,12 @@ public class EquipmentInventoryManager : MonoBehaviour
             if (icon != null) icon.sprite = item.icon;
             if (text != null) text.text = item.itemName;
 
-            btn.GetComponent<Button>().onClick.AddListener(() => onClickAction?.Invoke(item));
+            Equipment capturedItem = item;
+            btn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Debug.Log($"Button clicked: {capturedItem.ID}");
+                onClickAction?.Invoke(capturedItem);
+            });
         }
     }
 
