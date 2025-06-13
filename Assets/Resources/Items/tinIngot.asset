@@ -15,18 +15,18 @@ MonoBehaviour:
   itemName: tinIngot
   icon: {fileID: -6487633152846227020, guid: 1b8bc6e7c33cd3b4689b5b643a28da4e, type: 3}
   description: 
-  color: {r: 0.54509807, g: 0.8784314, b: 0.8784314, a: 0}
-  sprites: []
+  color: {r: 0.25490198, g: 0.48235294, b: 0.48235294, a: 0}
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0
   damageMult: 0
-  flatDefense: 2
+  flatDefense: 0
   defenseMult: 0
   flatMaxHP: 20
-  HPMult: 0
+  HPMult: 0.01
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   ID: tinIngot
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

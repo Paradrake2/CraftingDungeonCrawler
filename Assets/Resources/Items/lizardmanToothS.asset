@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 4020585474651816605, guid: aadf79e6f2f59b44b87e9bbe170917d0, type: 3}
   description: 
   color: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1.5
   flatDamage: 3
   damageMult: 0
   flatDefense: 0
@@ -50,8 +50,7 @@ MonoBehaviour:
   ID: lizardmanToothS
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
+  bonusStats: []

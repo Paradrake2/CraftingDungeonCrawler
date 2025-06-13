@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -3498583030622348988, guid: 41048464da4e5114481612ec0367af9e, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0
   damageMult: 0
   flatDefense: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: tinOre
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

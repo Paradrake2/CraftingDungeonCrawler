@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinbone
+  m_Name: goblinBone
   m_EditorClassIdentifier: 
-  itemName: goblinbone
+  itemName: goblinBone
   icon: {fileID: -4656034429768487166, guid: 35d44c380ade653418e5eb92934cec0d, type: 3}
   description: 'A bone from a goblin. '
-  color: {r: 0.8592946, g: 1, b: 0.8349056, a: 0}
-  sprites: []
+  color: {r: 0.8592946, g: 1, b: 0.8349056, a: 1}
   itemType: 1
   maxStackSize: 99
   value: 1
   Rarity: 0
+  tier: 0
   flatDamage: 1
-  damageMult: 0.2
+  damageMult: 0.02
   flatDefense: 2
-  defenseMult: 0.5
+  defenseMult: 0.05
   flatMaxHP: 2
   HPMult: 0
   flatPureDamage: 0
@@ -48,10 +48,10 @@ MonoBehaviour:
   - goblin
   - baseMaterial
   - goblinBone
-  ID: goblinbone
+  ID: goblinBone
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

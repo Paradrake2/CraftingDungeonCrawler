@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -1773195807029370600, guid: 7c69b71f1d8bb054bbe7265446f71e27, type: 3}
   description: 
   color: {r: 0.6509804, g: 0.15686275, b: 0, a: 0}
-  sprites: []
   itemType: 0
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0.5
   damageMult: 0
   flatDefense: 1
@@ -48,10 +48,11 @@ MonoBehaviour:
   - copperGuard
   - basicGuard
   - guard
+  - guardT1
   ID: copperGuard
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

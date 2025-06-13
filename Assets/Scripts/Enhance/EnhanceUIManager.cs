@@ -18,6 +18,7 @@ public class EnhanceUIManager : MonoBehaviour
     public TextMeshProUGUI itemInfoText;
     public GameObject notEnoughPowder;
     public GameObject failedEnhance;
+    public GameObject enhanceLimitReachedGameObject;
     public TextMeshProUGUI powderCost;
     private Vector2 offset = new Vector2(15, -15);
     public void PopulateEnhanceInventory()
@@ -187,6 +188,17 @@ public class EnhanceUIManager : MonoBehaviour
     }
 
 
+    public void EnhanceLimitReached()
+    {
+        StartCoroutine(EnhanceLimitReachedRoutine());
+    }
+
+    private IEnumerator EnhanceLimitReachedRoutine()
+    {
+        enhanceLimitReachedGameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        enhanceLimitReachedGameObject.SetActive(false);
+    }
     public void LoadCrafting()
     {
         SceneManager.LoadScene("Menu");

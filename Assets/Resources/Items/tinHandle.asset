@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: tinHandle
   icon: {fileID: -3768730209672964132, guid: 2d223183d8422f8469b7442bb0d64712, type: 3}
   description: 
-  color: {r: 0.54509807, g: 0.8784314, b: 0.8784314, a: 0}
-  sprites: []
+  color: {r: 0.25490198, g: 0.48235294, b: 0.48235294, a: 0}
   itemType: 0
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 1
   damageMult: 0
   flatDefense: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: tinHandle
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

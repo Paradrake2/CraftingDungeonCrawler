@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tinPlate
   m_EditorClassIdentifier: 
   recipeName: tinPlate
-  icon: {fileID: 2202986694922315722, guid: 7ee2d32a9787ca6489b178d1a2285ebb, type: 3}
+  icon: {fileID: 977022401368411189, guid: 21704f471f7e4d140a580a0c61160883, type: 3}
   outputQuantity: 1
   requirements:
   - requiredTag: tinIngot

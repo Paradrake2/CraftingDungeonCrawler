@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
+  m_Name: copperStaff
+  m_EditorClassIdentifier: 
+  itemName: copperStaff
+  icon: {fileID: 9186707152029133172, guid: c56d1525482c54b4abde881e6941547b, type: 3}
+  description: 
+  color: {r: 0.6509804, g: 0.15686275, b: 0, a: 0}
+  itemType: 2
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  tier: 1
+  flatDamage: 4
+  damageMult: 0.01
+  flatDefense: 3
+  defenseMult: 0.02
+  flatMaxHP: 0
+  HPMult: 0
+  flatPureDamage: 0
+  pureDamageMult: 0
+  flatMaxMana: 52
+  maxManaMult: 0.005
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - staff
+  - staffT1
+  - copper
+  - copperStaff
+  ID: copperStaff
+  isCraftingMaterial: 1
+  isCraftable: 0
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

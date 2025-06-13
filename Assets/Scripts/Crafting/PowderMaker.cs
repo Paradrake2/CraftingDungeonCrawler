@@ -58,7 +58,7 @@ public class PowderMaker : MonoBehaviour
     }
     public void CloseCoreRefineMenu() {
         holder.SetActive(false);
-        CraftingUIManager.Instance.PopulateInventory();
+        CraftingUIManager.Instance.PopulateInventory(0);
     }
     void Start()
     {

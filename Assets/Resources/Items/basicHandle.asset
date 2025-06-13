@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 8963810242902855193, guid: adc34796754f0a544a14e773673a23c4, type: 3}
   description: 
   color: {r: 0.5, g: 0.21933961, b: 0.21933961, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 99
   value: 0
   Rarity: 0
+  tier: 2
   flatDamage: 3
   damageMult: 0.06
   flatDefense: 1
@@ -51,9 +51,7 @@ MonoBehaviour:
   ID: basicHandle
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 5d518c0a483c3444481e8e55c1096c6b, type: 2}
-  - {fileID: 11400000, guid: 18099051f197ca74e9f3db596a8dab52, type: 2}
-  requiredQuantities: 0100000002000000
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

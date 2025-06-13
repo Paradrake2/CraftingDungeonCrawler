@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -3124060334904930252, guid: 86f078fc4fce30d48b58a42c2a6b5720, type: 3}
   description: 
   color: {r: 0, g: 0.3490566, b: 0.05290454, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 0
   Rarity: 1
+  tier: 1.5
   flatDamage: 0
   damageMult: 0
   flatDefense: 2
@@ -51,8 +51,7 @@ MonoBehaviour:
   ID: lizardmanScaleGreen
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
+  bonusStats: []

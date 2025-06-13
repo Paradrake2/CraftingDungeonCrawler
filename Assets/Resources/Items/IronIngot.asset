@@ -16,16 +16,16 @@ MonoBehaviour:
   icon: {fileID: -4285704637475842466, guid: ccc5bc1b200027544acb3c0c9899bf94, type: 3}
   description: A simple iron ingot. Not very tasty, might break your teeth.
   color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 1}
-  sprites: []
   itemType: 2
   maxStackSize: 99
   value: 5
   Rarity: 1
-  flatDamage: 2
-  damageMult: 0
+  tier: 2
+  flatDamage: 3
+  damageMult: 0.01
   flatDefense: 2
   defenseMult: 0
-  flatMaxHP: 10
+  flatMaxHP: 5
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -52,9 +52,6 @@ MonoBehaviour:
   ID: ironIngot
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: bc87c77c445703148abec711dfbe4708, type: 2}
-  requiredQuantities: 02000000
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

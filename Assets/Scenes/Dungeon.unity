@@ -1146,20 +1146,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3a65b43d948d64f9a69ae0b4791086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomTemplates:
+  - {fileID: 11400000, guid: dbaa1460250e29041a03afbc8ac634e9, type: 2}
   tilemap: {fileID: 1009053738}
-  wallTile:
-  - {fileID: 1558198817685789925, guid: 69f461811b1c6e542b8509ce858d4edd, type: 3}
-  - {fileID: 100658269907066471, guid: d9a8000754f37464a85343cd1c8b3e3f, type: 3}
-  floorTile:
+  floorPrefab:
   - {fileID: 11400000, guid: 2eeffebbfeac6434ab3c8dbbc9573248, type: 2}
   - {fileID: 11400000, guid: b079bc0282d8a9244beb082804b29b25, type: 2}
-  obstaclePrefabs:
+  wallPrefab:
+  - {fileID: 1558198817685789925, guid: 69f461811b1c6e542b8509ce858d4edd, type: 3}
+  - {fileID: 100658269907066471, guid: d9a8000754f37464a85343cd1c8b3e3f, type: 3}
+  obstaclePrefab:
   - {fileID: 3197155755884515163, guid: 93f1b5efd1ed4af4e80fabb2a39aec45, type: 3}
-  enemySpawner:
-  - {fileID: 8544762939866176501, guid: 8fbe45265d3be3a40af64b7bd063f487, type: 3}
-  environmentalResourcePrefabs:
+  orePrefab:
   - prefab: {fileID: 6195948034875250383, guid: affab98ae6981444fb7bb56051bf0bb4, type: 3}
-    baseRarityWeight: 100
+    baseRarityWeight: 80
     floorUnlock: 0
     weightPerFloor: -5
   - prefab: {fileID: 7363226301066954292, guid: 071d557111e18a24bb9b78365e563297, type: 3}
@@ -1167,14 +1167,16 @@ MonoBehaviour:
     floorUnlock: 0
     weightPerFloor: 5
   - prefab: {fileID: 4142194222991462308, guid: 9e365a00df8a4f14b9aa9892f099beb2, type: 3}
-    baseRarityWeight: 75
+    baseRarityWeight: 60
     floorUnlock: 0
-    weightPerFloor: 2
-  environmentalLoot:
+    weightPerFloor: -5
+  envLoot:
   - {fileID: 865654592210944319, guid: 0fe34d76f1f80314082e8a00ea619388, type: 3}
   enemySpawn: {fileID: 3325116175761545161}
-  radius: 50
   enemySpawnPoints: []
+  Instance: {fileID: 1009053736}
+  playerSpawnPosition: {x: 0, y: 0, z: 0}
+  portalSpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1009053737
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -1333,7 +1335,6 @@ MonoBehaviour:
   roomGenerator: {fileID: 1009053736}
   playerPrefab: {fileID: 3800540027696675715, guid: e20e8b18d49c8cc4c8e1738914a0639b, type: 3}
   newFloorOpen: {fileID: 6591185914383341947, guid: e5c06a15bd5aafb4c8b8fc535e0e97e8, type: 3}
-  playerSpawnPosition: {x: 0, y: 0, z: 0}
   totalEnemies: 0
   enemiesKilled: 0
   floor: 0
@@ -2385,8 +2386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5531c27a78d7df443959efcd04d839f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownedGear: []
+  existingGear: []
   accessorySlots:
   - itemName: 
+    ID: 
     icon: {fileID: 0}
     category: 0
     slot: 0
@@ -2403,6 +2407,7 @@ MonoBehaviour:
     projectileSpeed: 0
     projectilePrefab: {fileID: 0}
   - itemName: 
+    ID: 
     icon: {fileID: 0}
     category: 0
     slot: 0
@@ -2419,6 +2424,7 @@ MonoBehaviour:
     projectileSpeed: 0
     projectilePrefab: {fileID: 0}
   - itemName: 
+    ID: 
     icon: {fileID: 0}
     category: 0
     slot: 0
@@ -2435,6 +2441,7 @@ MonoBehaviour:
     projectileSpeed: 0
     projectilePrefab: {fileID: 0}
   - itemName: 
+    ID: 
     icon: {fileID: 0}
     category: 0
     slot: 0
@@ -2451,6 +2458,7 @@ MonoBehaviour:
     projectileSpeed: 0
     projectilePrefab: {fileID: 0}
   - itemName: 
+    ID: 
     icon: {fileID: 0}
     category: 0
     slot: 0
@@ -2621,7 +2629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemStacks: []
-  ownedGear: []
   ownedAugments: []
   log: {fileID: 0}
 --- !u!1 &2142447426

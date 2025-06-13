@@ -16,12 +16,12 @@ MonoBehaviour:
   icon: {fileID: -6627735892928340510, guid: 384e84f3cfe507f449a1f4cf7d42c57c, type: 3}
   description: 
   color: {r: 0.85882354, g: 1, b: 0.8352941, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 4
   Rarity: 0
-  flatDamage: 1
+  tier: 0
+  flatDamage: 2
   damageMult: 0.02
   flatDefense: 0
   defenseMult: 0
@@ -50,8 +50,7 @@ MonoBehaviour:
   ID: goblinBoneHandle
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 41eb0200ef5c17d47afb1842edcc8d2d, type: 2}
-  requiredQuantities: 04000000
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

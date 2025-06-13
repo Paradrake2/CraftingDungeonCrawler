@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: blah
+  m_Name: ironStaff
   m_EditorClassIdentifier: 
-  itemName: blah
-  icon: {fileID: 0}
+  itemName: ironStaff
+  icon: {fileID: 6767430676292334043, guid: c5c36cbb232d3054ebdf1b3e915e46ca, type: 3}
   description: 
-  itemType: 0
-  maxStackSize: 99
+  color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
+  itemType: 2
+  maxStackSize: 999
   value: 0
   Rarity: 0
-  flatDamage: 0
-  damageMult: 0
+  tier: 2
+  flatDamage: 10
+  damageMult: 0.05
   flatDefense: 0
   defenseMult: 0
   flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
-  flatMaxMana: 0
-  maxManaMult: 0
+  flatMaxMana: 80
+  maxManaMult: 0.025
   dropRateIncrease: 0
   xpGainIncrease: 0
   goldGainIncrease: 0
@@ -39,9 +41,17 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
-  tags: []
-  ID: 
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - staff
+  - iron
+  - ironStaff
+  - staffT2
+  ID: ironStaff
   isCraftingMaterial: 0
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

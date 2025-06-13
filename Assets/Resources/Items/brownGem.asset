@@ -16,16 +16,16 @@ MonoBehaviour:
   icon: {fileID: -675795211735882530, guid: e60e67491e15fa84f915bd37180692f3, type: 3}
   description: 
   color: {r: 0.5943396, g: 0.15299833, b: 0, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 5
   Rarity: 1
+  tier: 2
   flatDamage: 0
   damageMult: 0
-  flatDefense: 3
-  defenseMult: 0.1
-  flatMaxHP: 0
+  flatDefense: 10
+  defenseMult: 0.2
+  flatMaxHP: 5
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -47,10 +47,10 @@ MonoBehaviour:
   - gem
   - accessoryCraft
   - brownGem
-  ID: bownGem
+  ID: brownGem
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

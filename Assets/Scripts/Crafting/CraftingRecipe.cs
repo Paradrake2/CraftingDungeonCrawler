@@ -36,6 +36,7 @@ public class CraftingRecipe : ScriptableObject
     public GameObject visualPrefab;
     public int augmentSlots;
     public int requiredLevel;
+    public float recipeTier;
 
     // For weapons
     public WeaponType weaponType;

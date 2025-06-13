@@ -25,10 +25,9 @@ public class Items : ScriptableObject
     public string itemName;
     public Sprite icon;
     [TextArea] public string description;
+
     [Header("MaterialColor")]
     public Color color;
-    [Header("MaterialSpriteList")]
-    public Sprite[] sprites;
 
     public ItemType itemType;
     [Header("Stacking")]
@@ -39,6 +38,8 @@ public class Items : ScriptableObject
 
     [Header("Rarity")]
     public ItemRarity Rarity;
+    [Header("ItemTier")]
+    public float tier;
 
     [Header("FlatDamage")]
     public float flatDamage;
@@ -113,9 +114,6 @@ public class Items : ScriptableObject
 
     [Header("Can be crafted?")]
     public bool isCraftable;
-    public List<Items> requiredMaterials; // deprecated
-    public List<int> requiredQuantities; // deprecated
-
     [Header("CoreTier")]
     public int coreTier;
     [Header("CoreSize")]

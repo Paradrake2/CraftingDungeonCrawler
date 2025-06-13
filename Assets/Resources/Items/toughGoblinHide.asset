@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 859358265448934621, guid: b1ebe8d035438744ba9fa5aaf788ec0e, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 99
   value: 2
   Rarity: 0
+  tier: 1.5
   flatDamage: 0
   damageMult: 0
   flatDefense: 3
@@ -52,7 +52,7 @@ MonoBehaviour:
   ID: toughGoblinHide
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

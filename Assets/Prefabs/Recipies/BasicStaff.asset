@@ -17,8 +17,8 @@ MonoBehaviour:
   slot: 5
   slotCategory: 1
   requirements:
-  - requiredTag: ingot
-    quantityRequired: 6
+  - requiredTag: staff
+    quantityRequired: 1
   - requiredTag: gem
     quantityRequired: 1
   parts: []
@@ -28,6 +28,7 @@ MonoBehaviour:
   visualPrefab: {fileID: 2395868684294298502, guid: 6546a5f22ae98634b80e5a4c6a9b517c, type: 3}
   augmentSlots: 0
   requiredLevel: 0
+  recipeTier: 0
   weaponType: 2
   attackRange: 0
   attackSpeed: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: tinStaff
+  m_EditorClassIdentifier: 
+  recipeName: tinStaff
+  icon: {fileID: -4296118114332688015, guid: cd9572c630753494a9acee7d02e4011a, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: tinIngot
+    quantityRequired: 7
+  outputItem: {fileID: 11400000, guid: 7aa8f0009078e4445bdce7b839082c93, type: 2}

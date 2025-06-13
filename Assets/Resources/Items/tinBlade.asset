@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: tinBlade
   icon: {fileID: -2529990891236859076, guid: e9a1fc66cb41de94bbd63d692b57d713, type: 3}
   description: 
-  color: {r: 0.5421413, g: 0.8773585, b: 0.8773585, a: 0}
-  sprites: []
+  color: {r: 0.25490198, g: 0.48235294, b: 0.48235294, a: 0}
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 5
   damageMult: 0
   flatDefense: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: tinBlade
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

@@ -1,11 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnhanceItem : MonoBehaviour
 {
     public EnhanceUIManager enhanceUIManager;
     public void EnhanceMaterial(Items item)
     {
+        if (item.enhancedNum >= (item.tier * 5))
+        {
+            enhanceUIManager.EnhanceLimitReached();
+            return;
+        }
         float successChance = GetSuccessChance(item);
         int powderCost = GetPowderCost(item);
         if (powderCost > PowderInventory.Instance.totalPowder)
@@ -14,7 +21,7 @@ public class EnhanceItem : MonoBehaviour
             return;
         }
         PowderInventory.Instance.RemovePowder(powderCost);
-        if (Random.value <= successChance)
+        if (UnityEngine.Random.value <= successChance)
         {
             // give enhanced item
             Items enhanced = GenerateNewItem(item);
@@ -41,13 +48,14 @@ public class EnhanceItem : MonoBehaviour
         int plusIndexI = baseId.LastIndexOf(" +");
         if (plusIndexI != -1) baseId = baseId.Substring(0, plusIndexI);
         string newID = baseId + " +" + (original.enhancedNum + 1);
-        if (ItemRegistry.Instance.GetItemById(newID) != null)
-            return ItemRegistry.Instance.GetItemById(newID);
+
+        if (ItemRegistry.Instance.GetItemById(newID) != null) return ItemRegistry.Instance.GetItemById(newID);
+        
         Items enhance = new Items
         {
             itemName = baseName + " +" + (original.enhancedNum + 1),
             icon = original.icon,
-            tags = original.tags,
+            tier = original.tier,
             enhancedNum = original.enhancedNum + 1,
             Rarity = original.Rarity,
             description = original.description,
@@ -57,33 +65,45 @@ public class EnhanceItem : MonoBehaviour
             value = original.value + 1,
             color = original.color
         };
-        if (original.flatDamage != 0) enhance.flatDamage = original.flatDamage + 1;
-        if (original.damageMult != 0) enhance.damageMult = original.damageMult + 0.01f;
-        if (original.flatDefense != 0) enhance.flatDefense = original.flatDefense + 1;
-        if (original.defenseMult != 0) enhance.defenseMult = original.defenseMult + 0.01f;
-        if (original.flatMaxHP != 0) enhance.flatMaxHP = original.flatMaxHP + 10f;
-        if (original.HPMult != 0) enhance.HPMult = original.HPMult + 0.01f;
-        if (original.flatPureDamage != 0) enhance.flatPureDamage = original.flatPureDamage + 1;
-        if (original.pureDamageMult != 0) enhance.pureDamageMult = original.pureDamageMult + 0.01f;
-        if (original.flatMaxMana != 0) enhance.flatMaxMana = original.flatMaxMana + 1f;
-        if (original.maxManaMult != 0) enhance.maxManaMult = original.maxManaMult + 0.01f;
+
+        // Add enhanced tag
+        enhance.tags = NewTags(original, enhance);
+
+        enhance = AddStats(original, enhance);
 
         // add to InventorySystem and ItemRegistery
         ItemRegistry.Instance.AddItem(enhance);
         return enhance;
     }
+    private string[] NewTags(Items original, Items enhancedItem)
+    {
+        List<string> newTags = new List<string>(original.tags ?? new string[0]);
+        string enhancementTag = $"enhanced +{enhancedItem.enhancedNum}";
+        if (!newTags.Contains(enhancementTag)) newTags.Add(enhancementTag);
+        foreach (var tag in newTags) Debug.Log(tag); // debug to check tags, will remove eventually
+
+        return newTags.ToArray();
+    }
+    private Items AddStats(Items original, Items enhance)
+    {
+        
+        if (original.flatDamage != 0) enhance.flatDamage = original.flatDamage + (1 * enhance.enhancedNum);
+        if (original.damageMult != 0) enhance.damageMult = original.damageMult + (0.01f * enhance.enhancedNum);
+        if (original.flatDefense != 0) enhance.flatDefense = original.flatDefense + (1 * enhance.enhancedNum);
+        if (original.defenseMult != 0) enhance.defenseMult = original.defenseMult + (0.01f * enhance.enhancedNum);
+        if (original.flatMaxHP != 0) enhance.flatMaxHP = original.flatMaxHP + (10f * enhance.enhancedNum);
+        if (original.HPMult != 0) enhance.HPMult = original.HPMult + (0.01f * enhance.enhancedNum);
+        if (original.flatPureDamage != 0) enhance.flatPureDamage = original.flatPureDamage + (1 * (enhance.enhancedNum/2));
+        if (original.pureDamageMult != 0) enhance.pureDamageMult = original.pureDamageMult + (0.01f * enhance.enhancedNum);
+        if (original.flatMaxMana != 0) enhance.flatMaxMana = original.flatMaxMana + (1f * enhance.enhancedNum);
+        if (original.maxManaMult != 0) enhance.maxManaMult = original.maxManaMult + (0.01f * enhance.enhancedNum);
+        
+        return enhance;
+    }
     public int GetPowderCost(Items item)
     {
-        return (item.enhancedNum * 100) + 100;
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int baseCost = (item.enhancedNum * 100) + 100;
+        if (item.enhancedNum >= 10) baseCost += (item.enhancedNum - 9) * 200;
+        return baseCost;
     }
 }

@@ -16,13 +16,13 @@ MonoBehaviour:
   icon: {fileID: 4093884403888032865, guid: 0404c825ed5596844b1ff0b8e2dbd609, type: 3}
   description: 
   color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 3.5
-  damageMult: 0
+  damageMult: 0.01
   flatDefense: 0
   defenseMult: 0
   flatMaxHP: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   ID: skeletonBoneBlade
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

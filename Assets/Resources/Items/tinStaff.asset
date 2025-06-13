@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: testitem2
+  m_Name: tinStaff
   m_EditorClassIdentifier: 
-  itemName: testitem2
-  icon: {fileID: -2714553371818879577, guid: bf2856da80a820247bae27ded3a6391d, type: 3}
+  itemName: tinStaff
+  icon: {fileID: -4296118114332688015, guid: cd9572c630753494a9acee7d02e4011a, type: 3}
   description: 
-  itemType: 0
-  maxStackSize: 99
+  color: {r: 0.2519135, g: 0.4811321, b: 0.4811321, a: 0}
+  itemType: 2
+  maxStackSize: 999
   value: 0
   Rarity: 0
-  flatDamage: 0
-  damageMult: 1
-  flatDefense: 1
-  defenseMult: 1.5
-  flatMaxHP: 0
-  HPMult: 0
+  tier: 1
+  flatDamage: 5
+  damageMult: 0.01
+  flatDefense: 0
+  defenseMult: 0
+  flatMaxHP: 15
+  HPMult: 0.015
   flatPureDamage: 0
   pureDamageMult: 0
-  flatMaxMana: 0
+  flatMaxMana: 45
   maxManaMult: 0
   dropRateIncrease: 0
   xpGainIncrease: 0
@@ -39,9 +41,17 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
-  tags: []
-  ID: testitem2
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - staff
+  - tin
+  - tinStaff
+  - staffT1
+  ID: tinStaff
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

@@ -71,15 +71,21 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
         lastUsedIngredients = new List<Items>(currentIngredients);
         inventorySystem.AddItem(selectedRecipe.outputItem.ID, selectedRecipe.outputQuantity);
         inventorySystem.discoveredRefinedItems.Add(selectedRecipe.outputItem.ID);
-        previewText.text = $"{selectedRecipe.outputItem.itemName} created!";
+        StartCoroutine(CreatedItemRoutine());
         currentIngredients.Clear();
         assignedCounts = new Dictionary<string, int>();
-        craftingUIManager.PopulateInventory();
+        craftingUIManager.PopulateInventory(0);
         SetupRecipeSlots();
         if (canRefineAgain)
         {
             TryAutoAssignLastUsedIngredients();
         }
+    }
+    private IEnumerator CreatedItemRoutine() {
+        previewText.text = $"{selectedRecipe.outputItem.itemName} created!";
+        previewText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        previewText.gameObject.SetActive(false);
     }
     void TryAutoAssignLastUsedIngredients()
     {
@@ -151,7 +157,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
 
         }
-        craftingUIManager.PopulateInventory();
+        craftingUIManager.PopulateInventory(0);
         craftingUIManager.recipeInfoText.text = ""; // clear recipe info text
     }
 
@@ -189,8 +195,8 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             }
         }
         Debug.LogWarning(selectedRecipe.GetTags());
-        craftingUIManager.DisplayShader(selectedRecipe.GetTags());
-        craftingUIManager.PopulateInventory(selectedRecipe.GetTags());
+        if(selectedRecipe != null) craftingUIManager.DisplayShader(selectedRecipe.GetTags(), 0);
+        craftingUIManager.PopulateInventory(0,selectedRecipe.GetTags());
     }
 
     public void TryAddIngredient(Items item)

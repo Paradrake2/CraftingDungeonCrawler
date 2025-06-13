@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -5255985705470490855, guid: 24a05244c96899e48b2eb4f9abc39300, type: 3}
   description: 
   color: {r: 0.4056604, g: 0.109069064, b: 0.109069064, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 2
   flatDamage: 1
   damageMult: 0
   flatDefense: 4
@@ -49,7 +49,7 @@ MonoBehaviour:
   ID: improvedBinding
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

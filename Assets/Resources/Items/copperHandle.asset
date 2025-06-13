@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -5090762293632878026, guid: ee264d4bb76039c4fb63493835545194, type: 3}
   description: 
   color: {r: 0.6509804, g: 0.15686275, b: 0, a: 0}
-  sprites: []
   itemType: 0
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 1
   damageMult: 0
   flatDefense: 3
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: copperHandle
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

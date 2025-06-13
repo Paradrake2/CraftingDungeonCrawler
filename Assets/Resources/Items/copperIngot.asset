@@ -16,16 +16,16 @@ MonoBehaviour:
   icon: {fileID: 4450037531155264976, guid: 99e800f3f7c59724ba7bcad1dd5cb5e0, type: 3}
   description: 
   color: {r: 0.6509434, g: 0.15602471, b: 0, a: 0}
-  sprites: []
   itemType: 0
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0
   damageMult: 0
   flatDefense: 1
-  defenseMult: 0.004
-  flatMaxHP: 6
+  defenseMult: 0.03
+  flatMaxHP: 2
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -47,10 +47,12 @@ MonoBehaviour:
   - copper
   - ingot
   - copperIngot
+  - ingotT1
+  - baseMaterial
   ID: copperIngot
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

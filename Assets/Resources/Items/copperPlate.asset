@@ -16,15 +16,15 @@ MonoBehaviour:
   icon: {fileID: -5479074902323993675, guid: 196b08587392d6c498927b11e5e0da88, type: 3}
   description: 
   color: {r: 0.6509804, g: 0.15686275, b: 0, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0
   damageMult: 0
-  flatDefense: 1
-  defenseMult: 0.005
+  flatDefense: 2
+  defenseMult: 0.01
   flatMaxHP: 10
   HPMult: 0
   flatPureDamage: 0
@@ -47,11 +47,11 @@ MonoBehaviour:
   - plate
   - copper
   - copperPlate
+  - plateT1
   ID: copperPlate
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 5494a821ec5889143b1101acbe8051b8, type: 2}
-  requiredQuantities: 04000000
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

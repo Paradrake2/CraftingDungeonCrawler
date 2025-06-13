@@ -34,7 +34,7 @@ public class CraftingUIManager : MonoBehaviour
     private void Start()
     {
         craftButton.onClick.AddListener(CraftItem);
-        PopulateInventory();
+        PopulateInventory(0);
         GenerateRecipeButtons();
         SetupRecipeSlots();
         Instance = this;
@@ -53,7 +53,7 @@ public class CraftingUIManager : MonoBehaviour
         {
             InventorySystem.Instance.RemoveItem(ingredients.itemName, 1);
         }
-        PopulateInventory();
+        PopulateInventory(selectedRecipe.recipeTier);
         try
         {
             InventorySystem.Instance.AddEquipment(result);
@@ -65,7 +65,7 @@ public class CraftingUIManager : MonoBehaviour
         previewText.text = $"{result.itemName} crafted!";
         currentIngredients.Clear();
     }
-    public void DisplayShader(string[] tags)
+    public void DisplayShader(string[] tags, float tier)
     {
         foreach (Transform child in inventoryParent)
         {
@@ -74,7 +74,12 @@ public class CraftingUIManager : MonoBehaviour
             if (overlay == null) Debug.LogWarning("no overlay");
             InventoryButtonController btnCtrl = child.GetComponent<InventoryButtonController>();
             if (btnCtrl == null || btnCtrl.item == null || btnCtrl.overlayImage == null) continue;
-            bool isValid = btnCtrl.item.tags.Any(tag => tags.Any(tags => tag.Equals(tags, StringComparison.OrdinalIgnoreCase)));
+
+            bool tagMatch = btnCtrl.item.tags.Any(tag => tags.Any(tags => tag.Equals(tags, StringComparison.OrdinalIgnoreCase)));
+            bool tierMatch =  btnCtrl.item.tier >= tier;
+
+            bool isValid = tagMatch && tierMatch;
+
             if (btnCtrl.overlayImage == null) Debug.LogError("overlay is null");
             btnCtrl.overlayImage.enabled = !isValid;
             overlay.enabled = !isValid;
@@ -85,7 +90,7 @@ public class CraftingUIManager : MonoBehaviour
         Image overlay = transform.Find("Shader")?.GetComponent<Image>();
         return overlay;
     }
-    public void PopulateInventory(string[] validTags = null)
+    public void PopulateInventory(float tier, string[] validTags = null)
     {
         /*
         // this is for testing
@@ -149,8 +154,12 @@ public class CraftingUIManager : MonoBehaviour
             });
         }
         // Shader overlay
-        DisplayShader(validTags);
+
+        if (validTags != null) DisplayShader(validTags, tier);
+        
+
     }
+    
     public void MaterialStatShow(Items item)
     {
         if (item.flatDamage != 0) recipeInfoText.text += "Flat Damage: " + item.flatDamage + "\n";
@@ -220,7 +229,7 @@ public class CraftingUIManager : MonoBehaviour
                 recipeSlotUIs.Add(slot);
             }
         }
-        DisplayShader(selectedRecipe.GetTags());
+        if (selectedRecipe != null) DisplayShader(selectedRecipe.GetTags(), selectedRecipe.recipeTier);
     }
     void ClearChildren(Transform parent = null)
     {
@@ -276,6 +285,11 @@ public class CraftingUIManager : MonoBehaviour
                 var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag.Contains(tag)); // was == tag
                 if (req != null)
                 {
+                    if (item.tier < selectedRecipe.recipeTier)
+                    {
+                        Debug.LogWarning($"{item.itemName} is tier {item.tier}, but recipe requires tier {selectedRecipe.recipeTier} or above");
+                        continue;
+                    }
                     int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
                     if (alreadyAssigned < req.quantityRequired)
                     {
@@ -303,7 +317,6 @@ public class CraftingUIManager : MonoBehaviour
 
                         UpdatePreview();
                         return;
-
                     }
                 }
             }

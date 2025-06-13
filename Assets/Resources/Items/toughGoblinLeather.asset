@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 8166692784935592233, guid: b734925336932d14e8e03c022b09c852, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 99
   value: 3
   Rarity: 0
+  tier: 1.5
   flatDamage: 0
   damageMult: 0
   flatDefense: 3
@@ -41,14 +41,18 @@ MonoBehaviour:
   attackSpeedFlat: 0
   attackSpeedMult: 0
   dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
   tags:
   - leather
   - plate
   - goblin
   - toughLeather
+  - leatherT1.5
   ID: toughGoblinLeather
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 075c991c24ed4de4d84e1c86d5a6ff12, type: 2}
-  requiredQuantities: 04000000
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

@@ -7,7 +7,6 @@ public class DungeonManager : MonoBehaviour
     public RoomGenerator roomGenerator;
     public GameObject playerPrefab;
     public GameObject newFloorOpen;
-    public Vector3 playerSpawnPosition;
     public int totalEnemies = 0;
     public int enemiesKilled = 0;
     public int floor;
@@ -15,10 +14,10 @@ public class DungeonManager : MonoBehaviour
     public GameObject portalPrefab;
 
     private void Awake() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         } else {
             Destroy(gameObject);
         }
@@ -53,7 +52,7 @@ public class DungeonManager : MonoBehaviour
             {
                 Debug.LogError("RoomGenerator not found in scene!");
             }
-            GameObject player = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+            GameObject player = Instantiate(playerPrefab, roomGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraMov>().target = player.transform;
             totalEnemies = 0;
             enemiesKilled = 0;
@@ -76,7 +75,7 @@ public class DungeonManager : MonoBehaviour
         newFloorOpen.SetActive(true);
     }
     void SpawnPortal() {
-        Instantiate(portalPrefab, new Vector3(0,0,0), Quaternion.identity);
+        Instantiate(portalPrefab, roomGenerator.portalSpawnPosition, Quaternion.identity);
     }
 
 

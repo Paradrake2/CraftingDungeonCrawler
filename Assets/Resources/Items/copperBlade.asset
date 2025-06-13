@@ -16,15 +16,15 @@ MonoBehaviour:
   icon: {fileID: -4754678317940353169, guid: bbde14d02ca0fd745a5d53ed69e9296d, type: 3}
   description: 
   color: {r: 0.6509804, g: 0.15686275, b: 0, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 5
-  damageMult: 0
-  flatDefense: 0
-  defenseMult: 0.001
+  damageMult: 0.01
+  flatDefense: 1
+  defenseMult: 0.01
   flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   ID: copperBlade
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

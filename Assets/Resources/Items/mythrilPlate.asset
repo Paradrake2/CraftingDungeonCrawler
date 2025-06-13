@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 2253736475855190126, guid: d581c6debc368b247a06a819669dfea0, type: 3}
   description: 
   color: {r: 0, g: 0.7058824, b: 0.5529412, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 4
   flatDamage: 10
   damageMult: 0.05
   flatDefense: 20
@@ -49,7 +49,7 @@ MonoBehaviour:
   ID: mythrilPlate
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

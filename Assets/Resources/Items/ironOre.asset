@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -8391584212499747307, guid: 67291dfcc5bb7864694c42bb84ef9527, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 99
   value: 0
   Rarity: 0
+  tier: 2
   flatDamage: 0
   damageMult: 0
   flatDefense: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   ID: ironOre
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

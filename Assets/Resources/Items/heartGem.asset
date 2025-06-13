@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 6935937409848061298, guid: 966c22d1bcc659e448d28adc763e6751, type: 3}
   description: A rare stone, formed from the heart of slain foes.
   color: {r: 1, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 99
   value: 600
   Rarity: 3
+  tier: 2
   flatDamage: 0
   damageMult: 0
   flatDefense: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   ID: heartGem
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

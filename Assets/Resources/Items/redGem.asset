@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -7004392042648151656, guid: 6b2c14c3abee55846af585f50c298351, type: 3}
   description: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 2
   flatDamage: 4
   damageMult: 0.1
   flatDefense: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: redGem
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

@@ -16,12 +16,12 @@ MonoBehaviour:
   icon: {fileID: -4656034429768487166, guid: 35d44c380ade653418e5eb92934cec0d, type: 3}
   description: 
   color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 0
   Rarity: 0
-  flatDamage: 0
+  tier: 1.5
+  flatDamage: 2
   damageMult: 0
   flatDefense: 0
   defenseMult: 0
@@ -46,11 +46,11 @@ MonoBehaviour:
   tags:
   - bone
   - lizardmanBone
+  - baseMaterial
   ID: lizardmanBone
   isCraftingMaterial: 0
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
+  bonusStats: []

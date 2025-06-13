@@ -17,11 +17,11 @@ MonoBehaviour:
   description: 'A tendon from the floating eyeball''s wing. Can be used to string
     bows. '
   color: {r: 0.5943396, g: 0, b: 0, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 4
   damageMult: 0.01
   flatDefense: 0
@@ -51,8 +51,6 @@ MonoBehaviour:
   ID: eyeballWingTendon
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

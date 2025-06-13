@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: -8769410704393964359, guid: 374d8db6426ffcd48a0f4123d62d2a5e, type: 3}
   description: 'A legendary orb given by the gods. '
   color: {r: 1, g: 0.4481132, b: 0.4481132, a: 0}
-  sprites: []
   itemType: 1
   maxStackSize: 99
   value: 99999
   Rarity: 5
+  tier: 10
   flatDamage: 0
   damageMult: 1
   flatDefense: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   ID: rainbowOrb
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

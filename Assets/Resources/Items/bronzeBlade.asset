@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
+  m_Name: bronzeBlade
+  m_EditorClassIdentifier: 
+  itemName: bronzeBlade
+  icon: {fileID: 6376659648406300827, guid: bdabe4d25299e0b4dae76e7f4dd6d61e, type: 3}
+  description: 
+  color: {r: 0.8117647, g: 0.47843137, b: 0.25490198, a: 0}
+  itemType: 2
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  tier: 2
+  flatDamage: 7.5
+  damageMult: 0.02
+  flatDefense: 1
+  defenseMult: 0.01
+  flatMaxHP: 10
+  HPMult: 0.02
+  flatPureDamage: 2
+  pureDamageMult: 0
+  flatMaxMana: 0
+  maxManaMult: 0
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - blade
+  - bladeT2
+  - bronze
+  - bronzeBlade
+  ID: bronzeBlade
+  isCraftingMaterial: 1
+  isCraftable: 0
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

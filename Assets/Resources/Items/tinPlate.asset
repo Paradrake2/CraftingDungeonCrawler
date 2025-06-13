@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: tinPlate
   icon: {fileID: 977022401368411189, guid: 21704f471f7e4d140a580a0c61160883, type: 3}
   description: 
-  color: {r: 0.54509807, g: 0.8784314, b: 0.8784314, a: 0}
-  sprites: []
+  color: {r: 0.25490198, g: 0.48235294, b: 0.48235294, a: 0}
   itemType: 2
   maxStackSize: 999
   value: 0
   Rarity: 0
+  tier: 1
   flatDamage: 0
   damageMult: 0
   flatDefense: 0
@@ -51,8 +51,7 @@ MonoBehaviour:
   ID: tinPlate
   isCraftingMaterial: 1
   isCraftable: 0
-  requiredMaterials: []
-  requiredQuantities: 
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
+  bonusStats: []

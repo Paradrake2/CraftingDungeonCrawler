@@ -16,16 +16,16 @@ MonoBehaviour:
   icon: {fileID: 8488275401918574096, guid: c00328b9a05461a49b7f03caafe00f5a, type: 3}
   description: 
   color: {r: 0.78431374, g: 0.7529412, b: 0.7529412, a: 0}
-  sprites: []
   itemType: 2
   maxStackSize: 99
   value: 0
   Rarity: 0
+  tier: 2
   flatDamage: 1
   damageMult: 0.04
   flatDefense: 0
   defenseMult: 0
-  flatMaxHP: 0
+  flatMaxHP: 5
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -47,12 +47,11 @@ MonoBehaviour:
   - handle
   - iron
   - baseHandle
-  - handleT1
+  - handleT2
   ID: ironHandle
   isCraftingMaterial: 1
   isCraftable: 1
-  requiredMaterials:
-  - {fileID: 11400000, guid: 9ceb70e2ac08683458cdfbe8432bbb63, type: 2}
-  requiredQuantities: 02000000
   coreTier: 0
   coreSize: 0
+  enhancedNum: 0
+  bonusStats: []
