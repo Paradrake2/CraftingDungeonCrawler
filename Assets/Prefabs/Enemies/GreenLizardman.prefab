@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2387290855759484470}
   - component: {fileID: 4954656612716922651}
   - component: {fileID: 8434440163461628362}
+  - component: {fileID: -8321381914881165214}
   m_Layer: 6
   m_Name: GreenLizardman
   m_TagString: Enemy
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 1815513356673008546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.507702, y: -1.5199109, z: -3.9664633}
+  m_LocalPosition: {x: -4.492, y: -1.493, z: -3.9664633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,7 +57,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -74,17 +75,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.020342588, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.26, y: 1.41}
+    oldSize: {x: 0.9, y: 1.0071429}
     newSize: {x: 1.26, y: 1.41}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9593148, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1258990466397168973
 MonoBehaviour:
@@ -232,7 +233,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &4954656612716922651
 Animator:
   serializedVersion: 7
@@ -268,10 +269,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  detectionRadius: 6
+  detectionRadius: 8
   stats: {fileID: 7247784872377959074}
   animator: {fileID: 4954656612716922651}
   isFacingRight: 1
+  canMove: 1
+  goBackwards: 0
+  roomGenerator: {fileID: 0}
+  repathThreshold: 0.1
+  colliderMargin: 0.9
+--- !u!61 &-8321381914881165214
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815513356673008546}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 72
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9, y: 1.0071429}
+    newSize: {x: 1.26, y: 1.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &5522999047000158115
 PrefabInstance:
   m_ObjectHideFlags: 0

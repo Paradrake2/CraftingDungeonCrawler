@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f096a6629288da246b13c7d6a91d4ce9, type: 3}
   m_Name: Ores
   m_EditorClassIdentifier: 
-  templateName: 
-  maxHeight: 40
-  minHeight: 20
-  maxWidth: 40
-  minWidth: 20
-  roomType: 0
-  maxEnemyDensity: 0.3
-  maxOreDensity: 0.1
-  maxChestDensity: 0.05
-  maxObstacleWeight: 0.1
+  templateName: Ores
+  maxHeight: 60
+  minHeight: 30
+  maxWidth: 60
+  minWidth: 30
+  roomType: 2
+  roomLayout: 0
+  noise: 0.5
+  iterations: 100
+  maxEnemyDensity: 0.1
+  maxOreDensity: 0.2
+  maxChestDensity: 0.005
+  maxObstacleWeight: 0.12
   minEnemyDensity: 0
-  minOreDensity: 0
+  minOreDensity: 0.05
   minChestDensity: 0
   minObstacleWeight: 0

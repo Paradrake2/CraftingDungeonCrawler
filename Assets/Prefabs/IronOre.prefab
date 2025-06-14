@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 537039077718951766}
   - component: {fileID: 6387404546271358924}
   - component: {fileID: 5891472178852974690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IronOre
   m_TagString: EnvironmentalResource
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.51}
+    oldSize: {x: 1, y: 0.94375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.51}
+    oldSize: {x: 1, y: 0.94375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

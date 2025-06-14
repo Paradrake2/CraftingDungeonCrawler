@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7883307880339074803}
   - component: {fileID: 8553101431051370564}
   - component: {fileID: 4149334334942135840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: copperOre
   m_TagString: EnvironmentalResource
   m_Icon: {fileID: 0}

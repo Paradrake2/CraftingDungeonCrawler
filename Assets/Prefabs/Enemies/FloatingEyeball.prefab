@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3734118013149824818}
   - component: {fileID: 8063664586365023827}
   - component: {fileID: -4741816715399224815}
+  - component: {fileID: 7615957612992137425}
   m_Layer: 6
   m_Name: FloatingEyeball
   m_TagString: Enemy
@@ -33,8 +34,8 @@ Transform:
   m_GameObject: {fileID: 6302251860479150257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.090423, y: 1.019678, z: 0.007026701}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.5, y: 1.622, z: 0.007026701}
+  m_LocalScale: {x: 0.65267557, y: 0.62972575, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 378491279867758528}
@@ -161,6 +162,8 @@ MonoBehaviour:
   isFacingRight: 0
   canMove: 1
   goBackwards: 0
+  roomGenerator: {fileID: 0}
+  repathThreshold: 0.1
 --- !u!50 &2238704157062885946
 Rigidbody2D:
   serializedVersion: 5
@@ -187,7 +190,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3734118013149824818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,6 +279,42 @@ MonoBehaviour:
   beam: {fileID: 3132919606797416942, guid: aa3056244fb36444e94f1858acaf1ec0, type: 3}
   beamPreview: {fileID: 4094521087912017318, guid: f783cf8b501139f49ada85fca71f420d, type: 3}
   enemyMovement: {fileID: 6649340105269689841}
+--- !u!58 &7615957612992137425
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302251860479150257}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 72
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.7525
 --- !u!1001 &8888095458510148788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,6 +354,14 @@ PrefabInstance:
     - target: {fileID: 8219091014867224399, guid: bec389354265d984997f2587e1073d8d, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501265737169693191, guid: bec389354265d984997f2587e1073d8d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501265737169693191, guid: bec389354265d984997f2587e1073d8d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9086135849751106420, guid: bec389354265d984997f2587e1073d8d, type: 3}
       propertyPath: m_Pivot.x

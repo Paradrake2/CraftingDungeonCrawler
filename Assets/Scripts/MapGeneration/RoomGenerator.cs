@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 [System.Serializable]
 public class EnvironmentalResourceEntry
 {
@@ -26,6 +27,10 @@ public class RoomGenerator : MonoBehaviour
     public Vector3 playerSpawnPosition;
     public Vector3 portalSpawnPosition;
 
+    public PathfindingNode[,] grid;
+    public int gridResolution = 2;
+    private bool[,] map;
+
     public void GenerateRoom()
     {
         var template = roomTemplates[UnityEngine.Random.Range(0, roomTemplates.Count)];
@@ -36,58 +41,94 @@ public class RoomGenerator : MonoBehaviour
         float obstacleDensity = Random.Range(template.minObstacleWeight, template.maxObstacleWeight);
         float oreDensity = Random.Range(template.minOreDensity, template.maxOreDensity);
         float chestDensity = Random.Range(template.minChestDensity, template.maxChestDensity);
-        playerSpawnPosition = new Vector3(width / 2, height / 2, 0);
-        portalSpawnPosition = new Vector3(width / 2, height / 2, 0);
-        BuildRoomBounds(width, height, enemyDensity, obstacleDensity, oreDensity, chestDensity);
+
+        float noise = template.noise;
+        int iterations = template.iterations;
+
+        Debug.Log($"Width: {width}, height: {height}");
+        map = new bool[width, height];
+        //BuildRoomBounds(width, height, enemyDensity, obstacleDensity, oreDensity, chestDensity);
+        if (template.roomLayout == RoomLayout.Cellular) GenerateRandomMapCellular(width, height, noise, iterations, enemyDensity, obstacleDensity, oreDensity, chestDensity);
+        // generate different room types
+
+        // create pathfinding nodes for enemies
+
+        // player and portal spawn positions
+        playerSpawnPosition = GenerateRandomPosition();
+        portalSpawnPosition = GenerateRandomPosition();
+        //OnDrawGizmos();
     }
-    public void ClearRoom()
+/*
+    public void OnDrawGizmos()
     {
-        tilemap.ClearAllTiles();
-        foreach (Transform child in transform)
+        if (grid == null)
+            return;
+
+        int width = grid.GetLength(0);
+        int height = grid.GetLength(1);
+
+        float cellSize = 1f / gridResolution;
+        for (int x = 0; x < width; x++)
         {
-            Destroy(child.gameObject);
-        }
-        enemySpawnPoints.Clear();
-    }
-    void BuildRoomBounds(int width, int height, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity)
-    {
-        for (int x = -1; x <= width; x++)
-        {
-            for (int y = -1; y <= height; y++)
+            for (int y = 0; y < height; y++)
             {
-                Vector3Int tilePos = new Vector3Int(x, y, 0);
-                CreateWalls(x, y, width, height, tilePos);
-                CreateFloor(tilePos);
+                var node = grid[x, y];
+                Vector3 worldPos = new Vector3((x + 0.5f)* cellSize, (y + 0.5f)*cellSize, 0);
+
+                Gizmos.color = node.walkable ? Color.green : Color.red;
+                Gizmos.DrawCube(worldPos, Vector3.one * cellSize * 0.9f);
             }
         }
-        GenerateContents(width, height, enemyDensity, obstacleDensity, oreDensity, chestDensity);
     }
-    void CreateWalls(int x, int y, int width, int height, Vector3Int tilePos)
+*/
+    void BuildNodeGrid()
     {
+        int width = map.GetLength(0);
+        int height = map.GetLength(1);
+        grid = new PathfindingNode[width * gridResolution, height * gridResolution];
 
-        if (x == -1 || y == -1 || x == width || y == height)
+        for (int x = 0; x < width * gridResolution; x++)
         {
-            Vector3 spawnPos = tilemap.CellToWorld(tilePos) + new Vector3(0.5f, 0.5f, 0);
-            Instantiate(wallPrefab[Random.Range(0, wallPrefab.Count())], spawnPos, Quaternion.identity);
+            for (int y = 0; y < height * gridResolution; y++)
+            {
+                int mapX = x / gridResolution;
+                int mapY = y / gridResolution;
+
+                bool walkable = map[mapX, mapY];
+                grid[x, y] = new PathfindingNode(x, y, walkable);
+            }
         }
     }
-    void CreateFloor(Vector3Int tilePos)
+
+    // Cellular map gen
+    public void GenerateRandomMapCellular(int width, int height, float noise, int iterations, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity)
     {
-        TileBase floor = floorPrefab[Random.Range(0, floorPrefab.Length)];
-        tilemap.SetTile(tilePos, floor);
-    }
-    void GenerateContents(int width, int height, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity)
-    {
-        for (int x = 0; x <= width - 1; x++)
+        RandomFill(width, height, noise);
+
+        // simulation steps
+        for (int i = 0; i < iterations; i++)
         {
-            for (int y = 0; y <= height - 1; y++)
+            map = SimulationStep(map, width, height);
+        }
+
+        map = FloodFillLargestRegion(map, width, height); // cleans up the map
+        BuildNodeGrid();
+
+        // generate the actual map
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
             {
-                Vector3Int tilePos = new Vector3Int(x, y, 0);
-                Vector3 spawnPos = new Vector3(x, y, 0) + new Vector3(0.5f, 0.5f, 0);
-                if (tilemap.HasTile(tilePos) && Random.value < enemyDensity) enemySpawnPoints.Add(spawnPos);
-                if (tilemap.HasTile(tilePos) && Random.value < obstacleDensity) Instantiate(obstaclePrefab[Random.Range(0, obstaclePrefab.Count())], spawnPos, Quaternion.identity);
-                if (tilemap.HasTile(tilePos) && Random.value < oreDensity) SpawnOre(spawnPos);
-                if (tilemap.HasTile(tilePos) && Random.value < chestDensity) Instantiate(envLoot[Random.Range(0, envLoot.Length)], spawnPos, Quaternion.identity);
+                Vector3Int pos = new Vector3Int(x, y, 0);
+                if (map[x, y])
+                {
+                    tilemap.SetTile(pos, floorPrefab[Random.Range(0, floorPrefab.Count())]); // create floor
+                    GenerateContents(pos, enemyDensity, obstacleDensity, oreDensity, chestDensity);
+                }
+                else
+                {
+                    Instantiate(wallPrefab[Random.Range(0, wallPrefab.Length)], pos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+                }
             }
         }
         foreach (Vector3 pos in enemySpawnPoints)
@@ -95,10 +136,128 @@ public class RoomGenerator : MonoBehaviour
             enemySpawn.SpawnEnemy(pos);
         }
     }
-    void SpawnOre(Vector3 spawnPos)
+    void RandomFill(int width, int height, float noise)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (x == 0 || y == 0 || x == width - 1 || y == height - 1) map[x, y] = false; // border is always walls
+                else map[x, y] = UnityEngine.Random.value > noise;
+            }
+        }
+    }
+
+    bool[,] SimulationStep(bool[,] oldMap, int width, int height)
+    {
+        Debug.Log("Called sim step");
+        bool[,] newMap = new bool[width, height];
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int neighbors = CountWallNeighbors(oldMap, x, y, width, height);
+                if (neighbors > 4) newMap[x, y] = false; // wall
+                else if (neighbors < 4) newMap[x, y] = true; // floor
+                else newMap[x, y] = oldMap[x, y];
+            }
+        }
+        return newMap;
+    }
+    int CountWallNeighbors(bool[,] map, int x, int y, int width, int height)
+    {
+        int count = 0;
+        for (int nx = x - 1; nx <= x + 1; nx++)
+        {
+            for (int ny = y - 1; ny <= y + 1; ny++)
+            {
+                if (nx == x && ny == y) continue;
+                if (nx < 0 || ny < 0 || nx >= width || ny >= height) count++;
+                else if (!map[nx, ny]) count++; // count the area outside the height and width as walls
+            }
+        }
+        return count;
+    }
+
+    bool[,] FloodFillLargestRegion(bool[,] map, int width, int height)
+    {
+        bool[,] hasVisited = new bool[width, height];
+        List<HashSet<(int, int)>> regions = new();
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (map[x, y] && !hasVisited[x, y])
+                {
+                    HashSet<(int, int)> region = new();
+                    Queue<(int, int)> queue = new();
+                    queue.Enqueue((x, y));
+                    hasVisited[x, y] = true;
+
+                    while (queue.Count > 0)
+                    {
+                        var (cx, cy) = queue.Dequeue();
+                        region.Add((cx, cy));
+
+                        foreach (var (nx, ny) in GetNeighbors(cx, cy, width, height))
+                        {
+                            if (!hasVisited[nx, ny] && map[nx, ny])
+                            {
+                                queue.Enqueue((nx, ny));
+                                hasVisited[nx, ny] = true;
+                            }
+                        }
+                    }
+                    regions.Add(region);
+                }
+
+            }
+        }
+
+        var largestRegion = regions.OrderByDescending(r => r.Count).FirstOrDefault();
+
+        // build the cleaned up map
+        bool[,] cleaned = new bool[width, height];
+        foreach (var (x, y) in largestRegion) cleaned[x, y] = true;
+
+        return cleaned;
+    }
+
+    List<(int, int)> GetNeighbors(int x, int y, int width, int height) {
+        List<(int, int)> neighbors = new();
+        int[] dx = { -1, 1, 0, 0 };
+        int[] dy = { 0, 0, -1, 1 };
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < width && ny < height) neighbors.Add((nx, ny));
+        }
+        return neighbors;
+    }
+
+
+
+
+    // Content generation
+    void GenerateContents(Vector3Int tilePos, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity)
+    {
+        Vector3 spawnPos = new Vector3(tilePos.x, tilePos.y, 0) + new Vector3(0.5f, 0.5f, 0);
+        if (tilemap.HasTile(tilePos) && Random.value < enemyDensity) enemySpawnPoints.Add(spawnPos);
+        if (tilemap.HasTile(tilePos) && Random.value < obstacleDensity) CreateObstacle(tilePos, spawnPos);
+        if (tilemap.HasTile(tilePos) && Random.value < oreDensity) SpawnOre(spawnPos, tilePos);
+        if (tilemap.HasTile(tilePos) && Random.value < chestDensity) Instantiate(envLoot[Random.Range(0, envLoot.Length)], spawnPos, Quaternion.identity);
+    }
+    void CreateObstacle(Vector3 tilePos, Vector3 spawnPos)
+    {
+        Instantiate(obstaclePrefab[Random.Range(0, obstaclePrefab.Count())], spawnPos, Quaternion.identity);
+        MakeUnwalkable(tilePos);
+    }
+    void SpawnOre(Vector3 spawnPos, Vector3 tilePos)
     {
         GameObject prefabToSpawn = GetRandomResourceByRarity(DungeonManager.Instance.getFloor());
         Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+        MakeUnwalkable(tilePos);
     }
     private GameObject GetRandomResourceByRarity(int floorNumber)
     {
@@ -123,6 +282,92 @@ public class RoomGenerator : MonoBehaviour
         return orePrefab[0].prefab; //fallback
     }
 
+    void MakeUnwalkable(Vector3 tilePos)
+    {
+        map[(int)tilePos.x, (int)tilePos.y] = false;
+
+        int mapX = (int)tilePos.x;
+        int mapY = (int)tilePos.y;
+
+        for (int subX = 0; subX < gridResolution; subX++)
+        {
+            for (int subY = 0; subY < gridResolution; subY++)
+            {
+                int gridX = mapX * gridResolution + subX;
+                int gridY = mapY * gridResolution + subY;
+                grid[gridX, gridY].walkable = false;
+            }
+        }
+    }
+
+
+
+
+
+    // ------------------------------------- Misc -------------------------------------
+    public void ClearRoom()
+    {
+        tilemap.ClearAllTiles();
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        enemySpawnPoints.Clear();
+    }
+    // get random floor tile
+    Vector3 GenerateRandomPosition()
+    {
+        List<Vector3Int> floorPositions = new();
+
+        int width = map.GetLength(0);
+        int height = map.GetLength(1);
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (map[x, y]) floorPositions.Add(new Vector3Int(x, y, 0));
+            }
+        }
+
+        if (floorPositions.Count == 0)
+        {
+            Debug.LogError("No valid floor tiles for player spawn!");
+            return Vector3.zero;
+
+        }
+        Vector3Int selectedTile = floorPositions[UnityEngine.Random.Range(0, floorPositions.Count)];
+        return new Vector3(selectedTile.x + 0.5f, selectedTile.y + 0.5f, 0);
+    }
+    
+    /*
+    void BuildRoomBounds(int width, int height, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity)
+    {
+        for (int x = -1; x <= width; x++)
+        {
+            for (int y = -1; y <= height; y++)
+            {
+                Vector3Int tilePos = new Vector3Int(x, y, 0);
+                CreateWalls(x, y, width, height, tilePos);
+                CreateFloor(tilePos);
+            }
+        }
+        // GenerateContents(width, height, enemyDensity, obstacleDensity, oreDensity, chestDensity);
+    }
+    void CreateWalls(int x, int y, int width, int height, Vector3Int tilePos)
+    {
+
+        if (x == -1 || y == -1 || x == width || y == height)
+        {
+            Vector3 spawnPos = tilemap.CellToWorld(tilePos) + new Vector3(0.5f, 0.5f, 0);
+        }
+    }
+    void CreateFloor(Vector3Int tilePos)
+    {
+        TileBase floor = floorPrefab[Random.Range(0, floorPrefab.Length)];
+        tilemap.SetTile(tilePos, floor);
+    }
+    */
     /*
     public Tilemap tilemap;
     public GameObject[] wallTile;

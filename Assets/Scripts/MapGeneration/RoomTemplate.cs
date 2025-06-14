@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 public enum RoomType
 {
@@ -5,6 +6,13 @@ public enum RoomType
     Elite,
     Ore,
     Chest,
+    Boss
+}
+public enum RoomLayout
+{
+    Cellular,
+    Maze,
+    Corridor,
     Boss
 }
 
@@ -17,6 +25,9 @@ public class RoomTemplate : ScriptableObject
     public int maxWidth = 40;
     public int minWidth = 20;
     public RoomType roomType;
+    public RoomLayout roomLayout;
+    public float noise;
+    public int iterations;
     public float maxEnemyDensity = 0.3f;
     public float maxOreDensity = 0.1f;
     public float maxChestDensity = 0.05f;

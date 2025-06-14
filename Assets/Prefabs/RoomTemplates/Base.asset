@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Base
   m_EditorClassIdentifier: 
   templateName: Base
-  maxHeight: 40
-  minHeight: 20
-  maxWidth: 40
-  minWidth: 20
+  maxHeight: 100
+  minHeight: 70
+  maxWidth: 100
+  minWidth: 70
   roomType: 0
+  roomLayout: 0
+  noise: 0.5
+  iterations: 100
   maxEnemyDensity: 0.3
   maxOreDensity: 0.05
   maxChestDensity: 0.05

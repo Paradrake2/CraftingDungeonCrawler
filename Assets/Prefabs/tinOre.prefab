@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3182195768478681882}
   - component: {fileID: 3687718536358163588}
   - component: {fileID: 612427682124720437}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tinOre
   m_TagString: EnvironmentalResource
   m_Icon: {fileID: 0}
