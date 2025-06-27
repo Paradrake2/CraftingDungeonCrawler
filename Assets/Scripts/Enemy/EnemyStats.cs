@@ -18,6 +18,7 @@ public class DropPool {
 }
 public class EnemyStats : MonoBehaviour
 {
+    public EnemyRarity rarity;
     public float maxHealth;
     public float currentHealth;
     public float damage;
@@ -37,6 +38,7 @@ public class EnemyStats : MonoBehaviour
     public List<DropPool> dropPool = new();
     public PlayerStats playerStats;
 
+    public string id;
     void Awake()
     {
         playerStats = FindFirstObjectByType<PlayerStats>();
@@ -98,9 +100,18 @@ public class EnemyStats : MonoBehaviour
     public float getDefense() {
         return defense;
     }
+    public string getId()
+    {
+        return id;
+    }
+    public void SetID(string generatedID)
+    {
+        id = generatedID;
+    }
 
-    public float getXP() {
-        return UnityEngine.Random.Range(minXP,maxXP);
+    public float getXP()
+    {
+        return UnityEngine.Random.Range(minXP, maxXP);
     }
 
     public float getGold() {

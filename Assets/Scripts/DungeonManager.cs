@@ -10,7 +10,7 @@ public class DungeonManager : MonoBehaviour
     public int totalEnemies = 0;
     public int enemiesKilled = 0;
     public int floor;
-
+    public int lastArenaFloor = -10;
     public GameObject portalPrefab;
 
     private void Awake() {
@@ -54,6 +54,7 @@ public class DungeonManager : MonoBehaviour
             }
             GameObject player = Instantiate(playerPrefab, roomGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraMov>().target = player.transform;
+            newFloorOpen.SetActive(false);
             totalEnemies = 0;
             enemiesKilled = 0;
         }

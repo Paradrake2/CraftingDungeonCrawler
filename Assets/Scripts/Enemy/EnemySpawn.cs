@@ -4,7 +4,9 @@ using System.Linq;
 
 public class EnemySpawn : MonoBehaviour
 {
-    private EnemyRarity ChooseRarity() {
+    public static HashSet<string> enemyIDs = new HashSet<string>();
+    private EnemyRarity ChooseRarity()
+    {
         float roll = Random.value;
         if (roll <= 0.005f) return EnemyRarity.Mythical;
         else if (roll <= 0.05f) return EnemyRarity.Legendary;
@@ -14,37 +16,69 @@ public class EnemySpawn : MonoBehaviour
         else return EnemyRarity.Common;
     }
     public List<EnemyArea> areaEnemyLists;
-    public void SpawnEnemy(Vector3 position) {
-        int areaIndex = DungeonManager.Instance.floor/5;
-        areaIndex = Mathf.Clamp(areaIndex,0,areaEnemyLists.Count - 1);
+    public void SpawnEnemy(Vector3 position)
+    {
+        int areaIndex = DungeonManager.Instance.floor / 10;
+        areaIndex = Mathf.Clamp(areaIndex, 0, areaEnemyLists.Count - 1);
         EnemyArea area = areaEnemyLists[areaIndex];
         var rarityGroups = area.rarityGroups;
         EnemyRarity selectedRarity = ChooseRarity();
         var group = rarityGroups.FirstOrDefault(gameObject => gameObject.rarity == selectedRarity);
-        if (group == null) {
+        if (group == null)
+        {
             Debug.LogError("EnemyRarityGroup is null!");
             return;
         }
-        if (group == null || group.enemies.Count == 0) {
+        if (group == null || group.enemies.Count == 0)
+        {
             // Fall back to common enemies
-            Debug.LogWarning("hhhhh");
             group = rarityGroups.FirstOrDefault(g => g.rarity == EnemyRarity.Common);
-            if (group == null || group.enemies.Count == 0) {
+            if (group == null || group.enemies.Count == 0)
+            {
                 Debug.LogWarning("No valid enemies to spawn in area " + areaIndex);
                 return;
             }
         }
         GameObject chosenEnemy = group.enemies[Random.Range(0, group.enemies.Count)];
-        //int attempts = 0;
-        //while (chosenEnemy == null && attempts < 10) {
-        //    chosenEnemy = group.enemies[Random.Range(0, group.enemies.Count)];
-        //    Debug.Log(chosenEnemy);
-        //    attempts++;
-        //}
-        if (chosenEnemy == null) {
+        if (chosenEnemy == null)
+        {
             chosenEnemy = group.enemies[0];
             Debug.LogWarning("was null");
         }
+        chosenEnemy.GetComponent<EnemyStats>().SetID(GenerateID());
         Instantiate(chosenEnemy, position, Quaternion.identity);
+    }
+    string GenerateID()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int idLength = 10;
+        string id;
+        int maxAttempts = 100;
+
+        do
+        {
+            id = new string(Enumerable.Repeat(chars, idLength).Select(s => s[UnityEngine.Random.Range(0, s.Length)]).ToArray());
+            maxAttempts--;
+        }
+        while (IsIDTaken(id) && maxAttempts > 0);
+
+        if (maxAttempts == 0)
+        {
+            Debug.LogError("Failed to generate unique Equipment ID after 100 attempts");
+            return null;
+        }
+
+        RegisterID(id);
+        return id;
+    }
+
+    public static bool IsIDTaken(string id)
+    {
+        return enemyIDs.Contains(id);
+    }
+
+    public static void RegisterID(string id)
+    {
+        enemyIDs.Add(id);
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8737125254827123716}
   - component: {fileID: 8158939100975917835}
   - component: {fileID: 8288517374777222101}
+  - component: {fileID: -7091352293547675778}
   m_Layer: 8
   m_Name: RockObstacle
   m_TagString: Untagged
@@ -143,7 +144,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3197155755884515163}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -161,4 +162,26 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
+--- !u!114 &-7091352293547675778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197155755884515163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06193f0a80e54084f945f842a5a5a677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleHealth: 100
+  maxObstacleHealth: 100
+  sprites:
+  - {fileID: -3008931710335295157, guid: 2fb05c77a03ffe2438191955dbd3a45f, type: 3}
+  - {fileID: 5886226458370301524, guid: ac7748daec68ab448bbe98ed152b45a2, type: 3}
+  - {fileID: -6108872972396419290, guid: b29d75c0a2f40f54999c5089f4e330ce, type: 3}
+  - {fileID: 3127579129140792746, guid: 469acea205845e5418d8a845b14c5699, type: 3}
+  roomGenerator: {fileID: 0}
+  x: 0
+  y: 0

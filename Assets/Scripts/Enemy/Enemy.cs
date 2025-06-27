@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     public EnemyStats enemyStats;
     public PlayerStats playerStats;
     [SerializeField] FloatingHealthBarSlider healthBar;
-    
+    private EnemyMovement movement;
+
     void Start()
     {
         DungeonManager.Instance.RegisterEnemy();
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("PlayerStats instance not found");
         }
+        movement = GetComponent<EnemyMovement>();
     }
     public void TakeDamage(float damage) {
         enemyStats.currentHealth = enemyStats.currentHealth - (float)damage;
@@ -42,6 +44,6 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        
+        movement.UpdateMovement();
     }
 }

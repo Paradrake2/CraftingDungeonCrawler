@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public Transform player;
     public float detectionRadius = 5f;
     public EnemyStats stats;
-    [SerializeField] private Animator animator = null;
+    [SerializeField] protected Animator animator = null;
     public bool isFacingRight = false;
     public bool canMove = true;
     public bool goBackwards = false;
@@ -18,12 +18,14 @@ public class EnemyMovement : MonoBehaviour
     private int currentPathIndex = 0;
     private Vector2Int lastPlayerGridPos;
     public float repathThreshold = 0.1f;
-
     public float colliderMargin = 0.9f;
+    public float standoffDistance = 0f;
+    protected Rigidbody2D rb;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         roomGenerator = FindFirstObjectByType<RoomGenerator>();
+        rb = GetComponent<Rigidbody2D>();
 
         if (GetComponent<BoxCollider2D>() != null)
         {
@@ -93,7 +95,7 @@ public class EnemyMovement : MonoBehaviour
         }
         return circleCollider;
     }
-    bool CanSeePlayer()
+    public bool CanSeePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
         float distance = Vector2.Distance(transform.position, player.position);
@@ -106,24 +108,32 @@ public class EnemyMovement : MonoBehaviour
         Debug.DrawRay(rayOrigin, direction * distance, hit.collider == null ? Color.green : Color.red);
         return hit.collider == null;
     }
+    /*
     void OnDrawGizmos()
-{
-    if (Application.isPlaying && player != null)
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        float distance = Vector2.Distance(transform.position, player.position);
-        Vector2 rayOrigin = (Vector2)transform.position + new Vector2(0f, 0.1f);
+        if (Application.isPlaying && player != null)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            float distance = Vector2.Distance(transform.position, player.position);
+            Vector2 rayOrigin = (Vector2)transform.position + new Vector2(0f, 0.1f);
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(rayOrigin, rayOrigin + direction * distance);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(rayOrigin, rayOrigin + direction * distance);
+        }
     }
-}
-    void Update()
+    */
+    protected bool InRange()
+    {
+        return (GetDistance() <= detectionRadius || (GetDistance() >= detectionRadius && stats.wasHitByPlayer)) && canMove;
+    }
+    protected float GetDistance() {
+        return Vector2.Distance(transform.position, player.position);
+    }
+    public virtual void UpdateMovement()
     {
         if (player == null) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
-        if ((distance <= detectionRadius || (distance >= detectionRadius && stats.wasHitByPlayer)) && canMove)
+        if (InRange())
         {
             if (CanSeePlayer())
             {
@@ -131,18 +141,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                Vector2Int currentPlayerGridPos = GetNearestWalkableCell(player.position);
-
-                // Check if we need to recalculate the path
-                if (currentPath == null || currentPath.Count == 0 || Vector2Int.Distance(currentPlayerGridPos, lastPlayerGridPos) > repathThreshold)
-                {
-                    Vector2Int startPos = WorldToGridPosition(transform.position);
-                    currentPath = FindPath(startPos, currentPlayerGridPos);
-                    currentPathIndex = 0;
-                    lastPlayerGridPos = currentPlayerGridPos;
-                }
-
-                MoveAlongPath();
+                Pathfind();
                 animator.SetBool("isRunning", true);
             }
         }
@@ -152,16 +151,35 @@ public class EnemyMovement : MonoBehaviour
             currentPath = null;
         }
     }
-
-    void BeelineTowardsPlayer()
+    protected void Pathfind()
     {
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * stats.getMovementSpeed() * Time.deltaTime;
+        Vector2Int currentPlayerGridPos = GetNearestWalkableCell(player.position);
 
-        HandleSpriteDirection(direction);
+        // Check if need to recalculate path
+        if (currentPath == null || currentPath.Count == 0 || Vector2Int.Distance(currentPlayerGridPos, lastPlayerGridPos) > repathThreshold)
+        {
+            Vector2Int startPos = WorldToGridPosition(transform.position);
+            if (!IsWalkable(startPos)) return;
+            currentPath = FindPath(startPos, currentPlayerGridPos);
+            currentPathIndex = 0;
+            lastPlayerGridPos = currentPlayerGridPos;
+        }
+
+        MoveAlongPath();
+    }
+    protected Vector3 Direction()
+    {
+        return (player.position - transform.position).normalized;
+    }
+    protected void BeelineTowardsPlayer()
+    {
+        transform.position += Direction() * stats.getMovementSpeed() * Time.deltaTime;
+
+        HandleSpriteDirection(Direction());
+        animator.SetBool("isRunning", true);
     }
 
-    Vector2Int WorldToGridPosition(Vector3 worldPos) {
+    protected Vector2Int WorldToGridPosition(Vector3 worldPos) {
         int x = Mathf.FloorToInt(worldPos.x * roomGenerator.gridResolution);
         int y = Mathf.FloorToInt(worldPos.y * roomGenerator.gridResolution);
         return new Vector2Int(x, y);
@@ -232,14 +250,14 @@ public class EnemyMovement : MonoBehaviour
         return gridPos;
     }
 
-    bool IsWalkable(Vector2Int gridPos)
+    protected bool IsWalkable(Vector2Int gridPos)
     {
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= roomGenerator.grid.GetLength(0) || gridPos.y >= roomGenerator.grid.GetLength(1))
             return false;
 
         return roomGenerator.grid[gridPos.x, gridPos.y].walkable;
     }
-    void MoveAlongPath()
+    protected void MoveAlongPath()
     {
         if (currentPath == null || currentPathIndex >= currentPath.Count) return;
 
@@ -262,7 +280,7 @@ public class EnemyMovement : MonoBehaviour
         HandleSpriteDirection(direction);
     }
 
-    void HandleSpriteDirection(Vector3 direction)
+    protected void HandleSpriteDirection(Vector3 direction)
     {
         if (!goBackwards)
         {

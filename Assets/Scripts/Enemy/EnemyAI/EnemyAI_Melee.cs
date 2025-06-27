@@ -7,7 +7,9 @@ public class EnemyAI_Melee : MonoBehaviour
     public Transform player;
     public float attackCooldown;
     private float lastAttackTime;
+
     public EnemyStats stats;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;

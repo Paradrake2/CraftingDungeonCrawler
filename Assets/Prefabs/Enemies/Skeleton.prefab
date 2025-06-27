@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e494505f384851a47b957599ce1aeb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rarity: 0
   maxHealth: 30
   currentHealth: 30
   damage: 20
@@ -90,6 +91,8 @@ MonoBehaviour:
     items:
     - {fileID: 11400000, guid: 95bd59409ecb0784194b948ae342ca90, type: 2}
   playerStats: {fileID: 0}
+  minFloor: 0
+  maxFloor: 15
 --- !u!114 &6043865382567283765
 MonoBehaviour:
   m_ObjectHideFlags: 0

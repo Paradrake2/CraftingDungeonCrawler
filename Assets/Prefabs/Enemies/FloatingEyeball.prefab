@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e494505f384851a47b957599ce1aeb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rarity: 3
   maxHealth: 120
   currentHealth: 120
   damage: 50
@@ -143,6 +144,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: deee0cd805536484dac618d776cf67fc, type: 2}
     - {fileID: 11400000, guid: d00148e6cc332a14d87c172b513e925a, type: 2}
   playerStats: {fileID: 0}
+  minFloor: 0
+  maxFloor: 25
 --- !u!114 &6649340105269689841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +167,7 @@ MonoBehaviour:
   goBackwards: 0
   roomGenerator: {fileID: 0}
   repathThreshold: 0.1
+  colliderMargin: 0.9
 --- !u!50 &2238704157062885946
 Rigidbody2D:
   serializedVersion: 5
@@ -229,7 +233,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.505, y: 1.155}
+    oldSize: {x: 1.2541667, y: 0.9625}
     newSize: {x: 1.505, y: 1.155}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

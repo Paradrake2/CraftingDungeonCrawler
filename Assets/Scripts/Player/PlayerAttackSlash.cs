@@ -17,20 +17,28 @@ public class PlayerAttackSlash : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
         EnemyStats enemy = other.GetComponent<EnemyStats>();
-        if(enemy == null) return;
-        if (hitEnemies.Contains(enemy)) return;
-        hitEnemies.Add(enemy);
-        other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
-        Vector2 knockbackDirection = other.transform.position - playerTransform.position;
-        float knockbackForce = playerStats.CurrentKnockback * other.GetComponent<EnemyStats>().getKnockbackResistance();
-        other.GetComponent<EnemyStats>()?.ApplyKnockback(knockbackDirection, knockbackForce, knockbackTime);
-        
-        if (other.tag == "EnvironmentalResource") {
+        if (enemy != null)
+        {
+            if (hitEnemies.Contains(enemy)) return;
+            hitEnemies.Add(enemy);
+            other.GetComponent<Enemy>()?.TakeDamage(playerStats.CurrentDamage);
+            Vector2 knockbackDirection = other.transform.position - playerTransform.position;
+            float knockbackForce = playerStats.CurrentKnockback * other.GetComponent<EnemyStats>().getKnockbackResistance();
+            other.GetComponent<EnemyStats>()?.ApplyKnockback(knockbackDirection, knockbackForce, knockbackTime);
+        }
+        if (other.tag == "EnvironmentalResource")
+        {
             Debug.LogWarning("Hit env resource");
         }
-        
+        Obstacle obs = other.GetComponent<Obstacle>();
+        if (obs != null)
+        {
+            obs.ObstacleDamage(playerStats.CurrentDamage);
+            Debug.Log("Hit obstacle");
+        }
     }
 }

@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e494505f384851a47b957599ce1aeb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rarity: 0
   maxHealth: 10
   currentHealth: 10
   damage: 10
@@ -207,6 +208,8 @@ MonoBehaviour:
     items:
     - {fileID: 11400000, guid: 4e1ff8b65794b7a4da910cf7e42ea72c, type: 2}
   playerStats: {fileID: 0}
+  minFloor: 0
+  maxFloor: 10
 --- !u!50 &817514164775422055
 Rigidbody2D:
   serializedVersion: 5

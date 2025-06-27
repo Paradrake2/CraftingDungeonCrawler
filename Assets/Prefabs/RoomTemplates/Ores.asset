@@ -17,13 +17,15 @@ MonoBehaviour:
   minHeight: 30
   maxWidth: 60
   minWidth: 30
-  roomType: 2
+  maxRadius: 40
+  minRadius: 20
+  roomType: 1
   roomLayout: 0
   noise: 0.5
   iterations: 100
-  maxEnemyDensity: 0.1
+  maxEnemyDensity: 0.05
   maxOreDensity: 0.2
-  maxChestDensity: 0.005
+  maxChestDensity: 0.0025
   maxObstacleWeight: 0.12
   minEnemyDensity: 0
   minOreDensity: 0.05

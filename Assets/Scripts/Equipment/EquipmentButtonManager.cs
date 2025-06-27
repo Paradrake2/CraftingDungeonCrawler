@@ -10,6 +10,7 @@ public class EquipmentButtonManager : MonoBehaviour
     
     public void loadDungeon() {
         PlayerStats.Instance.CurrentHealth = PlayerStats.Instance.CurrentMaxHealth;
+        DungeonManager.Instance.floor = 0;
         SceneManager.LoadScene("Dungeon");
     }
     public void loadStats() {
