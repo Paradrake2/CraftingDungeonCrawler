@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: 1.622, z: 0.007026701}
-  m_LocalScale: {x: 0.65267557, y: 0.62972575, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 378491279867758528}
@@ -144,8 +144,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: deee0cd805536484dac618d776cf67fc, type: 2}
     - {fileID: 11400000, guid: d00148e6cc332a14d87c172b513e925a, type: 2}
   playerStats: {fileID: 0}
-  minFloor: 0
-  maxFloor: 25
+  id: 
 --- !u!114 &6649340105269689841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +167,7 @@ MonoBehaviour:
   roomGenerator: {fileID: 0}
   repathThreshold: 0.1
   colliderMargin: 0.9
+  standoffDistance: 0
 --- !u!50 &2238704157062885946
 Rigidbody2D:
   serializedVersion: 5
@@ -239,7 +239,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.505, y: 1.155}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &8063664586365023827
 Animator:

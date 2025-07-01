@@ -38,3 +38,10 @@ MonoBehaviour:
   projectileSpeed: 0
   projectilePrefab: {fileID: 0}
   isUnlocked: 0
+  baseStats:
+  - statType: 0
+    flatAmount: 40
+    percentAmount: 0
+  - statType: 1
+    flatAmount: 5
+    percentAmount: 0

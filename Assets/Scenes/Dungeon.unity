@@ -3148,6 +3148,14 @@ PrefabInstance:
       propertyPath: roomGenerator
       value: 
       objectReference: {fileID: 1009053736}
+    - target: {fileID: 1689630940779653124, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689630940779653124, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624853735603735889, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7761468
@@ -3191,6 +3199,10 @@ PrefabInstance:
     - target: {fileID: 4330395612793383251, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
       propertyPath: m_Name
       value: RedBull
+      objectReference: {fileID: 0}
+    - target: {fileID: 6966671220303841873, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3370,9 +3382,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4330395612793383251, guid: 5e0dba49b3c5d934f9dc3f8558f54f93, type: 3}
     - target: {fileID: 8617744684378401769, guid: 0306e5d1c3efa264da58c4eaa11b4d0e, type: 3}
-      propertyPath: 'areaEnemyLists.Array.data[0].rarityGroups.Array.data[3].enemies.Array.data[1]'
+      propertyPath: 'areaEnemyLists.Array.data[0].rarityGroups.Array.data[3].enemies.Array.data[0]'
       value: 
       objectReference: {fileID: 6302251860479150257, guid: 2945f4258875f164f811567ad2eca782, type: 3}
+    - target: {fileID: 8617744684378401769, guid: 0306e5d1c3efa264da58c4eaa11b4d0e, type: 3}
+      propertyPath: 'areaEnemyLists.Array.data[0].rarityGroups.Array.data[3].enemies.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4005505753972627943, guid: 91a0f0f57cbed8c46a6667f3f53597a8, type: 3}
     - target: {fileID: 8617744684378401769, guid: 0306e5d1c3efa264da58c4eaa11b4d0e, type: 3}
       propertyPath: 'areaEnemyLists.Array.data[1].rarityGroups.Array.data[0].enemies.Array.data[0]'
       value: 

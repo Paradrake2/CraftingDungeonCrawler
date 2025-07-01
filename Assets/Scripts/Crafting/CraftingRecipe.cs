@@ -46,7 +46,7 @@ public class CraftingRecipe : ScriptableObject
     public float projectileSpeed = 0f;
     public GameObject projectilePrefab;
     public bool isUnlocked = false;
-
+    public List<StatModifier> baseStats = new();
     public string getRecipeId()
     {
         return recipeId;

@@ -30,7 +30,8 @@ public class SkillTreeManager : MonoBehaviour
                 prerequisites = new List<string>(skill.prerequisites),
                 addedStats = skill.addedStats,
                 recipeUnlocks = skill.recipeUnlocks,
-                acquired = CheckIfAcquired(skill.nodeID)
+                acquired = CheckIfAcquired(skill.nodeID),
+                description = skill.description
             };
             skillLookup[skill.nodeID] = copy;
         }
@@ -83,7 +84,7 @@ public class SkillTreeManager : MonoBehaviour
             {
                 UnlockRecipes(recipe);
             }
-            SkillTreeUI.Instance.BringUpUnlockedRecipes(thisNode.recipeUnlocks);
+            //SkillTreeUI.Instance.BringUpUnlockedRecipes(thisNode.recipeUnlocks);
         }
 
         if (thisNode.addedStats != null)
@@ -92,7 +93,7 @@ public class SkillTreeManager : MonoBehaviour
             {
                 AddSkillStats(stat.statType, stat.value);
             }
-            SkillTreeUI.Instance.ShowAddedStats();
+            //SkillTreeUI.Instance.ShowAddedStats();
             playerStats.AddBonusStats();
         }
         playerStats.acquiredSkillIDs.Add(skillID);

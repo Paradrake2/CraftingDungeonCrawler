@@ -15,7 +15,7 @@ MonoBehaviour:
   skills:
   - nodeID: healthNode1
     nodeType: 
-    description: 
+    description: Adds 20 health
     icon: {fileID: -1269097992975305616, guid: c07787f6c0cefab46849627699712e29, type: 3}
     prerequisites: []
     unlocked: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
     acquired: 1
   - nodeID: damageNode1
     nodeType: 
-    description: 
+    description: Adds 5 damage
     icon: {fileID: 551179015348185998, guid: 5dc9a873a8531334bb560fc141a85a12, type: 3}
     prerequisites:
     - healthNode1
@@ -38,7 +38,7 @@ MonoBehaviour:
     acquired: 0
   - nodeID: defenseNode1
     nodeType: 
-    description: 
+    description: Adds 5 defense
     icon: {fileID: -1113770219816995942, guid: 93c057e1b7cf594418f053a2c3d6bf27, type: 3}
     prerequisites:
     - healthNode1
@@ -48,9 +48,9 @@ MonoBehaviour:
     - statType: 1
       value: 5
     acquired: 0
-  - nodeID: craftingRecipe1
+  - nodeID: highHelmetUnlock
     nodeType: 
-    description: 
+    description: Unlocks high helmet recipe
     icon: {fileID: 6250844062588926590, guid: 2d4eb06e69a4183458573b11f958322c, type: 3}
     prerequisites:
     - healthNode1
@@ -61,7 +61,7 @@ MonoBehaviour:
     acquired: 0
   - nodeID: healthNode2
     nodeType: 
-    description: 
+    description: Adds 30 health
     icon: {fileID: -1269097992975305616, guid: c07787f6c0cefab46849627699712e29, type: 3}
     prerequisites:
     - healthNode1
@@ -70,4 +70,30 @@ MonoBehaviour:
     addedStats:
     - statType: 0
       value: 30
+    acquired: 0
+  - nodeID: defenseNode2
+    nodeType: statNide
+    description: Adds 5 defense
+    icon: {fileID: -1113770219816995942, guid: 93c057e1b7cf594418f053a2c3d6bf27, type: 3}
+    prerequisites:
+    - defenseNode1
+    unlocked: 1
+    recipeUnlocks: []
+    addedStats:
+    - statType: 1
+      value: 5
+    acquired: 0
+  - nodeID: busterSwordUnlock
+    nodeType: recipeUnlock
+    description: Unlocks the buster sword recipe
+    icon: {fileID: 6250844062588926590, guid: 2d4eb06e69a4183458573b11f958322c, type: 3}
+    prerequisites:
+    - damageNode1
+    - highHelmetUnlock
+    unlocked: 1
+    recipeUnlocks:
+    - {fileID: 11400000, guid: 3e46d371bfb32e1418f30e7765b93b56, type: 2}
+    addedStats:
+    - statType: 1
+      value: 5
     acquired: 0

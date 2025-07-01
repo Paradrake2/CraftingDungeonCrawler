@@ -10,32 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
-  m_Name: BasicSword
+  m_Name: BusterSword
   m_EditorClassIdentifier: 
-  recipeId: basicSword
-  recipeName: baseSword
+  recipeId: busterSword
+  recipeName: busterSword
   slot: 5
   slotCategory: 1
   requirements:
   - requiredTag: blade
-    quantityRequired: 1
-  - requiredTag: guard
-    quantityRequired: 1
+    quantityRequired: 4
   - requiredTag: handle
-    quantityRequired: 1
+    quantityRequired: 2
+  - requiredTag: ingot
+    quantityRequired: 4
   parts: []
-  icon: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
-  baseImage: {fileID: 3807049566699419493, guid: d432c025e62b70d4da4270fb8b4a4ca9, type: 3}
+  icon: {fileID: -4198487502870699706, guid: dfb129b7e63f4e243875b92b341ba18d, type: 3}
+  baseImage: {fileID: -4198487502870699706, guid: dfb129b7e63f4e243875b92b341ba18d, type: 3}
   visualLayers: []
-  visualPrefab: {fileID: 4257026382633524170, guid: 707f9f54374d5ce4c84a2db4d94a507d, type: 3}
-  augmentSlots: 0
+  visualPrefab: {fileID: 891107227879783641, guid: 3f7bb343d49f1324997b6fd75d6b4beb, type: 3}
+  augmentSlots: 5
   requiredLevel: 0
-  recipeTier: 0
+  recipeTier: 2
   weaponType: 0
   attackRange: 0
   attackSpeed: 1
   manaCost: 0
   projectileSpeed: 0
   projectilePrefab: {fileID: 0}
-  isUnlocked: 1
-  baseStats: []
+  isUnlocked: 0
+  baseStats:
+  - statType: 2
+    flatAmount: 15
+    percentAmount: 0.2

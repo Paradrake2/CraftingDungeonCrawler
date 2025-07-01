@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Collections;
+
 public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Transform recipeListParent;
@@ -31,10 +32,24 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public List<Items> lastUsedIngredients = new();
     private bool isHolding = false;
     public float holdInterval = 0.2f;
+
+    public TMP_InputField searchInput;
+    private Coroutine debounceCoroutine;
+
     void Start()
     {
         refineButton.onClick.AddListener(RefineItem);
         inventorySystem = FindFirstObjectByType<InventorySystem>();
+        searchInput.onValueChanged.AddListener((text) => {
+            if (debounceCoroutine != null) StopCoroutine(debounceCoroutine);
+            debounceCoroutine = StartCoroutine(DelayedFilter(text));
+        });
+        GenerateRecipeButtons();
+    }
+
+    private IEnumerator DelayedFilter(string text)
+    {
+        yield return null;
         GenerateRecipeButtons();
     }
 
@@ -43,6 +58,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
         isHolding = true;
         StartCoroutine(RefineLoop());
     }
+
     private IEnumerator RefineLoop()
     {
         while (isHolding)
@@ -51,6 +67,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             yield return new WaitForSeconds(holdInterval);
         }
     }
+
     void RefineItem()
     {
         if (currentIngredients.Count != selectedRecipe.requirements.Sum(req => req.quantityRequired)) return;
@@ -81,12 +98,15 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             TryAutoAssignLastUsedIngredients();
         }
     }
-    private IEnumerator CreatedItemRoutine() {
+
+    private IEnumerator CreatedItemRoutine()
+    {
         previewText.text = $"{selectedRecipe.outputItem.itemName} created!";
         previewText.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         previewText.gameObject.SetActive(false);
     }
+
     void TryAutoAssignLastUsedIngredients()
     {
         foreach (var item in lastUsedIngredients)
@@ -97,15 +117,23 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             }
         }
     }
+
     public void GenerateRecipeButtons()
     {
         HoverNameUI.Instance.Hide();
         RefineRecipe[] allRecipes = Resources.LoadAll<RefineRecipe>("RefineRecipe");
         foreach (Transform child in recipeListParent) Destroy(child.gameObject);
+
+        string query = searchInput.text.ToLower();
+
         foreach (var recipe in allRecipes)
         {
+            bool matchesSearch = string.IsNullOrEmpty(query) || (!string.IsNullOrEmpty(recipe.recipeName) && recipe.recipeName.ToLower().Contains(query)) ||
+            (recipe.GetTags() != null && recipe.GetTags().Any(tag => !string.IsNullOrEmpty(tag) && tag.ToLower().Contains(query)));
+
+            if (!matchesSearch) continue;
+
             bool canCraftNow = true;
-#pragma warning disable CS0168 // Variable is declared but never used
             try
             {
                 foreach (var req in recipe.requirements)
@@ -125,40 +153,27 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
                     btn.GetComponentInChildren<Image>().sprite = recipe.icon;
 
-                    // Triggers
-                    var enter = new EventTrigger.Entry
-                    {
-                        eventID = EventTriggerType.PointerEnter
-                    };
+                    var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
                     enter.callback.AddListener((eventData) => { HoverNameUI.Instance.Show(recipe.outputItem.itemName); });
                     enter.callback.AddListener((eventData) => { craftingUIManager.MaterialStatShow(recipe.outputItem); });
                     eventTrigger.triggers.Add(enter);
 
-                    var exit = new EventTrigger.Entry
-                    {
-                        eventID = EventTriggerType.PointerExit
-                    };
+                    var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
                     exit.callback.AddListener((eventData) => { HoverNameUI.Instance.Hide(); });
                     exit.callback.AddListener((eventData) => { craftingUIManager.MaterialStatHide(); });
                     eventTrigger.triggers.Add(exit);
 
-                    btn.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        SelectRecipe(recipe);
-                    });
-
+                    btn.GetComponent<Button>().onClick.AddListener(() => { SelectRecipe(recipe); });
                 }
             }
             catch (NullReferenceException e)
             {
-                //Debug.LogError(e.StackTrace);
+                // Safely ignore malformed recipes
             }
-#pragma warning restore CS0168 // Variable is declared but never used
-
-
         }
+
         craftingUIManager.PopulateInventory(0);
-        craftingUIManager.recipeInfoText.text = ""; // clear recipe info text
+        craftingUIManager.recipeInfoText.text = "";
     }
 
     void SelectRecipe(RefineRecipe recipe)
@@ -178,8 +193,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
     void SetupRecipeSlots()
     {
         HoverNameUI.Instance.Hide();
-        foreach (Transform child in recipeButtonParent)
-            Destroy(child.gameObject);
+        foreach (Transform child in recipeButtonParent) Destroy(child.gameObject);
 
         recipeSlotUIs.Clear();
         if (selectedRecipe == null) return;
@@ -194,9 +208,12 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 recipeSlotUIs.Add(slot);
             }
         }
-        Debug.LogWarning(selectedRecipe.GetTags());
-        if(selectedRecipe != null) craftingUIManager.DisplayShader(selectedRecipe.GetTags(), 0);
-        craftingUIManager.PopulateInventory(0,selectedRecipe.GetTags());
+
+        if (selectedRecipe != null)
+        {
+            craftingUIManager.DisplayShader(selectedRecipe.GetTags(), 0);
+            craftingUIManager.PopulateInventory(0, selectedRecipe.GetTags());
+        }
     }
 
     public void TryAddIngredient(Items item)
@@ -211,13 +228,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 {
                     int alreadyUsed = currentIngredients.Count(i => i.itemName == item.itemName);
                     int available = InventorySystem.Instance.GetQuantity(item.itemName);
-                    if (alreadyUsed >= available)
-                    {
-                        Debug.Log(alreadyUsed);
-                        Debug.Log(available);
-                        Debug.Log($"Cannot add more {item.itemName}!");
-                        continue;
-                    }
+                    if (alreadyUsed >= available) continue;
 
                     currentIngredients.Add(item);
                     if (!assignedCounts.ContainsKey(tag)) assignedCounts[tag] = 0;
@@ -247,143 +258,4 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         isHolding = false;
     }
-
-
-    /*
-    void UpdateIngredientPreview() {
-        if (selectedRecipe == null) {
-            ingredientText.text = "Select a refined item.";
-            itemIcon.sprite = null;
-            return;
-        }
-        itemIcon.sprite = selectedRecipe.icon;
-
-        string display = "<b>Requires:</b>\n";
-        foreach (var req in selectedRecipe.requirements)
-        {
-            display += $"- {req.requiredTag} x{req.quantityRequired}";
-        }
-        string statDisplay = "Stats: " + TryAddStat(selectedRefinedItem);
-
-        statstext.text = statDisplay;
-        ingredientText.text = display;
-    }
-    string TryAddStat( Items refinedItem) {
-        string statDisplay = "";
-        if(refinedItem.flatMaxHP != 0) statDisplay += "flat HP: " + refinedItem.flatMaxHP + ", ";
-        if(refinedItem.HPMult != 0) statDisplay += "HP mult: " + refinedItem.HPMult + ", ";
-        if(refinedItem.flatDamage != 0) statDisplay += "flat damage: " + refinedItem.flatDamage + ", ";
-        if(refinedItem.damageMult != 0) statDisplay += "damage mult: " + refinedItem.damageMult + ", ";
-        if(refinedItem.flatDefense != 0) statDisplay += "flat defense: " + refinedItem.flatDefense + ", ";
-        if(refinedItem.defenseMult != 0) statDisplay += "defense mult: " + refinedItem.defenseMult + ", ";
-        if(refinedItem.dropRateIncrease != 0) statDisplay += "drop rate increase: " + refinedItem.dropRateIncrease + ", ";
-        if(refinedItem.goldGainIncrease != 0) statDisplay += "gold gain increase: " + refinedItem.goldGainIncrease + ", ";
-        return statDisplay;
-        
-    }
-    void Start()
-    {
-        
-        GenerateRecipeList();
-        refineButton.onClick.AddListener(() => {
-            Debug.Log(selectedRefinedItem);
-            if (selectedRefinedItem != null) {
-                RefiningManager.Instance.Refine(selectedRefinedItem);
-                UpdateIngredientPreview();
-            }
-        });
-        
-
-    }
-    public void RefreshRefineUI()
-    {
-        foreach (Transform child in recipeListParent) Destroy(child.gameObject);
-        GenerateRecipeList();
-        CraftingUIManager.Instance.selectedRecipe = null;
-        CraftingUIManager.Instance.SelectRecipe(null);
-    }
-    bool CanRefine() {
-        return false;
-    }
-    void GenerateRecipeList() {
-        Items[] allItems = Resources.LoadAll<Items>("");
-        foreach(Items item in allItems) {
-            if (item.isCraftable && item.isCraftingMaterial) {
-                bool canCraftNow = true;
-                for (int i = 0; i < item.requiredMaterials.Count; i++) {
-                    var reqMat = item.requiredMaterials[i];
-                    int needed = item.requiredQuantities[i];
-                    if (!InventorySystem.Instance.HasItem(reqMat.ID, needed)) {
-                        canCraftNow = false;
-                        break;
-                    }
-                }
-                bool hasCraftedBefore = InventorySystem.Instance.discoveredRefinedItems.Contains(item.ID);
-                if (canCraftNow || hasCraftedBefore) {
-                    var btn = Instantiate(recipeButtonPrefab, recipeListParent);
-                    var eventTrigger = btn.AddComponent<EventTrigger>();
-                    
-                    // on pointer enter
-                    EventTrigger.Entry enter = new EventTrigger.Entry {eventID = EventTriggerType.PointerEnter};
-                    enter.callback.AddListener((eventData) => {HoverNameUI.Instance.Show(item.itemName);});
-                    eventTrigger.triggers.Add(enter);
-
-                    // on pointer exit
-                    EventTrigger.Entry exit = new EventTrigger.Entry {eventID = EventTriggerType.PointerExit};
-                    exit.callback.AddListener((eventData) => {HoverNameUI.Instance.Hide();});
-                    eventTrigger.triggers.Add(exit);
-
-                    btn.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
-                    var icon = btn.transform.Find("Icon")?.GetComponent<Image>();
-                    if (icon != null) {
-                        icon.sprite = item.icon;
-                        icon.preserveAspect = true;
-                    } 
-
-                    btn.GetComponent<Button>().onClick.AddListener(() =>{
-                        selectedRefinedItem = item;
-                        UpdateIngredientPreview();
-                    });
-                }
-            }
-        }
-    }
-    void UpdateIngredientPreview() {
-        if (selectedRefinedItem == null) {
-            ingredientText.text = "Select a refined item.";
-            itemIcon.sprite = null;
-            return;
-        }
-        itemIcon.sprite = selectedRefinedItem.icon;
-
-        string display = "<b>Requires:</b>\n";
-        for (int i = 0; i< selectedRefinedItem.requiredMaterials.Count; i++) {
-            if (i >0) display += $", ";
-            var mat = selectedRefinedItem.requiredMaterials[i];
-            var needed = selectedRefinedItem.requiredQuantities[i];
-            display += $"{mat.itemName} x{needed}";
-        }
-        string statDisplay = "Stats: " + TryAddStat(selectedRefinedItem);
-
-        statstext.text = statDisplay;
-        ingredientText.text = display;
-    }
-    string TryAddStat( Items refinedItem) {
-        string statDisplay = "";
-        if(refinedItem.flatMaxHP != 0) statDisplay += "flat HP: " + refinedItem.flatMaxHP + ", ";
-        if(refinedItem.HPMult != 0) statDisplay += "HP mult: " + refinedItem.HPMult + ", ";
-        if(refinedItem.flatDamage != 0) statDisplay += "flat damage: " + refinedItem.flatDamage + ", ";
-        if(refinedItem.damageMult != 0) statDisplay += "damage mult: " + refinedItem.damageMult + ", ";
-        if(refinedItem.flatDefense != 0) statDisplay += "flat defense: " + refinedItem.flatDefense + ", ";
-        if(refinedItem.defenseMult != 0) statDisplay += "defense mult: " + refinedItem.defenseMult + ", ";
-        if(refinedItem.dropRateIncrease != 0) statDisplay += "drop rate increase: " + refinedItem.dropRateIncrease + ", ";
-        if(refinedItem.goldGainIncrease != 0) statDisplay += "gold gain increase: " + refinedItem.goldGainIncrease + ", ";
-        return statDisplay;
-        
-    }
-    void Update()
-    {
-        
-    }
-    */
 }
