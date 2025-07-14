@@ -20,12 +20,12 @@ MonoBehaviour:
   maxStackSize: 999
   value: 0
   Rarity: 0
-  tier: 4
+  tier: 5
   flatDamage: 10
   damageMult: 0.05
-  flatDefense: 20
+  flatDefense: 15
   defenseMult: 0.1
-  flatMaxHP: 50
+  flatMaxHP: 80
   HPMult: 0.1
   flatPureDamage: 0
   pureDamageMult: 0
@@ -45,7 +45,8 @@ MonoBehaviour:
   dashNumber: 0
   tags:
   - plate
-  - plateT4
+  - mythrilPlate
+  - mythril
   ID: mythrilPlate
   isCraftingMaterial: 1
   isCraftable: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: redHidePlate
+  m_EditorClassIdentifier: 
+  recipeName: redHidePlate
+  tier: 3
+  icon: {fileID: 5461130654924931198, guid: 834fc5d9d619bec4b87f67f821e0baab, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: ingot
+    quantityRequired: 4
+  - requiredTag: redBullHide
+    quantityRequired: 3
+  outputItem: {fileID: 11400000, guid: 32b8b1e0160ee6f4283d0ef8ddf67cf8, type: 2}

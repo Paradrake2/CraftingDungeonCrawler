@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983902e0d7d6d784e9a6ba4649b1a7d5, type: 3}
+  m_Name: HornedHelmet
+  m_EditorClassIdentifier: 
+  recipeId: HornedHelmet
+  recipeName: HornedHelmet
+  slot: 4
+  slotCategory: 0
+  requirements:
+  - requiredTag: horn
+    quantityRequired: 2
+  - requiredTag: plate
+    quantityRequired: 6
+  - requiredTag: binding
+    quantityRequired: 4
+  - requiredTag: leather
+    quantityRequired: 1
+  parts: []
+  icon: {fileID: -7181159224302089951, guid: f84ea43f455af2e4f9ef58689c6d39d2, type: 3}
+  baseImage: {fileID: -7181159224302089951, guid: f84ea43f455af2e4f9ef58689c6d39d2, type: 3}
+  visualLayers: []
+  visualPrefab: {fileID: 3899277528357854782, guid: d25726a1fa5872a4eb72c27937c3b04b, type: 3}
+  augmentSlots: 5
+  requiredLevel: 5
+  recipeTier: 2
+  weaponType: 3
+  attackRange: 0
+  attackSpeed: 1
+  manaCost: 0
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}
+  isUnlocked: 0
+  baseStats:
+  - statType: 0
+    flatAmount: 60
+    percentAmount: 0.05
+  - statType: 1
+    flatAmount: 10
+    percentAmount: 0.05
+  - statType: 2
+    flatAmount: 8
+    percentAmount: 0.03

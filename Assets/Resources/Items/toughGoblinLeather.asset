@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: toughGoblinLeather
   icon: {fileID: 8166692784935592233, guid: b734925336932d14e8e03c022b09c852, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.039174695, g: 0.1792453, b: 0, a: 0}
   itemType: 2
   maxStackSize: 99
   value: 3
@@ -23,9 +23,9 @@ MonoBehaviour:
   tier: 1.5
   flatDamage: 0
   damageMult: 0
-  flatDefense: 3
+  flatDefense: 4
   defenseMult: 0.03
-  flatMaxHP: 5
+  flatMaxHP: 13
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0

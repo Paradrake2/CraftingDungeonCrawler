@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: bronzeIngot
   m_EditorClassIdentifier: 
   recipeName: bronzeIngot
+  tier: 0
   icon: {fileID: 8608255882788020853, guid: 26b3e4a229a875a4a9a40bc71e021e5a, type: 3}
   outputQuantity: 1
   requirements:
   - requiredTag: copperIngot
-    quantityRequired: 1
+    quantityRequired: 9
   - requiredTag: tinIngot
     quantityRequired: 1
   outputItem: {fileID: 11400000, guid: 552928913b9dbf74b9988a8f06751390, type: 2}

@@ -281,8 +281,18 @@ public class RoomGenerator : MonoBehaviour
         BuildNodeGrid();
         foreach (Vector3 pos in enemySpawnPoints)
         {
-            enemySpawn.SpawnEnemy(pos);
+            Vector3Int cellPos = tilemap.WorldToCell(pos);
+            TileBase tile = tilemap.GetTile(cellPos);
+
+            if (tile != null && IsInsideFloorRadius(cellPos, radius)) enemySpawn.SpawnEnemy(pos);
         }
+    }
+
+    bool IsInsideFloorRadius(Vector3Int cellPos, int radius)
+    {
+        Vector2 center = Vector2.zero;
+        float distSq = (new Vector2(cellPos.x, cellPos.y) - center).sqrMagnitude;
+        return distSq <= (radius -1) * (radius - 1);
     }
 
 

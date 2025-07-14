@@ -159,7 +159,7 @@ public class CraftingUIManager : MonoBehaviour
         
 
     }
-    
+
     public void MaterialStatShow(Items item)
     {
         if (item.flatDamage != 0) recipeInfoText.text += "Flat Damage: " + item.flatDamage + "\n";
@@ -172,6 +172,7 @@ public class CraftingUIManager : MonoBehaviour
         if (item.pureDamageMult != 0) recipeInfoText.text += "Pure Damage Mult: " + item.pureDamageMult + "\n";
         if (item.flatMaxMana != 0) recipeInfoText.text += "Flat Max Mana: " + item.flatMaxMana + "\n";
         if (item.maxManaMult != 0) recipeInfoText.text += "Max Mana Mult: " + item.maxManaMult + "\n";
+        recipeInfoText.text += "Tier: " + item.tier + "\n";
     }
     public void MaterialStatHide()
     {
@@ -271,6 +272,7 @@ public class CraftingUIManager : MonoBehaviour
             {
                 recipeInfoText.text += $"- {req.requiredTag}: x {req.quantityRequired}\n";
             }
+            recipeInfoText.text += $"Tier: {recipe.recipeTier}";
         }
         else
             recipeInfoText.text = "";

@@ -23,11 +23,11 @@ MonoBehaviour:
   roomLayout: 1
   noise: 0
   iterations: 0
-  maxEnemyDensity: 0.2
+  maxEnemyDensity: 0.17
   maxOreDensity: 0
   maxChestDensity: 0
   maxObstacleWeight: 0
-  minEnemyDensity: 0.2
+  minEnemyDensity: 0.14
   minOreDensity: 0
   minChestDensity: 0
   minObstacleWeight: 0

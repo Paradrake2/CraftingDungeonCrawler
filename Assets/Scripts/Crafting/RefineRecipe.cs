@@ -6,6 +6,7 @@ using UnityEngine;
 public class RefineRecipe : ScriptableObject
 {
     public string recipeName;
+    public float tier;
     public Sprite icon;
     public int outputQuantity = 1;
     [Header("Ingredient tags")]

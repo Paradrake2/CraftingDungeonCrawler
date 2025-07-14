@@ -58,25 +58,16 @@ public class EnemyAI_Ranged : MonoBehaviour
                 Attack();
                 lastAttackTime = attackCooldown;
             }
-            MoveTowardsPlayer();
+            //MoveTowardsPlayer();
             
         } else if (distance <= standOffRadius)
         {
-            MoveAwayFromPlayer();
+            //MoveAwayFromPlayer();
         }
     }
     private Vector3 getPlayerDirection() {
         Vector3 direction = (player.position - transform.position).normalized;
         return direction;
     }
-    void MoveTowardsPlayer()
-    {
-        transform.position += getPlayerDirection() * stats.getMovementSpeed() * Time.deltaTime;
-        Vector2 direction = player.position - transform.position;
-        if (direction.x > 0) transform.localScale = new Vector3(1, 1, 1);
-        else if (direction.x < 0) transform.localScale = new Vector3(-1, 1, 1);
-    }
-    void MoveAwayFromPlayer() {
-        transform.position -= getPlayerDirection() * (stats.getMovementSpeed() * 0.5f) *Time.deltaTime;
-    }
+
 }

@@ -141,8 +141,12 @@ MonoBehaviour:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: a1c5c952eba026d4cb68d1e73c00e40d, type: 2}
+    - {fileID: 11400000, guid: d7dced863fea2cb409c39e03714e7ecd, type: 2}
+  - rarity: 1
+    items:
+    - {fileID: 11400000, guid: 2cbb07a283d892a429779556687be113, type: 2}
   playerStats: {fileID: 0}
-  id: WLOROP3TU2
+  id: 
 --- !u!50 &7089704690079121768
 Rigidbody2D:
   serializedVersion: 5

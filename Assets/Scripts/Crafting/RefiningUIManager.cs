@@ -134,6 +134,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             if (!matchesSearch) continue;
 
             bool canCraftNow = true;
+#pragma warning disable CS0168 // Variable is declared but never used
             try
             {
                 foreach (var req in recipe.requirements)
@@ -170,6 +171,7 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             {
                 // Safely ignore malformed recipes
             }
+#pragma warning restore CS0168 // Variable is declared but never used
         }
 
         craftingUIManager.PopulateInventory(0);
@@ -223,6 +225,11 @@ public class RefiningUIManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
             var req = selectedRecipe.requirements.FirstOrDefault(r => r.requiredTag == tag);
             if (req != null)
             {
+                if (item.tier < selectedRecipe.tier)
+                {
+                    // pop up warning that item isnt high enough tier
+                    continue;
+                }
                 int alreadyAssigned = assignedCounts.ContainsKey(tag) ? assignedCounts[tag] : 0;
                 if (alreadyAssigned < req.quantityRequired)
                 {

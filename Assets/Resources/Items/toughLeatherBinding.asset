@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: toughLeatherBinding
   icon: {fileID: -5481000624653672433, guid: f8b7839fabcd28f4fb4563869c46f2a9, type: 3}
   description: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.18867922, g: 0, b: 0, a: 0}
   itemType: 2
   maxStackSize: 999
   value: 0

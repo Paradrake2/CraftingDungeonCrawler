@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
+  m_Name: steelGuard
+  m_EditorClassIdentifier: 
+  recipeName: steelGuard
+  tier: 0
+  icon: {fileID: 4093182717154780154, guid: 5f765cf000890514c886ea91b2d436a8, type: 3}
+  outputQuantity: 1
+  requirements:
+  - requiredTag: steelIngot
+    quantityRequired: 2
+  outputItem: {fileID: 11400000, guid: fa279364b0a175b458c3f79f73d4b3ed, type: 2}

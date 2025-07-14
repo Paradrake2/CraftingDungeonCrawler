@@ -97,3 +97,16 @@ MonoBehaviour:
     - statType: 1
       value: 5
     acquired: 0
+  - nodeID: hornedHelmetUnlock
+    nodeType: recipeUnlock
+    description: Unlocks the horned helmet recipe
+    icon: {fileID: 6250844062588926590, guid: 2d4eb06e69a4183458573b11f958322c, type: 3}
+    prerequisites:
+    - busterSwordUnlock
+    unlocked: 1
+    recipeUnlocks:
+    - {fileID: 11400000, guid: b8e84205222a63545b8e47e1481b05b0, type: 2}
+    addedStats:
+    - statType: 1
+      value: 5
+    acquired: 0
