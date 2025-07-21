@@ -12,9 +12,16 @@ public enum EnemyRarity {
     Boss
 }
 [System.Serializable]
-public class DropPool {
+public class DropPool
+{
     public ItemRarity rarity;
     public List<Items> items;
+}
+public enum EnemyType
+{
+    Normal,
+    Elite,
+    Boss
 }
 public class EnemyStats : MonoBehaviour
 {
