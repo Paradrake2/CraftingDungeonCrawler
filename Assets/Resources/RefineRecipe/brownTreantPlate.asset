@@ -10,17 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
-  m_Name: basicHandle
+  m_Name: brownTreantPlate
   m_EditorClassIdentifier: 
-  recipeName: basicHandle
-  tier: 0
-  icon: {fileID: 8963810242902855193, guid: adc34796754f0a544a14e773673a23c4, type: 3}
+  recipeName: brownTreantPlate
+  tier: 2
+  icon: {fileID: 1168340564044223947, guid: 96aa8f41446683243a2a263e519d466d, type: 3}
   outputQuantity: 1
   requirements:
-  - requiredTag: leather
-    quantityRequired: 1
-  - requiredTag: handle
-    quantityRequired: 1
-  - requiredTag: ingot
-    quantityRequired: 1
-  outputItem: {fileID: 11400000, guid: 8052c4aec1cad71439f853e75e7af52a, type: 2}
+  - requiredTag: brownTreantLog
+    quantityRequired: 3
+  outputItem: {fileID: 11400000, guid: a66157f9623732a4bafb17d25d2ad6c7, type: 2}

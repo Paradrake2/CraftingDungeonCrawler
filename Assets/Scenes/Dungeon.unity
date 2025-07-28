@@ -1216,6 +1216,7 @@ MonoBehaviour:
   - {fileID: 100658269907066471, guid: d9a8000754f37464a85343cd1c8b3e3f, type: 3}
   obstaclePrefab:
   - {fileID: 3197155755884515163, guid: 93f1b5efd1ed4af4e80fabb2a39aec45, type: 3}
+  - {fileID: 2969454583625835697, guid: 8cd03526ccdb82745b28593077012ff6, type: 3}
   orePrefab:
   - prefab: {fileID: 6195948034875250383, guid: affab98ae6981444fb7bb56051bf0bb4, type: 3}
     baseRarityWeight: 80

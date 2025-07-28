@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 69560925adeb77c459c96dde9ca2180b
+guid: 30826fc3503bb6b48920596e75f487ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2066787279625910198
-    second: greenLizardmanPlate_0
+      213: -8508695919029628365
+    second: tree_sheet_0
+  - first:
+      213: 5432958543958494796
+    second: tree_sheet_1
+  - first:
+      213: 2117177176850461164
+    second: tree_sheet_2
+  - first:
+      213: 2740292553316937517
+    second: tree_sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenLizardmanPlate_0
+      name: tree_sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 240
-        height: 240
+        x: 24
+        y: 9
+        width: 237
+        height: 292
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a480a936beb4153e0800000000000000
-      internalID: -2066787279625910198
+      spriteID: 3325c64842a0be980800000000000000
+      internalID: -8508695919029628365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 9
+        width: 232
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ec11cb20fb56b40800000000000000
+      internalID: 5432958543958494796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 9
+        width: 197
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce17cb0dc69b16d10800000000000000
+      internalID: 2117177176850461164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 9
+        width: 162
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2faa1dfe89770620800000000000000
+      internalID: 2740292553316937517
       vertices: []
       indices: 
       edges: []
@@ -134,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      greenLizardmanPlate_0: -2066787279625910198
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

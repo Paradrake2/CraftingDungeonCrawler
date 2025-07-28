@@ -1,5 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+public enum ObstacleType
+{
+    Rock,
+    Tree
+}
 public class Obstacle : MonoBehaviour
 {
     public float obstacleHealth;
@@ -8,6 +14,9 @@ public class Obstacle : MonoBehaviour
     public RoomGenerator roomGenerator;
     public int x;
     public int y;
+    public List<Items> resourceDrops;
+    public float dropChance = 0.5f;
+    public ObstacleType obstacleType;
     void Start()
     {
 
@@ -38,6 +47,13 @@ public class Obstacle : MonoBehaviour
     void DestroyObstacle()
     {
         if (roomGenerator != null) roomGenerator.MakeWalkable(x, y);
+        if (resourceDrops != null && resourceDrops.Count > 0 && Random.value < dropChance) AddResource();
         Destroy(gameObject);
+    }
+    void AddResource()
+    {
+        Items resource = resourceDrops[Random.Range(0, resourceDrops.Count)];
+        int amount = Random.Range(1, 5);
+        InventorySystem.Instance.AddItem(resource.name, amount);
     }
 }

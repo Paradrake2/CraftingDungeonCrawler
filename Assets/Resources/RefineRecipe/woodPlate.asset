@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7efdd5852f85bd43b92e5f60c940cd0, type: 3}
-  m_Name: ironGuard 11
+  m_Name: woodPlate
   m_EditorClassIdentifier: 
-  recipeName: 
-  icon: {fileID: 0}
+  recipeName: woodPlate
+  tier: 0
+  icon: {fileID: 5194718278184051245, guid: d7dde94fbd9d1bb4bb258ce88f22ce9f, type: 3}
   outputQuantity: 1
-  requirements: []
-  outputItem: {fileID: 0}
+  requirements:
+  - requiredTag: woodLog
+    quantityRequired: 2
+  outputItem: {fileID: 11400000, guid: 9f3a1fb5ffe83134aada47cdd6e1f023, type: 2}

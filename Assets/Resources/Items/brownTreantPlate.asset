@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinGuard
+  m_Name: brownTreantPlate
   m_EditorClassIdentifier: 
-  itemName: goblinGuard
-  icon: {fileID: -8757072084595611642, guid: 26cfbe362b2e9134f92cbee15889dfeb, type: 3}
+  itemName: brownTreantPlate
+  icon: {fileID: 1168340564044223947, guid: 96aa8f41446683243a2a263e519d466d, type: 3}
   description: 
-  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
-  itemType: 2
-  maxStackSize: 99
+  color: {r: 0.32156864, g: 0.09411765, b: 0.023529412, a: 0}
+  itemType: 0
+  maxStackSize: 999
   value: 0
   Rarity: 0
-  tier: 0
+  tier: 2
   flatDamage: 0
   damageMult: 0
-  flatDefense: 1
-  defenseMult: 0
-  flatMaxHP: 7
-  HPMult: 0
+  flatDefense: 6
+  defenseMult: 0.1
+  flatMaxHP: 30
+  HPMult: 0.05
   flatPureDamage: 0
   pureDamageMult: 0
   flatMaxMana: 0
@@ -44,11 +44,13 @@ MonoBehaviour:
   dashDistance: 0
   dashNumber: 0
   tags:
-  - guard
-  - goblin
-  ID: goblinGuard
-  isCraftingMaterial: 1
-  isCraftable: 1
+  - plate
+  - wood
+  - woodPlate
+  - brownTreantPlate
+  ID: brownTreantPlate
+  isCraftingMaterial: 0
+  isCraftable: 0
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

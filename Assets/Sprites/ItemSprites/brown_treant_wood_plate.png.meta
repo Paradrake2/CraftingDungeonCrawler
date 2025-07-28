@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 69560925adeb77c459c96dde9ca2180b
+guid: 96aa8f41446683243a2a263e519d466d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2066787279625910198
-    second: greenLizardmanPlate_0
+      213: 1168340564044223947
+    second: brown_treant_wood_plate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenLizardmanPlate_0
+      name: brown_treant_wood_plate_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 240
-        height: 240
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a480a936beb4153e0800000000000000
-      internalID: -2066787279625910198
+      spriteID: bc519888d87c63010800000000000000
+      internalID: 1168340564044223947
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      greenLizardmanPlate_0: -2066787279625910198
+      brown_treant_wood_plate_0: 1168340564044223947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

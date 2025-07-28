@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinGuard
+  m_Name: redBullHoove
   m_EditorClassIdentifier: 
-  itemName: goblinGuard
-  icon: {fileID: -8757072084595611642, guid: 26cfbe362b2e9134f92cbee15889dfeb, type: 3}
+  itemName: redBullHoove
+  icon: {fileID: -1959595568948590831, guid: 438a789fe3384b9429fb02d11731bb54, type: 3}
   description: 
-  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
-  itemType: 2
-  maxStackSize: 99
+  color: {r: 0.41568628, g: 0.019607844, b: 0.019607844, a: 0}
+  itemType: 0
+  maxStackSize: 999
   value: 0
   Rarity: 0
   tier: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 1
+  flatDefense: 0
   defenseMult: 0
-  flatMaxHP: 7
+  flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -44,11 +44,12 @@ MonoBehaviour:
   dashDistance: 0
   dashNumber: 0
   tags:
-  - guard
-  - goblin
-  ID: goblinGuard
-  isCraftingMaterial: 1
-  isCraftable: 1
+  - redBullHoove
+  - hoove
+  - adhesiveIngredient
+  ID: redBullHoove
+  isCraftingMaterial: 0
+  isCraftable: 0
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

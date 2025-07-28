@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe46435733f074190e7f843a50ce4e, type: 3}
-  m_Name: goblinGuard
+  m_Name: adhesive
   m_EditorClassIdentifier: 
-  itemName: goblinGuard
-  icon: {fileID: -8757072084595611642, guid: 26cfbe362b2e9134f92cbee15889dfeb, type: 3}
+  itemName: adhesive
+  icon: {fileID: 1139927739650035972, guid: 1c131cc5663e04a4889b87ce40fd1afe, type: 3}
   description: 
-  color: {r: 0.8627451, g: 1, b: 0.8352941, a: 0}
-  itemType: 2
-  maxStackSize: 99
+  color: {r: 0, g: 0, b: 0, a: 0}
+  itemType: 0
+  maxStackSize: 999
   value: 0
   Rarity: 0
   tier: 0
   flatDamage: 0
   damageMult: 0
-  flatDefense: 1
+  flatDefense: 0
   defenseMult: 0
-  flatMaxHP: 7
+  flatMaxHP: 0
   HPMult: 0
   flatPureDamage: 0
   pureDamageMult: 0
@@ -44,11 +44,10 @@ MonoBehaviour:
   dashDistance: 0
   dashNumber: 0
   tags:
-  - guard
-  - goblin
-  ID: goblinGuard
-  isCraftingMaterial: 1
-  isCraftable: 1
+  - adhesive
+  ID: adhesive
+  isCraftingMaterial: 0
+  isCraftable: 0
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
